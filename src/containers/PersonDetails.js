@@ -50,8 +50,6 @@ class PersonDetails extends Component {
         });
     }
 
-    console.log(personDetails);
-
     return (
       <div>
         <PersonInfo

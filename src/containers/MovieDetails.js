@@ -93,7 +93,7 @@ class MovieDetails extends Component {
         />
         <div className="movie__content">
           <div className="movie__sidebar">
-            <h4>Movie Data</h4>
+            <h4>Facts</h4>
             <MovieData
               production={movieDetails.production_companies}
               runtime={movieDetails.runtime}
@@ -107,7 +107,6 @@ class MovieDetails extends Component {
               language={movieDetails.original_language}
             />
           </div>
-          {console.log(movieDetails)}
           <div className="movie__content-main">
             <h4>Featured Cast</h4>
             <div className="person__list">

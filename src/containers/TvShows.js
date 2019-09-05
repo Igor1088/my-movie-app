@@ -27,7 +27,6 @@ class TvShows extends Component {
     }
 
     let items;
-    console.log("tv", this.props);
 
     if (tvShows.length !== 0) {
       items = tvShows.map(tv => {

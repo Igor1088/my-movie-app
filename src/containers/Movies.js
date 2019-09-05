@@ -42,7 +42,6 @@ class Movies extends Component {
         );
       });
     }
-    console.log("tv m", this.props);
     return (
       <div>
         <h3 className="row__title">{heading}</h3>

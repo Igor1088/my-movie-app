@@ -3,16 +3,17 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import * as actions from "../actions";
-import {
+import tvshowDetails, {
   getTvShowDetailsError,
   getTvShowDetails,
   getTvShowDetailsLoading
 } from "../reducers/tvshow-details";
 import Loader from "../components/Loader";
 import MovieInfo from "../components/MovieInfo";
-import MovieData from "../components/MovieData";
+import TvData from "../components/TvData";
 import Person from "../components/Person";
 import Item from "../components/Item";
+import Season from "../components/Season";
 import Image from "../components/Image";
 import Video from "../components/Video";
 
@@ -32,8 +33,6 @@ class TvShowDetails extends Component {
   render() {
     const { error, loading, tvShowDetails } = this.props;
 
-    console.log("details", this.props);
-
     if (error) {
       return <div>Error!</div>;
     }
@@ -42,9 +41,10 @@ class TvShowDetails extends Component {
       return <Loader />;
     }
 
+    console.log("tv details", this.props);
+
     let cast = [];
-    let crew = [];
-    let items;
+    let items, seasons;
 
     if (tvShowDetails.length !== 0) {
       cast = tvShowDetails.credits.cast.slice(0, 6).map(person => {
@@ -56,24 +56,28 @@ class TvShowDetails extends Component {
         };
       });
 
-      crew = tvShowDetails.credits.crew.slice(0, 6).map(person => {
-        return {
-          name: person.name,
-          role: person.job,
-          poster: person.profile_path,
-          personID: person.id
-        };
-      });
-
-      items = tvShowDetails.similar.results.slice(0, 12).map(movie => {
+      items = tvShowDetails.similar.results.slice(0, 12).map(tv => {
         return (
           <Item
-            key={movie.id}
-            id={movie.id}
-            poster={movie.poster_path}
-            title={movie.title}
-            vote_average={movie.vote_average}
+            key={tv.id}
+            id={tv.id}
+            poster={tv.poster_path}
+            title={tv.name}
+            vote_average={tv.vote_average}
             media="tv"
+          />
+        );
+      });
+
+      seasons = tvShowDetails.seasons.map(s => {
+        return (
+          <Season
+            key={s.id}
+            id={s.id}
+            poster={s.poster_path}
+            title={s.name}
+            episodes={s.episode_count}
+            media="season"
           />
         );
       });
@@ -82,7 +86,7 @@ class TvShowDetails extends Component {
     return (
       <div>
         <MovieInfo
-          title={tvShowDetails.title}
+          title={tvShowDetails.name}
           poster={tvShowDetails.poster_path}
           overview={tvShowDetails.overview}
           tagline={tvShowDetails.tagline}
@@ -93,17 +97,15 @@ class TvShowDetails extends Component {
         />
         <div className="movie__content">
           <div className="movie__sidebar">
-            <h4>Movie Data</h4>
-            {/* <MovieData
-              production={tvShowDetails.production_companies}
-              runtime={tvShowDetails.runtime}
-              budget={tvShowDetails.budget}
-              release_date={tvShowDetails.first_air_date}
-              imdb={tvShowDetails.imdb_id}
-              status={tvShowDetails.status}
+            <h4>Facts</h4>
+            <TvData
+              production={tvShowDetails.networks}
+              runtime={tvShowDetails.episode_run_time}
               homepage={tvShowDetails.homepage}
+              release_date={tvShowDetails.first_air_date}
+              status={tvShowDetails.status}
               language={tvShowDetails.original_language}
-            /> */}
+            />
           </div>
           <div className="movie__content-main">
             <h4>Featured Cast</h4>
@@ -121,20 +123,8 @@ class TvShowDetails extends Component {
               })}
             </div>
 
-            <h4>Featured Crew</h4>
-            <div className="person__list">
-              {crew.map(person => {
-                return (
-                  <Person
-                    key={person.personID}
-                    id={person.personID}
-                    name={person.name}
-                    role={person.role}
-                    poster={person.poster}
-                  />
-                );
-              })}
-            </div>
+            <h4>Seasons</h4>
+            <div className="row">{seasons}</div>
 
             <h4>Trailers</h4>
             <div>

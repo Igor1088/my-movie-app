@@ -1,31 +1,22 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const MovieData = props => {
+const TvData = props => {
   const {
     language,
-    homepage,
     production,
     runtime,
-    budget,
-    revenue,
     release_date,
-    imdb,
-    status
+    status,
+    homepage
   } = props;
 
   let prod__companies;
-  let date;
 
   if (production) {
     prod__companies = production.slice(0, 3).map(companie => {
       return { name: companie.name };
     });
-
-    date = release_date
-      .split("-")
-      .reverse()
-      .join("/");
   }
 
   return (
@@ -36,7 +27,7 @@ const MovieData = props => {
       </div>
       <div className="movie__data-item">
         <div className="movie__data-heading">Release Information</div>
-        <div className="movie__data-info">{date}</div>
+        <div className="movie__data-info">{release_date}</div>
       </div>
       <div className="movie__data-item">
         <div className="movie__data-heading">Original Language</div>
@@ -44,15 +35,7 @@ const MovieData = props => {
       </div>
       <div className="movie__data-item">
         <div className="movie__data-heading">Runtime</div>
-        <div className="movie__data-info">{runtime} min</div>
-      </div>
-      <div className="movie__data-item">
-        <div className="movie__data-heading">Budget</div>
-        <div className="movie__data-info">&#36;{budget}</div>
-      </div>
-      <div className="movie__data-item">
-        <div className="movie__data-heading">Revenue</div>
-        <div className="movie__data-info">&#36;{revenue}</div>
+        <div className="movie__data-info">{runtime ? runtime[0] : "-"} min</div>
       </div>
       <div className="movie__data-item">
         <div className="movie__data-heading">Homepage</div>
@@ -82,26 +65,13 @@ const MovieData = props => {
           </p>
         </div>
       </div>
-      <div className="movie__data-item">
-        <div className="movie__data-heading">IMDB</div>
-        <div className="movie__data-info">
-          <a
-            href={`http://www.imdb.com/title/${imdb}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            title="imdb"
-          >
-            @imdb
-          </a>
-        </div>
-      </div>
     </div>
   );
 };
 
-export default MovieData;
+export default TvData;
 
-MovieData.propTypes = {
+TvData.propTypes = {
   revenue: PropTypes.number,
   production: PropTypes.array,
   budget: PropTypes.number,
