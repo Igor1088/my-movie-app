@@ -1,0 +1,104 @@
+.person {
+  &__info {
+    display: flex;
+    color: #2c3e50;
+    margin-top: 50px;
+  }
+
+  &__image {
+    &-holder {
+      img {
+        width: 300px;
+      }
+    }
+  }
+
+  &__image {
+    width: 100%;
+    border-radius: 4px;
+  }
+
+  &__overview {
+    &-holder {
+      padding: 30px;
+      flex: 1 1 auto;
+    }
+
+    &-heading {
+      color: #e74c3c;
+      font-size: 126%;
+      margin-bottom: 20px;
+    }
+  }
+
+  &__biography {
+    margin-top: 30px;
+    line-height: 1.4;
+    text-align: justify;
+    max-height: 300px;
+    overflow-y: auto;
+    padding-right: 10px;
+  }
+
+  &__container {
+    display: flex;
+    margin-top: 30px;
+  }
+
+  &__sidebar {
+    width: 20%;
+    min-width: 20%;
+    background-color: #bdc3c7;
+    padding: 20px 10px 10px 10px;
+
+    h4 {
+      font-size: 120%;
+      font-weight: 700;
+    }
+  }
+
+  &__heading {
+    font-size: 240%;
+    text-transform: uppercase;
+    margin-bottom: 50px;
+    margin-top: 0;
+    font-weight: 700;
+    word-spacing: 2px;
+    letter-spacing: 1px;
+    display: flex;
+  }
+
+  &__icons-holder {
+    margin-left: 15px;
+
+    a {
+      color: inherit;
+    }
+  }
+
+  &__main {
+    padding: 20px;
+    background-color: #ecf0f1;
+    flex: 1 auto;
+
+    .item {
+      width: 140px;
+      padding: 0 15px;
+      margin: 0;
+
+      &__image-holder {
+        height: 165px;
+      }
+    }
+
+    h4 {
+      margin: 15px 0;
+      font-size: 120%;
+      font-weight: 700;
+    }
+
+    .row {
+      margin: 0 -20px;
+    }
+  }
+}

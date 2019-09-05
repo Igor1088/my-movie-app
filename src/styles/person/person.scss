@@ -1,0 +1,38 @@
+.person {
+  &__list {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  &__holder {
+    width: 148px;
+    padding: 0 15px 10px 15px;
+    cursor: pointer;
+
+    &:hover {
+      .person__name {
+        color: #c0392b;
+      }
+    }
+  }
+
+  &__img {
+    width: 110px;
+    height: 165px;
+    border-radius: 4px;
+  }
+
+  &__info-text {
+    margin-top: 8px;
+  }
+
+  &__name {
+    color: $itemName;
+    margin: 0;
+  }
+
+  &__role {
+    margin-top: 5px;
+    color: #2c3e50;
+  }
+}
