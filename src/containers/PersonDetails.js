@@ -34,7 +34,7 @@ class PersonDetails extends Component {
 
     if (personDetails.movie_credits) {
       movies = personDetails.movie_credits.cast
-        .filter(m => m.popularity > 9)
+        .filter(m => m.popularity > 5)
         .slice(0, 12)
         .map(movie => {
           return (

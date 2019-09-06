@@ -19,24 +19,78 @@ function App({ children }) {
           <Route
             path="/movies/popular"
             render={props => (
-              <Movies {...props} category="popular" heading="Popular" />
+              <Movies {...props} category="popular" heading="Popular Movies" />
             )}
           />
           <Route
             path="/movies/upcoming"
             render={props => (
-              <Movies {...props} category="upcoming" heading="Upcoming" />
+              <Movies
+                {...props}
+                category="upcoming"
+                heading="Upcoming Movies"
+              />
             )}
           />
           <Route
-            path="/movies/top_rated"
+            path="/movies/top-rated"
             render={props => (
-              <Movies {...props} category="top_rated" heading="Top Rated" />
+              <Movies
+                {...props}
+                category="top_rated"
+                heading="Top Rated Movies"
+              />
             )}
           />
           <Route
-            path="/tvshows"
-            render={props => <TvShows {...props} category="on_the_air" />}
+            path="/movies/now-playing"
+            render={props => (
+              <Movies
+                {...props}
+                category="now_playing"
+                heading="Now Playing Movies"
+              />
+            )}
+          />
+          <Route
+            path="/tv-show/popular"
+            render={props => (
+              <TvShows
+                {...props}
+                category="popular"
+                heading="Popular TV Shows"
+              />
+            )}
+          />
+          <Route
+            path="/tv-show/top-rated"
+            render={props => (
+              <TvShows
+                {...props}
+                category="top_rated"
+                heading="Top Rated Tv Shows"
+              />
+            )}
+          />
+          <Route
+            path="/tv-show/on-tv"
+            render={props => (
+              <TvShows
+                {...props}
+                category="on_the_air"
+                heading="Currently Airing TV Shows"
+              />
+            )}
+          />
+          <Route
+            path="/tv-show/airing-today"
+            render={props => (
+              <TvShows
+                {...props}
+                category="airing_today"
+                heading="TV Shows Airing Today"
+              />
+            )}
           />
           <Route path="/movieDetails" component={MovieDetails} />
           <Route path="/movie/:id" component={MovieDetails} />

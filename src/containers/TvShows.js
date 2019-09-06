@@ -16,7 +16,7 @@ class TvShows extends Component {
     this.props.fetchTvShows(this.props.category);
   }
   render() {
-    const { error, loading, tvShows } = this.props;
+    const { error, loading, tvShows, heading } = this.props;
 
     if (error) {
       return <div>Error!</div>;
@@ -44,7 +44,7 @@ class TvShows extends Component {
     }
     return (
       <div>
-        <h3 className="row__title">TV Shows Airing Today</h3>
+        <h3 className="row__title">{heading}</h3>
         <div className="row">{items}</div>
       </div>
     );
