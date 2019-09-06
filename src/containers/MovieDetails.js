@@ -74,6 +74,7 @@ class MovieDetails extends Component {
             title={movie.title}
             vote_average={movie.vote_average}
             media="movie"
+            hoverClass="item__hover"
           />
         );
       });
@@ -172,8 +173,8 @@ MovieDetails.propTypes = {
 
 const mapStateToProps = state => ({
   error: getMovieDetailsError(state),
-  movieDetails: getMovieDetails(state),
-  loading: getMovieDetailsLoading(state)
+  loading: getMovieDetailsLoading(state),
+  movieDetails: getMovieDetails(state)
 });
 
 function mapDispatchToProps(dispatch) {

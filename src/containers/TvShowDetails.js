@@ -65,6 +65,7 @@ class TvShowDetails extends Component {
             title={tv.name}
             vote_average={tv.vote_average}
             media="tv"
+            hoverClass="item__hover"
           />
         );
       });
@@ -90,7 +91,6 @@ class TvShowDetails extends Component {
           poster={tvShowDetails.poster_path}
           overview={tvShowDetails.overview}
           tagline={tvShowDetails.tagline}
-          release_date={tvShowDetails.release_date}
           backdrop={tvShowDetails.backdrop_path}
           genres={tvShowDetails.genres}
           vote_average={tvShowDetails.vote_average}
@@ -151,8 +151,8 @@ TvShowDetails.propTypes = {
 
 const mapStateToProps = state => ({
   error: getTvShowDetailsError(state),
-  tvShowDetails: getTvShowDetails(state),
-  loading: getTvShowDetailsLoading(state)
+  loading: getTvShowDetailsLoading(state),
+  tvShowDetails: getTvShowDetails(state)
 });
 
 function mapDispatchToProps(dispatch) {

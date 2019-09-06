@@ -6,6 +6,7 @@ import TvShows from "../containers/TvShows";
 import MovieDetails from "../containers/MovieDetails";
 import PersonDetails from "../containers/PersonDetails";
 import TvShowDetails from "../containers/TvShowDetails";
+import People from "../containers/People";
 import { BrowserRouter, Route } from "react-router-dom";
 
 function App({ children }) {
@@ -92,10 +93,10 @@ function App({ children }) {
               />
             )}
           />
-          <Route path="/movieDetails" component={MovieDetails} />
           <Route path="/movie/:id" component={MovieDetails} />
-          <Route path="/person/:id" component={PersonDetails} />
           <Route path="/tv/:id" component={TvShowDetails} />
+          <Route path="/people" component={People} />
+          <Route path="/person/:id" component={PersonDetails} />
         </div>
       </div>
     </BrowserRouter>

@@ -12,7 +12,8 @@ const MovieInfo = props => {
     genres = [],
     vote_average
   } = props;
-  const year = release_date ? release_date.slice(0, 4) : "";
+
+  const year = release_date ? `(${release_date.slice(0, 4)})` : "";
 
   // const style = {
   //   'background-image': `url(https://image.tmdb.org/t/p/original${backdrop})`
@@ -31,7 +32,7 @@ const MovieInfo = props => {
         </div>
         <div className="movie__overview-holder">
           <h1>
-            {title} <span>({year})</span>
+            {title} <span>{year}</span>
           </h1>
           <div className="movie__overview-info">
             <div className="movie__vote">

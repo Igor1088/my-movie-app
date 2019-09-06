@@ -38,6 +38,7 @@ class TvShows extends Component {
             title={tv.name}
             vote_average={tv.vote_average}
             media="tv"
+            hoverClass="item__hover"
           />
         );
       });
@@ -62,8 +63,8 @@ TvShows.propTypes = {
 
 const mapStateToProps = state => ({
   error: getTvShowsError(state),
-  tvShows: getTvShows(state),
-  loading: getTvShowsLoading(state)
+  loading: getTvShowsLoading(state),
+  tvShows: getTvShows(state)
 });
 
 function mapDispatchToProps(dispatch) {
