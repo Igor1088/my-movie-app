@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import languages from "../constants/languages";
 
 const TvData = props => {
   const {
@@ -19,6 +20,10 @@ const TvData = props => {
     });
   }
 
+  const lang = languages.filter(function(l) {
+    return l.code === language;
+  });
+
   return (
     <div className="movie__data-list">
       <div className="movie__data-item">
@@ -31,7 +36,7 @@ const TvData = props => {
       </div>
       <div className="movie__data-item">
         <div className="movie__data-heading">Original Language</div>
-        <div className="movie__data-info">{language}</div>
+        <div className="movie__data-info">{language ? lang[0].name : ""}</div>
       </div>
       <div className="movie__data-item">
         <div className="movie__data-heading">Runtime</div>
@@ -75,7 +80,6 @@ TvData.propTypes = {
   revenue: PropTypes.number,
   production: PropTypes.array,
   budget: PropTypes.number,
-  runtime: PropTypes.number,
   release_date: PropTypes.string,
   imdb: PropTypes.string,
   status: PropTypes.string,

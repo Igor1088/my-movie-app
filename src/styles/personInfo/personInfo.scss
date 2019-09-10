@@ -35,9 +35,12 @@
     margin-top: 30px;
     line-height: 1.4;
     text-align: justify;
-    max-height: 300px;
-    overflow-y: auto;
-    padding-right: 10px;
+
+    p {
+      max-height: 300px;
+      overflow-y: auto;
+      padding-right: 10px;
+    }
   }
 
   &__container {

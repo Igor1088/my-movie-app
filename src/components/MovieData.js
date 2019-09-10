@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import languages from "../constants/languages";
 
 const MovieData = props => {
   const {
@@ -28,6 +29,10 @@ const MovieData = props => {
       .join("/");
   }
 
+  const lang = languages.filter(function(l) {
+    return l.code === language;
+  });
+
   return (
     <div className="movie__data-list">
       <div className="movie__data-item">
@@ -40,7 +45,7 @@ const MovieData = props => {
       </div>
       <div className="movie__data-item">
         <div className="movie__data-heading">Original Language</div>
-        <div className="movie__data-info">{language}</div>
+        <div className="movie__data-info">{language ? lang[0].name : ""}</div>
       </div>
       <div className="movie__data-item">
         <div className="movie__data-heading">Runtime</div>

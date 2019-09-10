@@ -12,7 +12,7 @@ const Video = props => {
     <div className="video__container">
       {videosList.map(video => {
         return (
-          <div className="video__item-holder">
+          <div className="video__item-holder" key={video.key}>
             <div className="video__item">
               <iframe
                 title={video.key}
