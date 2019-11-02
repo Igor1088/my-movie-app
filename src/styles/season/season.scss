@@ -1,0 +1,36 @@
+.season {
+  padding: 0 10px;
+
+  &__heading {
+    display: flex;
+    margin-bottom: 30px;
+  }
+
+  &__img-holder {
+    width: 80px;
+    min-width: 80px;
+    margin-right: 10px;
+
+    img {
+      width: 100%;
+    }
+  }
+
+  &__name {
+    font-size: 30px;
+
+    span {
+      font-size: 18px;
+    }
+  }
+
+  &__overview {
+    margin-top: 10px;
+
+    &-heading {
+      font-size: 17px;
+      margin-bottom: 5px;
+      color: $textColor;
+    }
+  }
+}

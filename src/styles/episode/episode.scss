@@ -19,7 +19,7 @@
 
   &__number {
     position: absolute;
-    bottom: 5px;
+    top: 65px;
     left: 0;
     right: 0;
     background-color: rgba(0, 0, 0, 0.6);
@@ -40,7 +40,7 @@
 
   &__name {
     font-size: 17px;
-    color: #e74c3c;
+    color: $textColor;
   }
 
   &__info {
@@ -50,47 +50,22 @@
   }
 
   &__vote {
-    color: #e74c3c;
+    color: $textColor;
   }
 
   &__overview {
     margin-top: 10px;
+    text-align: justify;
   }
 }
 
-.season {
-  padding: 0 10px;
+@media (max-width: 768px) {
+  .episode {
+    flex-direction: column;
 
-  &__heading {
-    display: flex;
-    margin-bottom: 30px;
-  }
-
-  &__img-holder {
-    width: 80px;
-    min-width: 80px;
-    margin-right: 10px;
-
-    img {
-      width: 100%;
-    }
-  }
-
-  &__name {
-    font-size: 30px;
-
-    span {
-      font-size: 18px;
-    }
-  }
-
-  &__overview {
-    margin-top: 10px;
-
-    &-heading {
-      font-size: 17px;
-      margin-bottom: 5px;
-      color: #e74c3c;
+    &__details {
+      padding: 0;
+      margin-top: 20px;
     }
   }
 }

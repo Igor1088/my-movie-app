@@ -74,7 +74,6 @@ class MovieDetails extends Component {
             title={movie.title}
             vote_average={movie.vote_average}
             media="movie"
-            hoverClass="item__hover"
           />
         );
       });

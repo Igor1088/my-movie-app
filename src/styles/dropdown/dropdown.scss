@@ -41,12 +41,12 @@
       width: 100%;
       padding: 5px 10px;
       font-weight: 400;
-      color: #e74c3c;
+      color: $textColor;
       white-space: nowrap;
       border: 0;
 
       &:hover {
-        background-color: #e74c3c;
+        background-color: $textColor;
         color: #ecf0f1;
       }
     }

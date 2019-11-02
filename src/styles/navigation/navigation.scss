@@ -1,26 +1,26 @@
 .nav {
+  display: flex;
+  flex-wrap: wrap;
+  padding-left: 0;
+  list-style: none;
+
+  &__link {
+    display: block;
+    padding: 5px 10px;
+    color: #fff;
+    text-decoration: none;
+    text-transform: uppercase;
+
+    &:hover {
+      color: #f1c40f;
+    }
+  }
+
+  &-bar {
     display: flex;
-    flex-wrap: wrap;
-    padding-left: 0;
-    list-style: none;
-
-    &__link {
-        display: block;
-        padding: 5px 10px;
-        color: #fff;
-        text-decoration: none;
-        text-transform: uppercase;
-
-        &:hover {
-            color: #f1c40f;
-        }
-    }
-
-    &-bar {
-        display: flex;
-        justify-content: flex-end;
-        background-color: #e74c3c;
-        margin: 15px 0;
-        padding: 15px 0;
-    }
+    justify-content: flex-end;
+    background-color: $textColor;
+    margin: 15px 0;
+    padding: 15px 0;
+  }
 }

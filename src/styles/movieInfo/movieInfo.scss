@@ -39,7 +39,7 @@
     }
 
     &-heading {
-      color: #e74c3c;
+      color: $textColor;
       font-size: 126%;
       margin-bottom: 20px;
     }
@@ -58,7 +58,7 @@
     &-item {
       padding: 10px 15px;
       border-radius: 4px;
-      background-color: #e74c3c;
+      background-color: $textColor;
       color: #fff;
       margin: 2px;
 
@@ -77,7 +77,7 @@
   }
 
   &__vote {
-    color: #e74c3c;
+    color: $textColor;
     font-size: 139%;
     font-weight: 700;
     display: flex;

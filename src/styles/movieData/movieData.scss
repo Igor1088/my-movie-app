@@ -1,30 +1,30 @@
 .movie {
-    &__data {
-        &-list {
-            display: flex;
-            flex-direction: column;
-        }
-
-        &-item {
-            padding: 15px 0;
-        }
-
-        &-heading {
-            color: $itemName;
-        }
-
-        &-info {
-            margin-top: 8px;
-
-            p {
-                & + p {
-                    margin-top: 5px;
-                }
-            }
-
-            a {
-                color: inherit;
-            }
-        }
+  &__data {
+    &-list {
+      display: flex;
+      flex-direction: column;
     }
+
+    &-item {
+      padding: 15px 0;
+    }
+
+    &-heading {
+      color: $textColor;
+    }
+
+    &-info {
+      margin-top: 8px;
+
+      p {
+        & + p {
+          margin-top: 5px;
+        }
+      }
+
+      a {
+        color: inherit;
+      }
+    }
+  }
 }

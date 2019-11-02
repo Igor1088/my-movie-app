@@ -65,7 +65,6 @@ class TvShowDetails extends Component {
             title={tv.name}
             vote_average={tv.vote_average}
             media="tv"
-            hoverClass="item__hover"
           />
         );
       });
