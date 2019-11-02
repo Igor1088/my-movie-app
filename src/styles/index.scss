@@ -11,11 +11,13 @@
 @import "personInfo/personInfo";
 @import "credits/credits";
 @import "video/video";
+@import "episode/episode.scss";
 
 html {
   font-family: $font-family;
   font-size: 14px;
   line-height: 1.2;
+  color: #2c3e50;
 }
 
 * {

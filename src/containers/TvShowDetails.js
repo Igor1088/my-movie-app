@@ -78,7 +78,8 @@ class TvShowDetails extends Component {
             poster={s.poster_path}
             title={s.name}
             episodes={s.episode_count}
-            media="season"
+            tvShowID={tvShowDetails.id}
+            number={s.season_number}
           />
         );
       });

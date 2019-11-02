@@ -2,25 +2,25 @@ import * as types from "../constants/actionTypes";
 
 const initialState = {
   loading: false,
-  person: [],
+  season: [],
   error: null
 };
 
 export default function(state = initialState, action) {
   switch (action.type) {
-    case types.FETCH_PERSON_BEGIN:
+    case types.FETCH_SEASON_BEGIN:
       return {
         ...state,
         loading: true,
         error: null
       };
-    case types.FETCH_PERSON_SUCCESS:
+    case types.FETCH_SEASON_SUCCESS:
       return {
         ...state,
         loading: false,
-        person: action.payload
+        season: action.payload
       };
-    case types.FETCH_PERSON_ERROR:
+    case types.FETCH_SEASON_ERROR:
       return {
         ...state,
         loading: false,
@@ -31,6 +31,6 @@ export default function(state = initialState, action) {
   }
 }
 
-export const getPersonDetails = state => state.personDetails.person;
-export const getPersonDetailsLoading = state => state.personDetails.loading;
-export const getPersonDetailsError = state => state.personDetails.error;
+export const getSeasonDetails = state => state.seasonDetails.season;
+export const getSeasonDetailsLoading = state => state.seasonDetails.loading;
+export const getSeasonDetailsError = state => state.seasonDetails.error;

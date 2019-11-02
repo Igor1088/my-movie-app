@@ -4,6 +4,7 @@ import { fetchPeople } from "./people";
 import { fetchMovieDetails } from "./movie-details";
 import { fetchPersonDetails } from "./person-details";
 import { fetchTvShowDetails } from "./tvshow-details";
+import { fetchSeasonDetails } from "./tv-season";
 
 export {
   fetchMovies,
@@ -11,5 +12,6 @@ export {
   fetchPeople,
   fetchMovieDetails,
   fetchTvShowDetails,
-  fetchPersonDetails
+  fetchPersonDetails,
+  fetchSeasonDetails
 };

@@ -1,0 +1,96 @@
+.episode {
+  display: flex;
+  padding: 10px;
+  background-color: #e0e2e2;
+
+  &:nth-child(odd) {
+    background-color: #ecf0f1;
+  }
+
+  &__img-holder {
+    position: relative;
+    width: 154px;
+    min-width: 154px;
+  }
+
+  &__image {
+    width: 100%;
+  }
+
+  &__number {
+    position: absolute;
+    bottom: 5px;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: #fff;
+    padding: 2px 0;
+    text-align: center;
+  }
+
+  &__details {
+    padding-left: 20px;
+    flex: 1 auto;
+  }
+
+  &__heading {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__name {
+    font-size: 17px;
+    color: #e74c3c;
+  }
+
+  &__info {
+    display: flex;
+    align-items: center;
+    margin-top: 5px;
+  }
+
+  &__vote {
+    color: #e74c3c;
+  }
+
+  &__overview {
+    margin-top: 10px;
+  }
+}
+
+.season {
+  padding: 0 10px;
+
+  &__heading {
+    display: flex;
+    margin-bottom: 30px;
+  }
+
+  &__img-holder {
+    width: 80px;
+    min-width: 80px;
+    margin-right: 10px;
+
+    img {
+      width: 100%;
+    }
+  }
+
+  &__name {
+    font-size: 30px;
+
+    span {
+      font-size: 18px;
+    }
+  }
+
+  &__overview {
+    margin-top: 10px;
+
+    &-heading {
+      font-size: 17px;
+      margin-bottom: 5px;
+      color: #e74c3c;
+    }
+  }
+}

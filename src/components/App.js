@@ -7,6 +7,7 @@ import MovieDetails from "../containers/MovieDetails";
 import PersonDetails from "../containers/PersonDetails";
 import TvShowDetails from "../containers/TvShowDetails";
 import People from "../containers/People";
+import SeasonDetails from "../containers/SeasonDetails";
 import { BrowserRouter, Route } from "react-router-dom";
 
 function App({ children }) {
@@ -94,9 +95,14 @@ function App({ children }) {
             )}
           />
           <Route path="/movie/:id" component={MovieDetails} />
-          <Route path="/tv/:id" component={TvShowDetails} />
+          <Route exact path="/tv/:id" component={TvShowDetails} />
           <Route path="/people" component={People} />
           <Route path="/person/:id" component={PersonDetails} />
+          <Route
+            exact
+            path="/tv/:id/season/:seasonNumber"
+            component={SeasonDetails}
+          />
         </div>
       </div>
     </BrowserRouter>
