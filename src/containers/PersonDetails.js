@@ -30,20 +30,21 @@ class PersonDetails extends Component {
       return <Loader />;
     }
 
-    let movies;
+    let credits;
+    console.log(personDetails);
 
-    if (personDetails.movie_credits) {
-      movies = personDetails.movie_credits.cast
-        .filter(m => m.popularity > 5)
-        .slice(0, 12)
-        .map(movie => {
+    if (personDetails.combined_credits) {
+      credits = personDetails.combined_credits.cast
+        .filter(m => m.vote_count > 50 && m.vote_average > 5.5)
+        .slice(0, 18)
+        .map(i => {
           return (
             <Item
-              key={movie.id}
-              id={movie.id}
-              poster={movie.poster_path}
-              title={movie.title}
-              vote_average={movie.vote_average}
+              key={i.id}
+              id={i.id}
+              poster={i.poster_path}
+              title={i.title}
+              vote_average={i.vote_average}
               media="movie"
             />
           );
@@ -66,7 +67,7 @@ class PersonDetails extends Component {
           </div>
           <div className="person__main">
             <h4>Known For</h4>
-            <div className="row">{movies}</div>
+            <div className="row">{credits}</div>
             <CreditsList
               credits={
                 personDetails.movie_credits

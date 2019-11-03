@@ -41,8 +41,6 @@ class TvShowDetails extends Component {
       return <Loader />;
     }
 
-    console.log("tv details", this.props);
-
     let cast = [];
     let items, seasons;
 

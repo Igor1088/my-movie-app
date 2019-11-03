@@ -1,17 +1,17 @@
 import * as types from "../constants/actionTypes";
 import { API_KEY } from "../constants/config";
 
-export function fetchPeople() {
+export function fetchPeople(page) {
   return dispatch => {
     dispatch(fetchPeopleBegin());
     fetch(
-      `https://api.themoviedb.org/3/person/popular?api_key=${API_KEY}&language=en`
+      `https://api.themoviedb.org/3/person/popular?api_key=${API_KEY}&language=en&page=${page}`
     )
       .then(handleErrors)
       .then(res => res.json())
       .then(res => {
-        dispatch(fetchPeopleSuccess(res.results));
-        return res.results;
+        dispatch(fetchPeopleSuccess(res));
+        return res;
       })
       .catch(error => {
         dispatch(fetchPeopleError(error));

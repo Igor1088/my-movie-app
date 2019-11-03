@@ -48,7 +48,6 @@ class SeasonDetails extends Component {
       ));
     }
 
-    console.log("details", this.props.seasonDetails);
     return (
       <div className="season">
         <div className="season__heading">

@@ -41,7 +41,6 @@ class MovieDetails extends Component {
     if (loading) {
       return <Loader />;
     }
-    console.log("movies", movieDetails);
 
     let cast = [];
     let crew = [];

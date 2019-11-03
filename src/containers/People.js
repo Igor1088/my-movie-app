@@ -11,14 +11,29 @@ import {
 import Person from "../components/Person";
 import Item from "../components/Item";
 import Loader from "../components/Loader";
+import Pagination from "rc-pagination";
 
 class People extends Component {
-  componentDidMount() {
-    this.props.fetchPeople();
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      current: 1
+    };
   }
+
+  componentDidMount() {
+    this.props.fetchPeople(this.state.current);
+  }
+
+  handlePageClick = page => {
+    this.setState({ current: page });
+    this.props.fetchPeople(page);
+  };
 
   render() {
     const { error, loading, people } = this.props;
+    const totalPages = people.total_pages;
 
     if (error) {
       return <div>Error!</div>;
@@ -30,8 +45,8 @@ class People extends Component {
 
     let items;
 
-    if (people.length !== 0) {
-      items = people.map(person => {
+    if (people.results) {
+      items = people.results.map(person => {
         return (
           <Item
             key={person.id}
@@ -45,12 +60,17 @@ class People extends Component {
       });
     }
 
-    console.log("people", this.props);
-
     return (
       <div>
         <h3 className="row__title">Popular People</h3>
         <div className="row">{items}</div>
+        <div className="pagination">
+          <Pagination
+            onChange={this.handlePageClick}
+            current={this.state.current}
+            total={totalPages}
+          />
+        </div>
       </div>
     );
   }

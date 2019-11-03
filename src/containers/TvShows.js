@@ -10,13 +10,29 @@ import {
 } from "../reducers/tv-shows";
 import Item from "../components/Item";
 import Loader from "../components/Loader";
+import Pagination from "rc-pagination";
 
 class TvShows extends Component {
-  componentDidMount() {
-    this.props.fetchTvShows(this.props.category);
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      current: 1
+    };
   }
+
+  componentDidMount() {
+    this.props.fetchTvShows(this.props.category, this.state.current);
+  }
+
+  handlePageClick = page => {
+    this.setState({ current: page });
+    this.props.fetchTvShows(this.props.category, page);
+  };
+
   render() {
     const { error, loading, tvShows, heading } = this.props;
+    const totalPages = tvShows.total_pages;
 
     if (error) {
       return <div>Error!</div>;
@@ -28,8 +44,8 @@ class TvShows extends Component {
 
     let items;
 
-    if (tvShows.length !== 0) {
-      items = tvShows.map(tv => {
+    if (tvShows.results) {
+      items = tvShows.results.map(tv => {
         return (
           <Item
             key={tv.id}
@@ -46,6 +62,13 @@ class TvShows extends Component {
       <div>
         <h3 className="row__title">{heading}</h3>
         <div className="row">{items}</div>
+        <div className="pagination">
+          <Pagination
+            onChange={this.handlePageClick}
+            current={this.state.current}
+            total={totalPages}
+          />
+        </div>
       </div>
     );
   }

@@ -10,13 +10,28 @@ import {
 } from "../reducers/movies";
 import Item from "../components/Item";
 import Loader from "../components/Loader";
+import Pagination from "rc-pagination";
 
 class Movies extends Component {
-  componentDidMount() {
-    this.props.fetchMovies(this.props.category);
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      current: 1
+    };
   }
+  componentDidMount() {
+    this.props.fetchMovies(this.props.category, this.state.current);
+  }
+
+  handlePageClick = page => {
+    this.setState({ current: page });
+    this.props.fetchMovies(this.props.category, page);
+  };
+
   render() {
     const { error, loading, movies, heading } = this.props;
+    const totalPages = movies.total_pages;
 
     if (error) {
       return <div>Error!</div>;
@@ -28,8 +43,8 @@ class Movies extends Component {
 
     let items;
 
-    if (movies.length !== 0) {
-      items = movies.map(movie => {
+    if (movies.results) {
+      items = movies.results.map(movie => {
         return (
           <Item
             key={movie.id}
@@ -46,6 +61,13 @@ class Movies extends Component {
       <div>
         <h3 className="row__title">{heading}</h3>
         <div className="row">{items}</div>
+        <div className="pagination">
+          <Pagination
+            onChange={this.handlePageClick}
+            current={this.state.current}
+            total={totalPages}
+          />
+        </div>
       </div>
     );
   }

@@ -9,6 +9,7 @@ import TvShowDetails from "../containers/TvShowDetails";
 import People from "../containers/People";
 import SeasonDetails from "../containers/SeasonDetails";
 import { BrowserRouter, Route } from "react-router-dom";
+import "rc-pagination/assets/index.css";
 
 function App({ children }) {
   return (
