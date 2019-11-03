@@ -30,16 +30,6 @@ class PersonDetails extends Component {
       return <Loader />;
     }
 
-    function compare(a, b) {
-      if (a.last_nom < b.last_nom) {
-        return -1;
-      }
-      if (a.last_nom > b.last_nom) {
-        return 1;
-      }
-      return 0;
-    }
-
     let credits;
 
     if (personDetails.combined_credits) {
