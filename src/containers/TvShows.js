@@ -57,6 +57,8 @@ class TvShows extends Component {
           />
         );
       });
+
+      console.log(tvShows.results);
     }
     return (
       <div>

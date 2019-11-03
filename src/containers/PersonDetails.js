@@ -30,12 +30,24 @@ class PersonDetails extends Component {
       return <Loader />;
     }
 
+    function compare(a, b) {
+      if (a.last_nom < b.last_nom) {
+        return -1;
+      }
+      if (a.last_nom > b.last_nom) {
+        return 1;
+      }
+      return 0;
+    }
+
     let credits;
     console.log(personDetails);
 
     if (personDetails.combined_credits) {
       credits = personDetails.combined_credits.cast
-        .filter(m => m.vote_count > 50 && m.vote_average > 5.5)
+        .sort(function(a, b) {
+          return b.popularity - a.popularity;
+        })
         .slice(0, 18)
         .map(i => {
           return (
@@ -43,9 +55,9 @@ class PersonDetails extends Component {
               key={i.id}
               id={i.id}
               poster={i.poster_path}
-              title={i.title}
+              title={i.title || i.name}
               vote_average={i.vote_average}
-              media="movie"
+              media={i.media_type}
             />
           );
         });
