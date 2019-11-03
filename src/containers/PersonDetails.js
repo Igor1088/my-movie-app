@@ -41,7 +41,6 @@ class PersonDetails extends Component {
     }
 
     let credits;
-    console.log(personDetails);
 
     if (personDetails.combined_credits) {
       credits = personDetails.combined_credits.cast
