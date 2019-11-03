@@ -1,7 +1,7 @@
 import React from "react";
 
 const Video = props => {
-  const { id, videos = { results: [] } } = props;
+  const { videos = { results: [] } } = props;
   const videosList = videos.results.slice(0, 2).map(video => {
     return {
       key: video.key

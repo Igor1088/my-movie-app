@@ -15,6 +15,7 @@ import Person from "../components/Person";
 import Item from "../components/Item";
 import Image from "../components/Image";
 import Video from "../components/Video";
+import ReviewList from "../components/ReviewList";
 
 class MovieDetails extends Component {
   componentDidMount() {
@@ -40,7 +41,7 @@ class MovieDetails extends Component {
     if (loading) {
       return <Loader />;
     }
-    console.log("movies", this.props);
+    console.log("movies", movieDetails);
 
     let cast = [];
     let crew = [];
@@ -154,6 +155,7 @@ class MovieDetails extends Component {
 
             <h4>More Like This</h4>
             <div className="row">{items}</div>
+            {/* <ReviewList reviews={movieDetails.reviews} /> */}
           </div>
         </div>
       </div>
