@@ -1,16 +1,31 @@
 .credits {
-    &__list {
-        margin-top: 20px;
-    }
+  &__list {
+    margin-top: 20px;
+  }
 
-    &__item {
-        padding: 10px 0;
-        border-bottom: 1px solid #c7c7c7;
-        color: #2c3e50;
+  &__item {
+    padding: 10px 0;
+    border-bottom: 1px solid #c7c7c7;
+    color: #2c3e50;
+    display: block;
 
-        a {
-            font-weight: 700;
-            color: inherit;
-        }
+    a {
+      font-weight: 700;
+      color: inherit;
     }
+  }
+
+  &__options {
+    display: flex;
+    justify-content: flex-end;
+
+    &-item {
+      padding: 10px;
+      cursor: pointer;
+
+      &.selected {
+        color: $textColor;
+      }
+    }
+  }
 }

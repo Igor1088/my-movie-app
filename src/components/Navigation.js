@@ -7,7 +7,7 @@ function Navigation() {
     { id: 1, link: "Popular", route: "/movies/popular" },
     { id: 2, link: "Top Rated", route: "/movies/top-rated" },
     { id: 3, link: "Upcoming", route: "/movies/upcoming" },
-    { id: 3, link: "Now Playing", route: "/movies/now-playing" }
+    { id: 4, link: "Now Playing", route: "/movies/now-playing" }
   ];
 
   const tvLinks = [

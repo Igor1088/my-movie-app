@@ -11,13 +11,24 @@ import {
 import Loader from "../components/Loader";
 import PersonInfo from "../components/PersonInfo";
 import PersonData from "../components/PersonData";
-import CreditsList from "../components/CreditsList";
+import Credits from "../components/Credits";
 import Item from "../components/Item";
 
 class PersonDetails extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      creditsList: true
+    };
+  }
   componentDidMount() {
     this.props.fetchPersonDetails(this.props.match.params.id);
   }
+
+  changeCreditsList = () => {
+    this.setState({ creditsList: !this.state.creditsList });
+  };
 
   render() {
     const { error, loading, personDetails } = this.props;
@@ -31,6 +42,10 @@ class PersonDetails extends Component {
     }
 
     let credits;
+    let movieCreditsCastList = [];
+    let movieCreditsCrewList = [];
+    let tvCreditsCastList = [];
+    let tvCreditsCrewList = [];
 
     if (personDetails.combined_credits) {
       credits = personDetails.combined_credits.cast
@@ -50,6 +65,16 @@ class PersonDetails extends Component {
         });
     }
 
+    if (personDetails.movie_credits) {
+      personDetails.movie_credits.cast.map(c => movieCreditsCastList.push(c));
+      personDetails.movie_credits.crew.map(c => movieCreditsCrewList.push(c));
+    }
+
+    if (personDetails.tv_credits) {
+      personDetails.tv_credits.cast.map(c => tvCreditsCastList.push(c));
+      personDetails.tv_credits.crew.map(c => movieCreditsCrewList.push(c));
+    }
+
     return (
       <div>
         <PersonInfo
@@ -67,48 +92,39 @@ class PersonDetails extends Component {
           <div className="person__main">
             <h4>Known For</h4>
             <div className="row">{credits}</div>
-            <CreditsList
-              credits={
-                personDetails.movie_credits
-                  ? personDetails.movie_credits.cast
-                  : []
-              }
-              media="movie"
-              heading="Acting"
-            />
-            <CreditsList
-              credits={
-                personDetails.movie_credits
-                  ? personDetails.movie_credits.crew.filter(
-                      c => c.department === "Directing"
-                    )
-                  : []
-              }
-              media="movie"
-              heading="Directing"
-            />
-            <CreditsList
-              credits={
-                personDetails.movie_credits
-                  ? personDetails.movie_credits.crew.filter(
-                      c => c.department === "Production"
-                    )
-                  : []
-              }
-              media="movie"
-              heading="Production"
-            />
-            <CreditsList
-              credits={
-                personDetails.movie_credits
-                  ? personDetails.movie_credits.crew.filter(
-                      c => c.department === "Writing"
-                    )
-                  : []
-              }
-              media="movie"
-              heading="Writing"
-            />
+            <div className="credits">
+              <div className="credits__options">
+                <div
+                  className={`credits__options-item ${
+                    this.state.creditsList ? "selected" : ""
+                  }`}
+                  onClick={this.changeCreditsList}
+                >
+                  Movies
+                </div>
+                <div
+                  className={`credits__options-item ${
+                    this.state.creditsList ? "" : "selected"
+                  }`}
+                  onClick={this.changeCreditsList}
+                >
+                  TV Shows
+                </div>
+              </div>
+              {this.state.creditsList ? (
+                <Credits
+                  creditsCast={movieCreditsCastList}
+                  creditsCrew={movieCreditsCrewList}
+                  media="movie"
+                />
+              ) : (
+                <Credits
+                  creditsCast={tvCreditsCastList}
+                  creditsCrew={tvCreditsCrewList}
+                  media="tv"
+                />
+              )}
+            </div>
           </div>
         </div>
       </div>
@@ -137,7 +153,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(PersonDetails);
+export default connect(mapStateToProps, mapDispatchToProps)(PersonDetails);

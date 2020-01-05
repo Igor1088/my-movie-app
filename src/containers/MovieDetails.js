@@ -44,7 +44,7 @@ class MovieDetails extends Component {
 
     let cast = [];
     let crew = [];
-    let items;
+    let similar = [];
 
     if (movieDetails.length !== 0) {
       cast = movieDetails.credits.cast.slice(0, 6).map(person => {
@@ -65,10 +65,10 @@ class MovieDetails extends Component {
         };
       });
 
-      items = movieDetails.similar.results.slice(0, 12).map(movie => {
+      similar = movieDetails.similar.results.slice(0, 12).map(movie => {
         return (
           <Item
-            key={movie.id}
+            key={`${movie.id}-${movie.title}`}
             id={movie.id}
             poster={movie.poster_path}
             title={movie.title}
@@ -78,6 +78,8 @@ class MovieDetails extends Component {
         );
       });
     }
+
+    console.log("movieDetails", movieDetails);
 
     return (
       <div>
@@ -113,7 +115,7 @@ class MovieDetails extends Component {
               {cast.map(person => {
                 return (
                   <Person
-                    key={person.personID}
+                    key={`${person.personID}-${person.name}`}
                     id={person.personID}
                     name={person.name}
                     role={person.role}
@@ -128,7 +130,7 @@ class MovieDetails extends Component {
               {crew.map(person => {
                 return (
                   <Person
-                    key={person.personID}
+                    key={`${person.personID}-${person.name}`}
                     id={person.personID}
                     name={person.name}
                     role={person.role}
@@ -140,7 +142,11 @@ class MovieDetails extends Component {
 
             <h4>Trailers</h4>
             <div>
-              <Video videos={movieDetails.videos} />
+              {movieDetails.videos ? (
+                <Video videos={movieDetails.videos} />
+              ) : (
+                <p>No Trailers</p>
+              )}
             </div>
 
             {/* <h4>Images</h4>
@@ -152,8 +158,14 @@ class MovieDetails extends Component {
                             })}
                         </div> */}
 
-            <h4>More Like This</h4>
-            <div className="row">{items}</div>
+            {console.log(similar.length)}
+
+            {similar.length ? (
+              <div>
+                <h4>More Like This</h4>
+                <div className="row">{similar}</div>
+              </div>
+            ) : null}
             {/* <ReviewList reviews={movieDetails.reviews} /> */}
           </div>
         </div>
@@ -183,7 +195,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(MovieDetails);
+export default connect(mapStateToProps, mapDispatchToProps)(MovieDetails);

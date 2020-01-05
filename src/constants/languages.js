@@ -27,6 +27,7 @@ const languages = [
   { code: "ca", name: "Catalan, Valencian" },
   { code: "km", name: "Central Khmer" },
   { code: "ch", name: "Chamorro" },
+  { code: "cn", name: "Cantonese" },
   { code: "ce", name: "Chechen" },
   { code: "ny", name: "Chichewa, Chewa, Nyanja" },
   { code: "zh", name: "Chinese" },
