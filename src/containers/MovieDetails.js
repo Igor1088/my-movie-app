@@ -17,6 +17,19 @@ import Image from "../components/Image";
 import Video from "../components/Video";
 import ReviewList from "../components/ReviewList";
 
+function groupByArray(xs, key) {
+  return xs.reduce(function(rv, x) {
+    let v = key instanceof Function ? key(x) : x[key];
+    let el = rv.find(r => r && r.key === v);
+    if (el) {
+      el.values.push(x);
+    } else {
+      rv.push({ key: v, values: [x] });
+    }
+    return rv;
+  }, []);
+}
+
 class MovieDetails extends Component {
   componentDidMount() {
     this.props.fetchMovieDetails(this.props.match.params.id);
@@ -43,11 +56,13 @@ class MovieDetails extends Component {
     }
 
     let cast = [];
-    let crew = [];
+    // let crew = [];
     let similar = [];
+    let director = [];
+    let writers = [];
 
     if (movieDetails.length !== 0) {
-      cast = movieDetails.credits.cast.slice(0, 6).map(person => {
+      cast = movieDetails.credits.cast.slice(0, 7).map(person => {
         return {
           name: person.name,
           role: person.character,
@@ -56,14 +71,14 @@ class MovieDetails extends Component {
         };
       });
 
-      crew = movieDetails.credits.crew.slice(0, 6).map(person => {
-        return {
-          name: person.name,
-          role: person.job,
-          poster: person.profile_path,
-          personID: person.id
-        };
-      });
+      // crew = movieDetails.credits.crew.slice(0, 7).map(person => {
+      //   return {
+      //     name: person.name,
+      //     role: person.job,
+      //     poster: person.profile_path,
+      //     personID: person.id
+      //   };
+      // });
 
       similar = movieDetails.similar.results.slice(0, 12).map(movie => {
         return (
@@ -77,9 +92,22 @@ class MovieDetails extends Component {
           />
         );
       });
-    }
 
-    console.log("movieDetails", movieDetails);
+      const featuredCrew = groupByArray(
+        movieDetails.credits.crew,
+        "department"
+      );
+      const foundDirector = featuredCrew.find(e => e.key === "Directing");
+      const foundWriters = featuredCrew.find(e => e.key === "Writing");
+
+      if (foundDirector) {
+        director.push(foundDirector.values.find(d => d.job === "Director"));
+      }
+
+      if (foundWriters) {
+        writers.push(...foundWriters.values);
+      }
+    }
 
     return (
       <div>
@@ -92,6 +120,8 @@ class MovieDetails extends Component {
           backdrop={movieDetails.backdrop_path}
           genres={movieDetails.genres}
           vote_average={movieDetails.vote_average}
+          director={director}
+          writers={writers}
         />
         <div className="movie__content">
           <div className="movie__sidebar">
@@ -125,7 +155,7 @@ class MovieDetails extends Component {
               })}
             </div>
 
-            <h4>Featured Crew</h4>
+            {/* <h4>Featured Crew</h4>
             <div className="person__list">
               {crew.map(person => {
                 return (
@@ -138,7 +168,7 @@ class MovieDetails extends Component {
                   />
                 );
               })}
-            </div>
+            </div> */}
 
             <h4>Trailers</h4>
             <div>
@@ -157,8 +187,6 @@ class MovieDetails extends Component {
                                 );
                             })}
                         </div> */}
-
-            {console.log(similar.length)}
 
             {similar.length ? (
               <div>

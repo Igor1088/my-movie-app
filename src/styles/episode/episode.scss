@@ -19,7 +19,7 @@
 
   &__number {
     position: absolute;
-    top: 65px;
+    bottom: 0;
     left: 0;
     right: 0;
     background-color: rgba(0, 0, 0, 0.6);
@@ -59,7 +59,7 @@
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   .episode {
     flex-direction: column;
 

@@ -31,7 +31,6 @@
   &__overview {
     margin-top: 30px;
     line-height: 1.4;
-    text-align: justify;
 
     &-holder {
       padding-left: 30px;
@@ -41,12 +40,60 @@
     &-heading {
       color: $textColor;
       font-size: 126%;
-      margin-bottom: 20px;
+      margin-bottom: 10px;
     }
 
     &-info {
       display: flex;
       align-items: center;
+    }
+
+    &-text {
+      max-height: 195px;
+      overflow: auto;
+      text-align: justify;
+    }
+
+    &-crew {
+      margin-top: 20px;
+
+      &-label {
+        font-weight: 700;
+        margin-right: 5px;
+      }
+
+      &-link {
+        position: relative;
+        display: inline-block;
+        margin-right: 7px;
+
+        a {
+          color: $textColor;
+
+          &:hover {
+            color: darken($textColor, 30%);
+          }
+        }
+
+        &:after {
+          content: "\002C";
+          position: absolute;
+          bottom: 0;
+          left: 100%;
+        }
+
+        &:last-child {
+          &:after {
+            content: "";
+          }
+        }
+      }
+
+      &-row {
+        & + & {
+          margin-top: 5px;
+        }
+      }
     }
   }
 
@@ -84,7 +131,7 @@
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   .movie {
     &__info {
       flex-direction: column;
@@ -92,6 +139,8 @@
 
       h1 {
         margin-bottom: 30px;
+        word-spacing: 0px;
+        font-size: 180%;
       }
     }
 
@@ -103,7 +152,7 @@
     }
 
     &__image {
-      width: 290px;
+      width: 230px;
     }
   }
 }

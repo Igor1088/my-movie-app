@@ -1,7 +1,5 @@
 .credits {
-  &__list {
-    margin-top: 20px;
-  }
+  margin-top: 20px;
 
   &__item {
     padding: 10px 0;
@@ -19,12 +17,17 @@
     display: flex;
     justify-content: flex-end;
 
+    @media (max-width: 767px) {
+      justify-content: center;
+    }
+
     &-item {
       padding: 10px;
       cursor: pointer;
 
       &.selected {
         color: $textColor;
+        font-weight: 700;
       }
     }
   }

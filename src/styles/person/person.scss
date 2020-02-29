@@ -2,12 +2,24 @@
   &__list {
     display: flex;
     flex-wrap: wrap;
+
+    @media (max-width: 767px) {
+      > a {
+        width: 32%;
+      }
+    }
   }
 
   &__holder {
-    width: 148px;
+    display: flex;
+    flex-direction: column;
+    width: 125px;
     padding: 0 15px 10px 15px;
     cursor: pointer;
+
+    @media (max-width: 767px) {
+      width: 100%;
+    }
 
     &:hover {
       .person__name {
@@ -17,9 +29,13 @@
   }
 
   &__img {
-    width: 110px;
-    height: 160px;
+    width: 100%;
     border-radius: 4px;
+    height: 137px;
+
+    @media (max-width: 767px) {
+      height: auto;
+    }
   }
 
   &__info-text {
@@ -34,5 +50,12 @@
   &__role {
     margin-top: 5px;
     color: #2c3e50;
+  }
+
+  &__info {
+    @media (max-width: 767px) {
+      flex-direction: column;
+      margin-top: 0;
+    }
   }
 }

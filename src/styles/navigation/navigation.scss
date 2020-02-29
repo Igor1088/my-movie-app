@@ -1,6 +1,5 @@
 .nav {
   display: flex;
-  flex-wrap: wrap;
   padding-left: 0;
   list-style: none;
 
@@ -18,9 +17,12 @@
 
   &-bar {
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
     background-color: $textColor;
     margin: 15px 0;
     padding: 15px 0;
+  }
+
+  &-search {
   }
 }

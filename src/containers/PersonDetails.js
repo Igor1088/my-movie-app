@@ -137,7 +137,6 @@ PersonDetails.defaultProps = {
 };
 
 PersonDetails.propTypes = {
-  personDetails: PropTypes.array,
   loading: PropTypes.bool
 };
 

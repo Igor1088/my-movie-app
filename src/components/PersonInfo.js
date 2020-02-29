@@ -49,7 +49,7 @@ const PersonInfo = props => {
         </div>
         <div className="person__biography">
           <h4 className="person__overview-heading">Biography</h4>
-          <p>{biography}</p>
+          <p className="person__biography-text">{biography}</p>
         </div>
       </div>
     </div>

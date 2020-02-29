@@ -2,13 +2,16 @@
   &__info {
     display: flex;
     color: #2c3e50;
-    margin-top: 50px;
   }
 
   &__image {
     &-holder {
       img {
         width: 300px;
+
+        @media (max-width: 767px) {
+          width: 150px;
+        }
       }
     }
   }
@@ -22,6 +25,10 @@
     &-holder {
       padding: 30px;
       flex: 1 1 auto;
+
+      @media (max-width: 767px) {
+        padding: 10px;
+      }
     }
 
     &-heading {
@@ -32,11 +39,10 @@
   }
 
   &__biography {
-    margin-top: 30px;
     line-height: 1.4;
     text-align: justify;
 
-    p {
+    &-text {
       max-height: 300px;
       overflow-y: auto;
       padding-right: 10px;
@@ -46,6 +52,10 @@
   &__container {
     display: flex;
     margin-top: 30px;
+
+    @media (max-width: 767px) {
+      flex-direction: column;
+    }
   }
 
   &__sidebar {
@@ -53,6 +63,10 @@
     min-width: 20%;
     background-color: #bdc3c7;
     padding: 20px 10px 10px 10px;
+
+    @media (max-width: 767px) {
+      width: auto;
+    }
 
     h4 {
       font-size: 120%;
@@ -69,10 +83,20 @@
     word-spacing: 2px;
     letter-spacing: 1px;
     display: flex;
+
+    @media (max-width: 767px) {
+      flex-direction: column;
+      font-size: 180%;
+      margin-bottom: 10px;
+    }
   }
 
   &__icons-holder {
     margin-left: 15px;
+
+    @media (max-width: 767px) {
+      margin: 10px 0;
+    }
 
     a {
       color: inherit;
@@ -88,6 +112,10 @@
       width: 140px;
       padding: 0 15px;
       margin: 0;
+
+      @media (max-width: 767px) {
+        margin: 0;
+      }
 
       &__image-holder {
         height: 165px;

@@ -78,7 +78,7 @@ Movies.defaultProps = {
 };
 
 Movies.propTypes = {
-  movies: PropTypes.array,
+  // movies: PropTypes.object,
   loading: PropTypes.bool,
   category: PropTypes.string,
   heading: PropTypes.string
@@ -96,7 +96,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Movies);
+export default connect(mapStateToProps, mapDispatchToProps)(Movies);

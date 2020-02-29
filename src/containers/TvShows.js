@@ -79,7 +79,7 @@ TvShows.defaultProps = {
 };
 
 TvShows.propTypes = {
-  tvShows: PropTypes.array,
+  // tvShows: PropTypes.object,
   loading: PropTypes.bool
 };
 
@@ -95,7 +95,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(TvShows);
+export default connect(mapStateToProps, mapDispatchToProps)(TvShows);

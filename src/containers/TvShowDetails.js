@@ -45,7 +45,7 @@ class TvShowDetails extends Component {
     let items, seasons;
 
     if (tvShowDetails.length !== 0) {
-      cast = tvShowDetails.credits.cast.slice(0, 6).map(person => {
+      cast = tvShowDetails.credits.cast.slice(0, 7).map(person => {
         return {
           name: person.name,
           role: person.character,
@@ -92,6 +92,8 @@ class TvShowDetails extends Component {
           backdrop={tvShowDetails.backdrop_path}
           genres={tvShowDetails.genres}
           vote_average={tvShowDetails.vote_average}
+          director={[]}
+          writers={[]}
         />
         <div className="movie__content">
           <div className="movie__sidebar">
@@ -159,7 +161,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(TvShowDetails);
+export default connect(mapStateToProps, mapDispatchToProps)(TvShowDetails);
