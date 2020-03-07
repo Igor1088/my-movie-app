@@ -10,6 +10,7 @@ import People from "../containers/People";
 import SeasonDetails from "../containers/SeasonDetails";
 import { BrowserRouter, Route } from "react-router-dom";
 import "rc-pagination/assets/index.css";
+import SearchResults from "../containers/SearchResults";
 
 function App({ children }) {
   return (
@@ -104,6 +105,7 @@ function App({ children }) {
             path="/tv/:id/season/:seasonNumber"
             component={SeasonDetails}
           />
+          <Route path="/results" component={SearchResults} />
         </div>
       </div>
     </BrowserRouter>
