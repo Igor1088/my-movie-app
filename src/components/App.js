@@ -11,13 +11,18 @@ import SeasonDetails from "../containers/SeasonDetails";
 import { BrowserRouter, Route } from "react-router-dom";
 import "rc-pagination/assets/index.css";
 import SearchResults from "../containers/SearchResults";
+import Auth from "../containers/Auth";
+// import User from "../containers/User";
 
 function App({ children }) {
   return (
     <BrowserRouter>
       <div className="App">
         <div className="container">
-          <Navigation />
+          <header className="header">
+            <Auth />
+            <Navigation />
+          </header>
 
           <Route exact path="/" component={Home} />
           <Route
@@ -106,6 +111,7 @@ function App({ children }) {
             component={SeasonDetails}
           />
           <Route path="/results" component={SearchResults} />
+          {/* <Route path="/user" component={User} /> */}
         </div>
       </div>
     </BrowserRouter>

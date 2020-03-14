@@ -16,7 +16,7 @@
     }
 
     &-heading {
-      color: $textColor;
+      color: lighten($textColor, 30%);
     }
 
     &-info {

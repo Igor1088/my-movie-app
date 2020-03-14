@@ -9,7 +9,7 @@
 
   &__toggle {
     padding: 5px 20px 5px 10px;
-    color: #fff;
+    color: #676565;
     text-transform: uppercase;
     cursor: pointer;
     position: relative;
@@ -21,7 +21,7 @@
       transform: translateY(-50%);
       content: "";
       border: 5px solid transparent;
-      border-top: 5px solid #fff;
+      border-top: 5px solid #676565;
       border-bottom: 0;
     }
   }

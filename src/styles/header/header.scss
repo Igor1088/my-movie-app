@@ -1,0 +1,47 @@
+.header {
+  padding-top: 7px;
+  background-color: $textColor;
+
+  &__top {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  &__top {
+    &-info {
+      display: flex;
+      align-items: center;
+      padding: 0 10px;
+
+      a {
+        color: #c7c5c5;
+      }
+    }
+  }
+
+  &__user {
+    display: flex;
+    margin-right: 20px;
+
+    &-details {
+      margin-left: 10px;
+    }
+
+    &-link {
+      font-size: 12px;
+    }
+
+    &-img {
+      width: 32px;
+      height: 32px;
+      background-size: contain;
+      background-position: center;
+      background-repeat: no-repeat;
+      border-radius: 50%;
+    }
+
+    &-name {
+      color: #fff;
+    }
+  }
+}

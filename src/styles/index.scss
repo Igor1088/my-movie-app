@@ -14,6 +14,7 @@
 @import "season/season";
 @import "episode/episode";
 @import "pagination/pagination";
+@import "header/header";
 
 html {
   font-family: $font-family;
@@ -104,8 +105,9 @@ html {
   &__sidebar {
     width: 20%;
     min-width: 20%;
-    background-color: #bdc3c7;
+    background-color: $textColor;
     padding: 20px 10px 10px 10px;
+    color: rgba($color: #fff, $alpha: 0.75);
 
     @media (max-width: 767px) {
       width: auto;
