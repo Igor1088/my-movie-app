@@ -23,7 +23,7 @@
 
     &:hover {
       .person__name {
-        color: #c0392b;
+        color: darken($textColor, 30%);
       }
     }
   }

@@ -78,7 +78,7 @@ html {
 
     &-main {
       padding-top: 20px;
-      background-color: #ecf0f1;
+      // background-color: #ecf0f1;
       flex: 1 auto;
 
       .item {
@@ -105,9 +105,8 @@ html {
   &__sidebar {
     width: 20%;
     min-width: 20%;
-    background-color: $textColor;
+    background-color: #ecf0f1;
     padding: 20px 10px 10px 10px;
-    color: rgba($color: #fff, $alpha: 0.75);
 
     @media (max-width: 767px) {
       width: auto;

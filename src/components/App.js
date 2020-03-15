@@ -8,15 +8,15 @@ import PersonDetails from "../containers/PersonDetails";
 import TvShowDetails from "../containers/TvShowDetails";
 import People from "../containers/People";
 import SeasonDetails from "../containers/SeasonDetails";
-import { BrowserRouter, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 import "rc-pagination/assets/index.css";
 import SearchResults from "../containers/SearchResults";
 import Auth from "../containers/Auth";
-// import User from "../containers/User";
+import UserPage from "../components/UserPage";
 
 function App({ children }) {
   return (
-    <BrowserRouter>
+    <Router>
       <div className="App">
         <div className="container">
           <header className="header">
@@ -111,10 +111,10 @@ function App({ children }) {
             component={SeasonDetails}
           />
           <Route path="/results" component={SearchResults} />
-          {/* <Route path="/user" component={User} /> */}
+          <Route path="/u" component={UserPage} />
         </div>
       </div>
-    </BrowserRouter>
+    </Router>
   );
 }
 

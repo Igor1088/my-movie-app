@@ -6,12 +6,11 @@ class Dropdown extends Component {
   constructor(props) {
     super(props);
     this.state = { addClass: false };
-    this.toggle = this.toggle.bind(this);
   }
 
-  toggle() {
+  toggle = () => {
     this.setState({ addClass: !this.state.addClass });
-  }
+  };
 
   render() {
     const { title, data } = this.props;

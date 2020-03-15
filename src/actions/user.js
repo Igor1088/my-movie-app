@@ -39,6 +39,22 @@ export function fetchLoggedUser() {
   };
 }
 
+export function fetchUserData(category, type, sort) {
+  return dispatch => {
+    const sessionID = localStorage.getItem("session_id");
+
+    dispatch(fetchUserDataBegin());
+    fetch(
+      `https://api.themoviedb.org/3/account/{account_id}/${category}/${type}?api_key=${API_KEY}&session_id=${sessionID}&language=en-US&sort_by=created_at.${sort}&page=1`
+    )
+      .then(res => res.json())
+      .then(data => {
+        console.log("favmovies", data);
+        dispatch(fetchUserDataSuccess(data));
+      });
+  };
+}
+
 const fetchUserBegin = () => ({
   type: types.FETCH_USER_BEGIN
 });
@@ -52,3 +68,31 @@ const fetchUserError = error => ({
   type: types.FETCH_USER_ERROR,
   payload: error
 });
+
+const fetchUserDataBegin = () => ({
+  type: types.FETCH_USER_DATA_BEGIN
+});
+
+const fetchUserDataSuccess = user => ({
+  type: types.FETCH_USER_DATA_SUCCESS,
+  payload: user
+});
+
+const fetchUserDataError = error => ({
+  type: types.FETCH_USER_DATA_ERROR,
+  payload: error
+});
+
+// const fetchFavMoviesBegin = () => ({
+//   type: types.FETCH_FAV_MOVIES_BEGIN
+// });
+
+// const fetchFavMoviesSuccess = movies => ({
+//   type: types.FETCH_FAV_MOVIES_SUCCESS,
+//   payload: movies
+// });
+
+// const fetchFavMoviesError = error => ({
+//   type: types.FETCH_FAV_MOVIES_ERROR,
+//   payload: error
+// });

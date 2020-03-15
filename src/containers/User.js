@@ -34,20 +34,20 @@ class User extends Component {
     }
 
     return (
-      <div className="header__user">
-        <div
-          className="header__user-img"
-          style={{
-            backgroundImage: `url(${background})`
-          }}
-        ></div>
-        <div className="header__user-details">
-          <div className="header__user-name">{user.name}</div>
-          <Link to="/userprofile" className="header__user-link">
+      <Link to="/u" className="header__user-link">
+        <div className="header__user">
+          <div
+            className="header__user-img"
+            style={{
+              backgroundImage: `url(${background})`
+            }}
+          ></div>
+          <div className="header__user-details">
+            <div className="header__user-name">{user.name}</div>
             View Profile
-          </Link>
+          </div>
         </div>
-      </div>
+      </Link>
     );
   }
 }

@@ -1,9 +1,11 @@
 .episode {
   display: flex;
   padding: 10px;
+  border: 1px solid #e3e3e3;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 
-  &:nth-child(even) {
-    background-color: #f8f9f9;
+  & + & {
+    margin-top: 10px;
   }
 
   &__img-holder {
@@ -18,7 +20,7 @@
 
   &__number {
     position: absolute;
-    bottom: 0;
+    top: 67px;
     left: 0;
     right: 0;
     background-color: rgba(0, 0, 0, 0.6);

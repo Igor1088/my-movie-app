@@ -135,3 +135,56 @@
 .suggestions li:not(:last-of-type) {
   border-bottom: 1px solid #999;
 }
+
+.acc-nav {
+  display: flex;
+  align-items: center;
+  margin-bottom: 25px;
+
+  &__item {
+    padding: 5px 15px;
+    position: relative;
+
+    span {
+      cursor: pointer;
+      font-size: 20px;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    &:hover {
+      color: darken($textColor, 20%);
+
+      .sub-nav {
+        display: flex;
+      }
+    }
+  }
+}
+
+.sub-nav {
+  align-items: center;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  display: none;
+  white-space: nowrap;
+
+  > li {
+    padding: 0 15px;
+
+    a {
+      color: lighten($textColor, 30%);
+
+      &:hover {
+        color: $textColor;
+      }
+    }
+  }
+
+  &.open {
+    display: flex;
+  }
+}
