@@ -23,8 +23,18 @@ html {
   color: #2c3e50;
 }
 
+body {
+  padding-bottom: 50px;
+}
+
 * {
   box-sizing: border-box;
+}
+
+a {
+  &:hover {
+    color: darken($textColor, 30%);
+  }
 }
 
 .container {

@@ -62,7 +62,7 @@ class MovieDetails extends Component {
     let writers = [];
 
     if (movieDetails.length !== 0) {
-      cast = movieDetails.credits.cast.slice(0, 7).map(person => {
+      cast = movieDetails.credits.cast.slice(0, 14).map(person => {
         return {
           name: person.name,
           role: person.character,

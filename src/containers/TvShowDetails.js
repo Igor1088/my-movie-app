@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import * as actions from "../actions";
-import tvshowDetails, {
+import {
   getTvShowDetailsError,
   getTvShowDetails,
   getTvShowDetailsLoading
@@ -45,7 +45,7 @@ class TvShowDetails extends Component {
     let items, seasons;
 
     if (tvShowDetails.length !== 0) {
-      cast = tvShowDetails.credits.cast.slice(0, 7).map(person => {
+      cast = tvShowDetails.credits.cast.slice(0, 14).map(person => {
         return {
           name: person.name,
           role: person.character,

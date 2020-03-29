@@ -1,8 +1,94 @@
 .episode {
-  display: flex;
-  padding: 10px;
   border: 1px solid #e3e3e3;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+
+  &__container {
+    padding: 10px;
+
+    @media (min-width: 768px) {
+      display: flex;
+    }
+  }
+
+  &__toggle {
+    cursor: pointer;
+    padding: 10px;
+    text-align: center;
+    border-top: 1px solid #e3e3e3;
+  }
+
+  &__expanded {
+    padding: 10px;
+    border-top: 1px solid #e3e3e3;
+    display: none;
+
+    &-heading {
+      @media (max-width: 767px) {
+        margin-bottom: 10px;
+      }
+
+      @media (min-width: 768px) {
+        margin-bottom: 20px;
+      }
+    }
+
+    &.expanded {
+      display: block;
+
+      @media (min-width: 768px) {
+        display: flex;
+      }
+    }
+
+    &-crew {
+      @media (min-width: 768px) {
+        width: 30%;
+      }
+    }
+
+    &-credits {
+      @media (max-width: 767px) {
+        margin-top: 20px;
+      }
+
+      @media (min-width: 768px) {
+        width: 70%;
+      }
+
+      > ul {
+        @media (min-width: 768px) {
+          display: flex;
+          flex-wrap: wrap;
+        }
+
+        li {
+          @media (min-width: 768px) {
+            flex-basis: 33%;
+          }
+        }
+      }
+    }
+  }
+
+  &__writers {
+    margin-top: 5px;
+
+    span {
+      & + span {
+        &:before {
+          content: "\002C";
+          display: inline-block;
+          width: 5px;
+        }
+      }
+    }
+  }
+
+  &__list {
+    &-count {
+      margin-bottom: 20px;
+    }
+  }
 
   & + & {
     margin-top: 10px;
@@ -37,6 +123,7 @@
   &__heading {
     display: flex;
     justify-content: space-between;
+    align-items: center;
   }
 
   &__name {

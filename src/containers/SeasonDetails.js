@@ -8,19 +8,33 @@ import {
   getSeasonDetails,
   getSeasonDetailsLoading
 } from "../reducers/tv-season";
+import tvshowDetails, { getTvShowDetails } from "../reducers/tvshow-details";
 import Loader from "../components/Loader";
 import Episode from "../components/Episode";
-
+import { Link } from "react-router-dom";
 class SeasonDetails extends Component {
   componentDidMount() {
+    this.props.fetchTvShowDetails(this.props.match.params.id);
     this.props.fetchSeasonDetails(
       this.props.match.params.id,
       this.props.match.params.seasonNumber
     );
   }
 
+  componentDidUpdate(prevProps) {
+    let oldSeason = prevProps.match.params.seasonNumber;
+    let newSeason = this.props.match.params.seasonNumber;
+    if (newSeason !== oldSeason) {
+      this.props.fetchTvShowDetails(this.props.match.params.id);
+      this.props.fetchSeasonDetails(
+        this.props.match.params.id,
+        this.props.match.params.seasonNumber
+      );
+    }
+  }
+
   render() {
-    const { error, loading, seasonDetails } = this.props;
+    const { error, loading, seasonDetails, tvShowDetails } = this.props;
 
     if (error) {
       return <div>Error!</div>;
@@ -30,7 +44,7 @@ class SeasonDetails extends Component {
       return <Loader />;
     }
 
-    let items;
+    let items, episodesCount;
 
     if (seasonDetails.episodes) {
       items = seasonDetails.episodes.map(i => (
@@ -44,9 +58,24 @@ class SeasonDetails extends Component {
           seasonNumber={i.season_number}
           episodeNumber={i.episode_number}
           airDate={i.air_date}
+          crew={i.crew}
+          guestStars={i.guest_stars}
         />
       ));
+
+      episodesCount = seasonDetails.episodes.length;
     }
+
+    const seasonsNumber = tvShowDetails.number_of_seasons;
+
+    const prev =
+      seasonDetails.season_number - 1 > 0
+        ? seasonDetails.season_number - 1
+        : null;
+    const next =
+      seasonDetails.season_number + 1 <= seasonsNumber
+        ? seasonDetails.season_number + 1
+        : null;
 
     return (
       <div className="season">
@@ -80,7 +109,32 @@ class SeasonDetails extends Component {
             </div>
           </div>
         </div>
-        {items}
+        <div className="season__nav">
+          <div>
+            {prev ? (
+              <Link to={`/tv/${this.props.match.params.id}/season/${prev}`}>
+                <span>{`Season ${prev}`}</span>
+              </Link>
+            ) : (
+              ""
+            )}
+          </div>
+          <div>
+            {next ? (
+              <Link to={`/tv/${this.props.match.params.id}/season/${next}`}>
+                <span>{`Season ${next}`}</span>
+              </Link>
+            ) : (
+              ""
+            )}
+          </div>
+        </div>
+        <div className="episode__list">
+          <h4 className="episode__list-count">
+            <strong>Episodes:</strong> {episodesCount}
+          </h4>
+          {items}
+        </div>
       </div>
     );
   }
@@ -93,16 +147,18 @@ SeasonDetails.defaultProps = {
 const mapStateToProps = state => ({
   error: getSeasonDetailsError(state),
   seasonDetails: getSeasonDetails(state),
-  loading: getSeasonDetailsLoading(state)
+  loading: getSeasonDetailsLoading(state),
+  tvShowDetails: getTvShowDetails(state)
 });
 
 function mapDispatchToProps(dispatch) {
   return {
-    fetchSeasonDetails: bindActionCreators(actions.fetchSeasonDetails, dispatch)
+    fetchSeasonDetails: bindActionCreators(
+      actions.fetchSeasonDetails,
+      dispatch
+    ),
+    fetchTvShowDetails: bindActionCreators(actions.fetchTvShowDetails, dispatch)
   };
 }
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(SeasonDetails);
+export default connect(mapStateToProps, mapDispatchToProps)(SeasonDetails);
