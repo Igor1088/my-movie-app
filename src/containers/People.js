@@ -18,21 +18,39 @@ class People extends Component {
     super(props);
 
     this.state = {
-      current: 1
+      current: 1,
+      filter: "day"
     };
   }
 
   componentDidMount() {
-    this.props.fetchPeople(this.state.current);
+    this.props.fetchPeople(
+      this.state.current,
+      this.props.category,
+      this.state.filter
+    );
   }
 
   handlePageClick = page => {
     this.setState({ current: page });
-    this.props.fetchPeople(page);
+    this.props.fetchPeople(page, this.props.category, this.state.filter);
+  };
+
+  handleFilterClick = e => {
+    const filterValue = e.target.textContent.toLowerCase();
+    this.setState({ filter: filterValue });
+
+    if (this.state.filter != filterValue) {
+      this.props.fetchPeople(
+        this.state.current,
+        this.props.category,
+        filterValue
+      );
+    }
   };
 
   render() {
-    const { error, loading, people } = this.props;
+    const { error, loading, people, heading, filters } = this.props;
     const totalPages = people.total_pages;
 
     if (error) {
@@ -62,7 +80,29 @@ class People extends Component {
 
     return (
       <div>
-        <h3 className="row__title">Popular People</h3>
+        <div className="row__head">
+          <h3 className="row__title">{heading ? heading : "Popular People"}</h3>
+          {filters ? (
+            <div className="row__filter">
+              <div
+                className={`row__filter-item ${
+                  this.state.filter === "day" ? "active" : ""
+                }`}
+                onClick={this.handleFilterClick}
+              >
+                Day
+              </div>
+              <div
+                className={`row__filter-item ${
+                  this.state.filter === "week" ? "active" : ""
+                }`}
+                onClick={this.handleFilterClick}
+              >
+                Week
+              </div>
+            </div>
+          ) : null}
+        </div>
         <div className="row">{items}</div>
         <div className="pagination">
           <Pagination
@@ -94,7 +134,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(People);
+export default connect(mapStateToProps, mapDispatchToProps)(People);

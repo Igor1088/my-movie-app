@@ -1,21 +1,36 @@
 import * as types from "../constants/actionTypes";
 import { API_KEY } from "../constants/config";
 
-export function fetchTvShows(category, page) {
+export function fetchTvShows(category, page, filter) {
   return dispatch => {
     dispatch(fetchTvShowsBegin());
-    fetch(
-      `https://api.themoviedb.org/3/tv/${category}?api_key=${API_KEY}&language=en-US&page=${page}`
-    )
-      .then(handleErrors)
-      .then(res => res.json())
-      .then(res => {
-        dispatch(fetchTvShowsSuccess(res));
-        return res;
-      })
-      .catch(error => {
-        dispatch(fetchTvShowsError(error));
-      });
+    if (category === "trending") {
+      fetch(
+        `https://api.themoviedb.org/3/trending/tv/${filter}?api_key=${API_KEY}&language=en-US&page=${page}`
+      )
+        .then(handleErrors)
+        .then(res => res.json())
+        .then(data => {
+          dispatch(fetchTvShowsSuccess(data));
+          return data;
+        })
+        .catch(error => {
+          dispatch(fetchTvShowsError(error));
+        });
+    } else {
+      fetch(
+        `https://api.themoviedb.org/3/tv/${category}?api_key=${API_KEY}&language=en-US&page=${page}`
+      )
+        .then(handleErrors)
+        .then(res => res.json())
+        .then(data => {
+          dispatch(fetchTvShowsSuccess(data));
+          return data;
+        })
+        .catch(error => {
+          dispatch(fetchTvShowsError(error));
+        });
+    }
   };
 }
 

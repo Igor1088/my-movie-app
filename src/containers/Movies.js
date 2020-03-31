@@ -17,20 +17,39 @@ class Movies extends Component {
     super(props);
 
     this.state = {
-      current: 1
+      current: 1,
+      filter: "day"
     };
   }
+
   componentDidMount() {
-    this.props.fetchMovies(this.props.category, this.state.current);
+    this.props.fetchMovies(
+      this.props.category,
+      this.state.current,
+      this.state.filter
+    );
   }
 
   handlePageClick = page => {
     this.setState({ current: page });
-    this.props.fetchMovies(this.props.category, page);
+    this.props.fetchMovies(this.props.category, page, this.state.filter);
+  };
+
+  handleFilterClick = e => {
+    const filterValue = e.target.textContent.toLowerCase();
+    this.setState({ filter: filterValue });
+
+    if (this.state.filter != filterValue) {
+      this.props.fetchMovies(
+        this.props.category,
+        this.state.current,
+        filterValue
+      );
+    }
   };
 
   render() {
-    const { error, loading, movies, heading } = this.props;
+    const { error, loading, movies, heading, filters } = this.props;
     const totalPages = movies.total_pages;
 
     if (error) {
@@ -59,7 +78,29 @@ class Movies extends Component {
     }
     return (
       <div>
-        <h3 className="row__title">{heading}</h3>
+        <div className="row__head">
+          <h3 className="row__title">{heading}</h3>
+          {filters ? (
+            <div className="row__filter">
+              <div
+                className={`row__filter-item ${
+                  this.state.filter === "day" ? "active" : ""
+                }`}
+                onClick={this.handleFilterClick}
+              >
+                Day
+              </div>
+              <div
+                className={`row__filter-item ${
+                  this.state.filter === "week" ? "active" : ""
+                }`}
+                onClick={this.handleFilterClick}
+              >
+                Week
+              </div>
+            </div>
+          ) : null}
+        </div>
         <div className="row">{items}</div>
         <div className="pagination">
           <Pagination

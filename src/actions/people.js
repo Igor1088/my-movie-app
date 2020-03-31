@@ -1,21 +1,36 @@
 import * as types from "../constants/actionTypes";
 import { API_KEY } from "../constants/config";
 
-export function fetchPeople(page) {
+export function fetchPeople(page, trending, filter) {
   return dispatch => {
     dispatch(fetchPeopleBegin());
-    fetch(
-      `https://api.themoviedb.org/3/person/popular?api_key=${API_KEY}&language=en&page=${page}`
-    )
-      .then(handleErrors)
-      .then(res => res.json())
-      .then(res => {
-        dispatch(fetchPeopleSuccess(res));
-        return res;
-      })
-      .catch(error => {
-        dispatch(fetchPeopleError(error));
-      });
+    if (trending) {
+      fetch(
+        `https://api.themoviedb.org/3/trending/person/${filter}?api_key=${API_KEY}&language=en&page=${page}`
+      )
+        .then(handleErrors)
+        .then(res => res.json())
+        .then(res => {
+          dispatch(fetchPeopleSuccess(res));
+          return res;
+        })
+        .catch(error => {
+          dispatch(fetchPeopleError(error));
+        });
+    } else {
+      fetch(
+        `https://api.themoviedb.org/3/person/popular?api_key=${API_KEY}&language=en&page=${page}`
+      )
+        .then(handleErrors)
+        .then(res => res.json())
+        .then(res => {
+          dispatch(fetchPeopleSuccess(res));
+          return res;
+        })
+        .catch(error => {
+          dispatch(fetchPeopleError(error));
+        });
+    }
   };
 }
 

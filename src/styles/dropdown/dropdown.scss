@@ -8,20 +8,20 @@
   }
 
   &__toggle {
-    padding: 5px 20px 5px 10px;
+    padding: 5px 15px 5px 10px;
     color: #676565;
-    text-transform: uppercase;
+    font-size: 1.1rem;
     cursor: pointer;
     position: relative;
 
     &:after {
       position: absolute;
-      top: 50%;
+      top: 54%;
       right: 6px;
       transform: translateY(-50%);
       content: "";
-      border: 5px solid transparent;
-      border-top: 5px solid #676565;
+      border: 3px solid transparent;
+      border-top: 3px solid #676565;
       border-bottom: 0;
     }
   }
@@ -42,12 +42,12 @@
       width: 100%;
       padding: 5px 10px;
       font-weight: 400;
-      color: $textColor;
+      color: $primaryColor;
       white-space: nowrap;
       border: 0;
 
       &:hover {
-        background-color: $textColor;
+        background-color: $primaryColor;
         color: #ecf0f1;
       }
     }

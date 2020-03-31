@@ -33,7 +33,7 @@ body {
 
 a {
   &:hover {
-    color: darken($textColor, 30%);
+    color: darken($primaryColor, 30%);
   }
 }
 
@@ -63,9 +63,32 @@ a {
   display: flex;
   flex-wrap: wrap;
 
+  &__head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 10px 0;
+  }
+
+  &__filter {
+    display: flex;
+    border: 1px solid #e3e3e3;
+    border-radius: 20px;
+
+    &-item {
+      padding: 5px 10px;
+      cursor: pointer;
+
+      &.active {
+        background-color: $primaryColor;
+        border-radius: 20px;
+        color: #fff;
+      }
+    }
+  }
+
   &__title {
     font-size: 24px;
-    padding-left: 4px;
   }
 
   @media (max-width: 767px) {

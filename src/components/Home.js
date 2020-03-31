@@ -1,24 +1,14 @@
 import React from "react";
 import Movies from "../containers/Movies";
 import TvShows from "../containers/TvShows";
+import People from "../containers/People";
 
 const Home = () => {
   return (
     <div>
-      <div>trending trending trending trending trending trending trending</div>
-      <div>trending trending trending trending trending trending trending</div>
-      <div>trending trending trending trending trending trending trending</div>
-      <div>trending trending trending trending trending trending trending</div>
-      <div>trending trending trending trending trending trending trending</div>
-      <div>trending trending trending trending trending trending trending</div>
-      <div>trending trending trending trending trending trending trending</div>
-      <div>trending trending trending trending trending trending trending</div>
-      <div>trending trending trending trending trending trending trending</div>
-      <div>trending trending trending trending trending trending trending</div>
-      <div>trending trending trending trending trending trending trending</div>
-
-      <Movies category="now_playing" heading="In Theatres" />
-      <TvShows category="airing_today" heading="TV Shows Airing Today" />
+      <Movies category="trending" heading="Trending Movies" filters={true} />
+      <TvShows category="trending" heading="Trending TV Shows" filters={true} />
+      <People category="trending" heading="Trending People" filters={true} />
     </div>
   );
 };

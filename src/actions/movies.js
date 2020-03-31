@@ -1,21 +1,36 @@
 import * as types from "../constants/actionTypes";
 import { API_KEY } from "../constants/config";
 
-export function fetchMovies(category, page) {
+export function fetchMovies(category, page, filter) {
   return dispatch => {
     dispatch(fetchMoviesBegin());
-    fetch(
-      `https://api.themoviedb.org/3/movie/${category}?api_key=${API_KEY}&language=en-US&page=${page}`
-    )
-      .then(handleErrors)
-      .then(res => res.json())
-      .then(res => {
-        dispatch(fetchMoviesSuccess(res));
-        return res;
-      })
-      .catch(error => {
-        dispatch(fetchMoviesError(error));
-      });
+    if (category === "trending") {
+      fetch(
+        `https://api.themoviedb.org/3/trending/movie/${filter}?api_key=${API_KEY}&language=en-US&page=${page}`
+      )
+        .then(handleErrors)
+        .then(res => res.json())
+        .then(data => {
+          dispatch(fetchMoviesSuccess(data));
+          return data;
+        })
+        .catch(error => {
+          dispatch(fetchMoviesError(error));
+        });
+    } else {
+      fetch(
+        `https://api.themoviedb.org/3/movie/${category}?api_key=${API_KEY}&language=en-US&page=${page}`
+      )
+        .then(handleErrors)
+        .then(res => res.json())
+        .then(data => {
+          dispatch(fetchMoviesSuccess(data));
+          return data;
+        })
+        .catch(error => {
+          dispatch(fetchMoviesError(error));
+        });
+    }
   };
 }
 

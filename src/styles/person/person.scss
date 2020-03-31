@@ -23,7 +23,7 @@
 
     &:hover {
       .person__name {
-        color: darken($textColor, 30%);
+        color: darken($primaryColor, 30%);
       }
     }
   }
@@ -43,7 +43,7 @@
   }
 
   &__name {
-    color: $textColor;
+    color: $primaryColor;
     margin: 0;
   }
 

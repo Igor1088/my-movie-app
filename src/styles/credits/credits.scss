@@ -7,6 +7,11 @@
     color: #2c3e50;
     display: block;
 
+    &-year {
+      display: inline-block;
+      width: 7%;
+    }
+
     a {
       font-weight: 700;
       color: inherit;
@@ -26,7 +31,7 @@
       cursor: pointer;
 
       &.selected {
-        color: $textColor;
+        color: $primaryColor;
         font-weight: 700;
       }
     }

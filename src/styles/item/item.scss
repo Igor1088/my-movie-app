@@ -8,7 +8,7 @@
   &:hover {
     .item {
       &__title {
-        color: darken($textColor, 30%);
+        color: darken($primaryColor, 30%);
       }
 
       &__vote-average {

@@ -17,7 +17,7 @@ const CreditsList = props => {
       )
       .map(credit => {
         return (
-          <Link key={credit.id} className="credits__item">
+          <div key={credit.id} className="credits__item">
             <span className="credits__item-year">
               {credit.release_date ? credit.release_date.slice(0, 4) : ""}{" "}
               {credit.first_air_date ? credit.first_air_date.slice(0, 4) : ""}{" "}
@@ -27,7 +27,7 @@ const CreditsList = props => {
               {credit.name}
             </Link>{" "}
             - <span>{credit.character || credit.job}</span>
-          </Link>
+          </div>
         );
       });
   }

@@ -38,7 +38,7 @@
     }
 
     &-heading {
-      color: $textColor;
+      color: $primaryColor;
       font-size: 126%;
       margin-bottom: 10px;
     }
@@ -68,10 +68,10 @@
         margin-right: 7px;
 
         a {
-          color: $textColor;
+          color: $primaryColor;
 
           &:hover {
-            color: darken($textColor, 30%);
+            color: darken($primaryColor, 30%);
           }
         }
 
@@ -105,7 +105,7 @@
     &-item {
       padding: 10px 15px;
       border-radius: 4px;
-      background-color: $textColor;
+      background-color: $primaryColor;
       color: #fff;
       margin: 2px;
 
