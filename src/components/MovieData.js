@@ -49,7 +49,7 @@ const MovieData = props => {
       </div>
       <div className="movie__data-item">
         <div className="movie__data-heading">Runtime</div>
-        <div className="movie__data-info">{runtime} min</div>
+        <div className="movie__data-info">{runtime} min.</div>
       </div>
       <div className="movie__data-item">
         <div className="movie__data-heading">Budget</div>

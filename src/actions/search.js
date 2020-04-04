@@ -8,7 +8,7 @@ export function fetchSearchResults(query, page) {
     fetch(
       `https://api.themoviedb.org/3/search/multi?api_key=${API_KEY}&language=en-US&query=${query}&page=${page}&include_adult=false`
     )
-      .then(res => res.json())
+      .then(response => response.json())
       .then(data => {
         dispatch(fetchSearchSuccess(data));
         return data;

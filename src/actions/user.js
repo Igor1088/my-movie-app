@@ -7,7 +7,7 @@ export function fetchUser(session_id) {
     fetch(
       `https://api.themoviedb.org/3/account?api_key=${API_KEY}&session_id=${session_id}`
     )
-      .then(res => res.json())
+      .then(response => response.json())
       .then(data => {
         dispatch(fetchUserSuccess(data));
         // if (data.status_message) {
@@ -27,13 +27,16 @@ export function fetchLoggedUser() {
       fetch(
         `https://api.themoviedb.org/3/account?api_key=${API_KEY}&session_id=${sessionID}`
       )
-        .then(res => res.json())
+        .then(response => response.json())
         .then(data => {
           dispatch(fetchUserSuccess(data));
           // if (data) {
           //   dispatch(fetchUserError(data.status_message));
           // } else {
           // }
+        })
+        .catch(error => {
+          dispatch(fetchUserError(error));
         });
     }
   };
@@ -47,10 +50,12 @@ export function fetchUserData(category, type, sort) {
     fetch(
       `https://api.themoviedb.org/3/account/{account_id}/${category}/${type}?api_key=${API_KEY}&session_id=${sessionID}&language=en-US&sort_by=created_at.${sort}&page=1`
     )
-      .then(res => res.json())
+      .then(response => response.json())
       .then(data => {
-        console.log("favmovies", data);
         dispatch(fetchUserDataSuccess(data));
+      })
+      .catch(error => {
+        dispatch(fetchUserDataError(error));
       });
   };
 }

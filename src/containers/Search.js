@@ -52,7 +52,6 @@ class Search extends Component {
     this.setState({
       value: newValue
     });
-    // console.log(event);
   };
 
   onSuggestionsFetchRequested = ({ value }) => {

@@ -8,10 +8,10 @@ export function fetchPersonDetails(id) {
       `https://api.themoviedb.org/3/person/${id}?api_key=${API_KEY}&language=en-US&append_to_response=movie_credits,tv_credits,images,external_ids,combined_credits`
     )
       .then(handleErrors)
-      .then(res => res.json())
-      .then(res => {
-        dispatch(fetchPersonDetailsSuccess(res));
-        return res;
+      .then(response => response.json())
+      .then(data => {
+        dispatch(fetchPersonDetailsSuccess(data));
+        return data;
       })
       .catch(error => {
         dispatch(fetchPersonDetailsError(error));
@@ -26,22 +26,14 @@ function handleErrors(response) {
   return response;
 }
 
-function fetchPersonDetailsBegin() {
-  return {
-    type: types.FETCH_PERSON_BEGIN
-  };
-}
+const fetchPersonDetailsBegin = () => ({ type: types.FETCH_PERSON_BEGIN });
 
-function fetchPersonDetailsSuccess(movies) {
-  return {
-    type: types.FETCH_PERSON_SUCCESS,
-    payload: movies
-  };
-}
+const fetchPersonDetailsSuccess = movies => ({
+  type: types.FETCH_PERSON_SUCCESS,
+  payload: movies
+});
 
-function fetchPersonDetailsError(error) {
-  return {
-    type: types.FETCH_PERSON_ERROR,
-    payload: error
-  };
-}
+const fetchPersonDetailsError = error => ({
+  type: types.FETCH_PERSON_ERROR,
+  payload: error
+});

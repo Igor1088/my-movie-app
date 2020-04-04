@@ -71,7 +71,7 @@ class TvShows extends Component {
             poster={tv.poster_path}
             title={tv.name}
             vote_average={tv.vote_average}
-            media={tv.media_type}
+            media="tv"
           />
         );
       });
@@ -129,10 +129,8 @@ const mapStateToProps = state => ({
   tvShows: getTvShows(state)
 });
 
-function mapDispatchToProps(dispatch) {
-  return {
-    fetchTvShows: bindActionCreators(actions.fetchTvShows, dispatch)
-  };
-}
+const mapDispatchToProps = dispatch => ({
+  fetchTvShows: bindActionCreators(actions.fetchTvShows, dispatch)
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(TvShows);

@@ -7,8 +7,6 @@ const initialState = {
 };
 
 export default function(state = initialState, action) {
-  // console.log("action session", action);
-
   switch (action.type) {
     case types.CREATE_SESSION_BEGIN:
       return {

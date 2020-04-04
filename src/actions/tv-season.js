@@ -8,7 +8,7 @@ export function fetchSeasonDetails(id, number) {
       `https://api.themoviedb.org/3/tv/${id}/season/${number}?api_key=${API_KEY}&language=en-US`
     )
       .then(handleErrors)
-      .then(res => res.json())
+      .then(response => response.json())
       .then(data => {
         dispatch(fetchSeasonSuccess(data));
         return data;

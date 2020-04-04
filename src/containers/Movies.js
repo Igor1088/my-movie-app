@@ -70,7 +70,7 @@ class Movies extends Component {
             poster={movie.poster_path}
             title={movie.title}
             vote_average={movie.vote_average}
-            media={movie.media_type}
+            media={"movie"}
           />
         );
       });
@@ -130,10 +130,8 @@ const mapStateToProps = state => ({
   movies: getMovies(state)
 });
 
-function mapDispatchToProps(dispatch) {
-  return {
-    fetchMovies: bindActionCreators(actions.fetchMovies, dispatch)
-  };
-}
+const mapDispatchToProps = dispatch => ({
+  fetchMovies: bindActionCreators(actions.fetchMovies, dispatch)
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(Movies);

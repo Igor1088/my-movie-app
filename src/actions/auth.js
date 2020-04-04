@@ -8,7 +8,7 @@ export function requestLogin() {
     fetch(
       `https://api.themoviedb.org/3/authentication/token/new?api_key=${API_KEY}`
     )
-      .then(res => res.json())
+      .then(response => response.json())
       .then(data => {
         localStorage.setItem("token", data.request_token);
         win.location = `https://www.themoviedb.org/authenticate/${data.request_token}`;
@@ -29,7 +29,7 @@ export function createSession(token) {
     fetch(
       `https://api.themoviedb.org/3/authentication/session/new?api_key=${API_KEY}&request_token=${token}`
     )
-      .then(res => res.json())
+      .then(response => response.json())
       .then(data => {
         if (!data.failure) {
           localStorage.setItem("session_id", data.session_id);
@@ -54,34 +54,18 @@ export const logout = () => dispatch => {
   dispatch(deleteUser());
 };
 
-function createSessionBegin() {
-  return {
-    type: types.CREATE_SESSION_BEGIN
-  };
-}
+const createSessionBegin = () => ({ type: types.CREATE_SESSION_BEGIN });
 
-function createSessionSuccess(session) {
-  return {
-    type: types.CREATE_SESSION_SUCCESS,
-    payload: session
-  };
-}
+const createSessionSuccess = session => ({
+  type: types.CREATE_SESSION_SUCCESS,
+  payload: session
+});
 
-function createSessionError(error) {
-  return {
-    type: types.CREATE_SESSION_ERROR,
-    payload: error
-  };
-}
+const createSessionError = error => ({
+  type: types.CREATE_SESSION_ERROR,
+  payload: error
+});
 
-function deleteSession() {
-  return {
-    type: types.DELETE_SESSION
-  };
-}
+const deleteSession = () => ({ type: types.DELETE_SESSION });
 
-function deleteUser() {
-  return {
-    type: types.DELETE_USER
-  };
-}
+const deleteUser = () => ({ type: types.DELETE_USER });

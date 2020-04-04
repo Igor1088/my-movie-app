@@ -128,10 +128,8 @@ const mapStateToProps = state => ({
   people: getPeople(state)
 });
 
-function mapDispatchToProps(dispatch) {
-  return {
-    fetchPeople: bindActionCreators(actions.fetchPeople, dispatch)
-  };
-}
+const mapDispatchToProps = dispatch => ({
+  fetchPeople: bindActionCreators(actions.fetchPeople, dispatch)
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(People);

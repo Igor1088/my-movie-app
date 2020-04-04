@@ -217,10 +217,8 @@ const mapStateToProps = state => ({
   movieDetails: getMovieDetails(state)
 });
 
-function mapDispatchToProps(dispatch) {
-  return {
-    fetchMovieDetails: bindActionCreators(actions.fetchMovieDetails, dispatch)
-  };
-}
+const mapDispatchToProps = dispatch => ({
+  fetchMovieDetails: bindActionCreators(actions.fetchMovieDetails, dispatch)
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(MovieDetails);

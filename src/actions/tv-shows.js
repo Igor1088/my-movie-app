@@ -9,7 +9,7 @@ export function fetchTvShows(category, page, filter) {
         `https://api.themoviedb.org/3/trending/tv/${filter}?api_key=${API_KEY}&language=en-US&page=${page}`
       )
         .then(handleErrors)
-        .then(res => res.json())
+        .then(response => response.json())
         .then(data => {
           dispatch(fetchTvShowsSuccess(data));
           return data;
@@ -22,7 +22,7 @@ export function fetchTvShows(category, page, filter) {
         `https://api.themoviedb.org/3/tv/${category}?api_key=${API_KEY}&language=en-US&page=${page}`
       )
         .then(handleErrors)
-        .then(res => res.json())
+        .then(response => response.json())
         .then(data => {
           dispatch(fetchTvShowsSuccess(data));
           return data;
@@ -41,22 +41,14 @@ function handleErrors(response) {
   return response;
 }
 
-const fetchTvShowsBegin = () => {
-  return {
-    type: types.FETCH_SHOWS_BEGIN
-  };
-};
+const fetchTvShowsBegin = () => ({ type: types.FETCH_SHOWS_BEGIN });
 
-const fetchTvShowsSuccess = tvShows => {
-  return {
-    type: types.FETCH_SHOWS_SUCCESS,
-    payload: tvShows
-  };
-};
+const fetchTvShowsSuccess = tvShows => ({
+  type: types.FETCH_SHOWS_SUCCESS,
+  payload: tvShows
+});
 
-function fetchTvShowsError(error) {
-  return {
-    type: types.FETCH_SHOWS_ERROR,
-    payload: error
-  };
-}
+const fetchTvShowsError = error => ({
+  type: types.FETCH_SHOWS_ERROR,
+  payload: error
+});

@@ -151,14 +151,9 @@ const mapStateToProps = state => ({
   tvShowDetails: getTvShowDetails(state)
 });
 
-function mapDispatchToProps(dispatch) {
-  return {
-    fetchSeasonDetails: bindActionCreators(
-      actions.fetchSeasonDetails,
-      dispatch
-    ),
-    fetchTvShowDetails: bindActionCreators(actions.fetchTvShowDetails, dispatch)
-  };
-}
+const mapDispatchToProps = dispatch => ({
+  fetchSeasonDetails: bindActionCreators(actions.fetchSeasonDetails, dispatch),
+  fetchTvShowDetails: bindActionCreators(actions.fetchTvShowDetails, dispatch)
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(SeasonDetails);

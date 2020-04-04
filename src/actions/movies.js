@@ -9,7 +9,7 @@ export function fetchMovies(category, page, filter) {
         `https://api.themoviedb.org/3/trending/movie/${filter}?api_key=${API_KEY}&language=en-US&page=${page}`
       )
         .then(handleErrors)
-        .then(res => res.json())
+        .then(response => response.json())
         .then(data => {
           dispatch(fetchMoviesSuccess(data));
           return data;
@@ -22,7 +22,7 @@ export function fetchMovies(category, page, filter) {
         `https://api.themoviedb.org/3/movie/${category}?api_key=${API_KEY}&language=en-US&page=${page}`
       )
         .then(handleErrors)
-        .then(res => res.json())
+        .then(response => response.json())
         .then(data => {
           dispatch(fetchMoviesSuccess(data));
           return data;
@@ -41,22 +41,14 @@ function handleErrors(response) {
   return response;
 }
 
-function fetchMoviesBegin() {
-  return {
-    type: types.FETCH_MOVIES_BEGIN
-  };
-}
+const fetchMoviesBegin = () => ({ type: types.FETCH_MOVIES_BEGIN });
 
-function fetchMoviesSuccess(movies) {
-  return {
-    type: types.FETCH_MOVIES_SUCCESS,
-    payload: movies
-  };
-}
+const fetchMoviesSuccess = movies => ({
+  type: types.FETCH_MOVIES_SUCCESS,
+  payload: movies
+});
 
-function fetchMoviesError(error) {
-  return {
-    type: types.FETCH_MOVIES_ERROR,
-    payload: error
-  };
-}
+const fetchMoviesError = error => ({
+  type: types.FETCH_MOVIES_ERROR,
+  payload: error
+});

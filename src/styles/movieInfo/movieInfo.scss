@@ -104,9 +104,11 @@
 
     &-item {
       padding: 0 10px;
+      margin: 1px;
+      border-right: 1px solid #2c3e50;
 
-      & + & {
-        border-left: 1px solid #2c3e50;
+      &:last-child {
+        border-right-color: transparent;
       }
     }
   }

@@ -146,10 +146,8 @@ const mapStateToProps = state => ({
   loading: getPersonDetailsLoading(state)
 });
 
-function mapDispatchToProps(dispatch) {
-  return {
-    fetchPersonDetails: bindActionCreators(actions.fetchPersonDetails, dispatch)
-  };
-}
+const mapDispatchToProps = dispatch => ({
+  fetchPersonDetails: bindActionCreators(actions.fetchPersonDetails, dispatch)
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(PersonDetails);

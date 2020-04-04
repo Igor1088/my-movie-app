@@ -8,10 +8,10 @@ export function fetchTvShowDetails(id) {
       `https://api.themoviedb.org/3/tv/${id}?api_key=${API_KEY}&language=en-US&append_to_response=credits,images,similar,videos`
     )
       .then(handleErrors)
-      .then(res => res.json())
-      .then(res => {
-        dispatch(fetchTvShowDetailsSuccess(res));
-        return res;
+      .then(response => response.json())
+      .then(data => {
+        dispatch(fetchTvShowDetailsSuccess(data));
+        return data;
       })
       .catch(error => {
         dispatch(fetchTvShowDetailsError(error));
@@ -26,22 +26,14 @@ function handleErrors(response) {
   return response;
 }
 
-function fetchTvShowDetailsBegin() {
-  return {
-    type: types.FETCH_SHOW_BEGIN
-  };
-}
+const fetchTvShowDetailsBegin = () => ({ type: types.FETCH_SHOW_BEGIN });
 
-function fetchTvShowDetailsSuccess(tvShows) {
-  return {
-    type: types.FETCH_SHOW_SUCCESS,
-    payload: tvShows
-  };
-}
+const fetchTvShowDetailsSuccess = tvShows => ({
+  type: types.FETCH_SHOW_SUCCESS,
+  payload: tvShows
+});
 
-function fetchTvShowDetailsError(error) {
-  return {
-    type: types.FETCH_SHOW_ERROR,
-    payload: error
-  };
-}
+const fetchTvShowDetailsError = error => ({
+  type: types.FETCH_SHOW_ERROR,
+  payload: error
+});
