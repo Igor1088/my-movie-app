@@ -31,8 +31,8 @@ const navLinks = [
 
 const NavBar = () => (
   <nav className="nav-bar">
-    <SearchBox />
     <Nav items={navLinks} />
+    <SearchBox />
   </nav>
 );
 

@@ -5,7 +5,7 @@ export function fetchMovieDetails(id) {
   return dispatch => {
     dispatch(fetchMovieDetailsBegin());
     fetch(
-      `https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}&language=en-US&append_to_response=credits,videos,images,reviews,similar`
+      `https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}&append_to_response=credits,videos,images,reviews,similar`
     )
       .then(handleErrors)
       .then(response => response.json())

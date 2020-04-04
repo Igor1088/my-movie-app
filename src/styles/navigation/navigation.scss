@@ -4,16 +4,6 @@
   list-style: none;
   font-size: 1.1rem;
 
-  &__item {
-    &:last-child {
-      .nav {
-        right: 0;
-        align-items: flex-end;
-        box-shadow: -3px 2px 5px 0px rgba(122, 116, 122, 1);
-      }
-    }
-  }
-
   &__link {
     display: block;
     padding: 5px 10px;
@@ -53,7 +43,7 @@
     align-items: center;
     background-color: #ecf0f1;
     margin: 7px 0;
-    padding: 15px 0 15px 15px;
+    padding: 10px;
 
     @media (max-width: 767px) {
       flex-direction: column;
