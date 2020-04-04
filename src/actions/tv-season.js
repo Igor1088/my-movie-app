@@ -9,9 +9,9 @@ export function fetchSeasonDetails(id, number) {
     )
       .then(handleErrors)
       .then(res => res.json())
-      .then(res => {
-        dispatch(fetchSeasonSuccess(res));
-        return res;
+      .then(data => {
+        dispatch(fetchSeasonSuccess(data));
+        return data;
       })
       .catch(error => {
         dispatch(fetchSeasonError(error));

@@ -71,7 +71,7 @@ class TvShows extends Component {
             poster={tv.poster_path}
             title={tv.name}
             vote_average={tv.vote_average}
-            media="tv"
+            media={tv.media_type}
           />
         );
       });

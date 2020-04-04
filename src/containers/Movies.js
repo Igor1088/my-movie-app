@@ -51,6 +51,7 @@ class Movies extends Component {
   render() {
     const { error, loading, movies, heading, filters } = this.props;
     const totalPages = movies.total_pages;
+    let items;
 
     if (error) {
       return <div>Error!</div>;
@@ -59,8 +60,6 @@ class Movies extends Component {
     if (loading) {
       return <Loader />;
     }
-
-    let items;
 
     if (movies.results) {
       items = movies.results.map(movie => {
@@ -71,7 +70,7 @@ class Movies extends Component {
             poster={movie.poster_path}
             title={movie.title}
             vote_average={movie.vote_average}
-            media="movie"
+            media={movie.media_type}
           />
         );
       });

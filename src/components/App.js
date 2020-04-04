@@ -110,7 +110,7 @@ function App({ children }) {
             path="/tv/:id/season/:seasonNumber"
             component={SeasonDetails}
           />
-          <Route path="/results" component={SearchResults} />
+          <Route path="/search" component={SearchResults} />
           <Route path="/u" component={UserPage} />
         </div>
       </div>

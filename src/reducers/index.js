@@ -9,6 +9,7 @@ import seasonDetails from "./tv-season";
 import auth from "./auth";
 import user from "./user";
 import userData from "./userData";
+import search from "./search";
 
 const rootReducer = combineReducers({
   movies,
@@ -20,7 +21,8 @@ const rootReducer = combineReducers({
   seasonDetails,
   auth,
   user,
-  userData
+  userData,
+  search
 });
 
 export default rootReducer;

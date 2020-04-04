@@ -5,6 +5,7 @@ import { fetchMovieDetails } from "./movie-details";
 import { fetchPersonDetails } from "./person-details";
 import { fetchTvShowDetails } from "./tvshow-details";
 import { fetchSeasonDetails } from "./tv-season";
+import { fetchSearchResults } from "./search";
 import { createSession, requestLogin, logout } from "./auth";
 import { fetchUser, fetchLoggedUser, fetchUserData } from "./user";
 
@@ -21,5 +22,6 @@ export {
   logout,
   fetchUser,
   fetchLoggedUser,
-  fetchUserData
+  fetchUserData,
+  fetchSearchResults
 };

@@ -1,7 +1,15 @@
 import React, { Component } from "react";
-import { withRouter } from "react-router-dom";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
 import Autosuggest from "react-autosuggest";
 import { API_KEY } from "../constants/config";
+import { fetchSearchResults } from "../actions";
+import {
+  getSearchResultsError,
+  getSearchResultsLoading,
+  getSearchResults
+} from "../reducers/search";
+import { withRouter } from "react-router-dom";
 
 let results = [];
 
@@ -22,7 +30,8 @@ class Search extends Component {
 
     this.state = {
       value: "",
-      suggestions: []
+      suggestions: [],
+      toResults: false
     };
   }
 
@@ -43,6 +52,7 @@ class Search extends Component {
     this.setState({
       value: newValue
     });
+    // console.log(event);
   };
 
   onSuggestionsFetchRequested = ({ value }) => {
@@ -58,10 +68,12 @@ class Search extends Component {
   };
 
   handleSubmit = e => {
-    this.setState({ value: "", suggestion: [] });
-    e.preventDefault();
-    // this.props.fetchSearchResults(this.state.value);
-    this.props.history.push("/search");
+    if (e.key === "Enter") {
+      this.props.fetchSearchResults(this.state.value);
+      // this.setState({ value: "", suggestions: [], toResults: true });
+      this.props.history.push("/search");
+      localStorage.setItem("query", this.state.value);
+    }
   };
 
   render() {
@@ -74,7 +86,7 @@ class Search extends Component {
     };
 
     return (
-      <form className="nav-search" onSubmit={this.handleSubmit}>
+      <div className="nav-search" onKeyDown={this.handleSubmit}>
         <Autosuggest
           suggestions={suggestions}
           onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
@@ -84,9 +96,19 @@ class Search extends Component {
           inputProps={inputProps}
           highlightFirstSuggestion={true}
         />
-      </form>
+      </div>
     );
   }
 }
 
-export default withRouter(Search);
+const mapStateToProps = state => ({
+  error: getSearchResultsError(state),
+  loading: getSearchResultsLoading(state),
+  results: getSearchResults(state)
+});
+
+const mapDispatchToProps = dispatch => ({
+  fetchSearchResults: bindActionCreators(fetchSearchResults, dispatch)
+});
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Search));

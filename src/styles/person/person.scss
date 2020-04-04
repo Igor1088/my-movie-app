@@ -40,6 +40,7 @@
 
   &__info-text {
     margin-top: 8px;
+    font-size: 12px;
   }
 
   &__name {
@@ -49,7 +50,7 @@
 
   &__role {
     margin-top: 5px;
-    color: #2c3e50;
+    color: lighten($primaryColor, 20%);
   }
 
   &__info {
