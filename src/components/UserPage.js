@@ -1,11 +1,11 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
 import UserPageList from "../containers/UserPageList";
-import Nav from "./UserNav";
+import UserNav from "./UserNav";
 
 const UserPage = () => (
   <div>
-    <Nav />
+    <UserNav />
     <Switch>
       <Route
         path="/u"

@@ -1,6 +1,6 @@
 import React from "react";
 import Movies from "../containers/Movies";
-import Navigation from "./Navigation";
+import NavBar from "./NavBar";
 import Home from "../components/Home";
 import TvShows from "../containers/TvShows";
 import MovieDetails from "../containers/MovieDetails";
@@ -21,7 +21,7 @@ function App({ children }) {
         <div className="container">
           <header className="header">
             <Auth />
-            <Navigation />
+            <NavBar />
           </header>
 
           <Route exact path="/" component={Home} />

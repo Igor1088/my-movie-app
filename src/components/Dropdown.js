@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 class Dropdown extends Component {
   constructor(props) {
@@ -31,7 +31,13 @@ class Dropdown extends Component {
           {data.map(item => {
             return (
               <div key={item.id} className="dropdown__item">
-                <Link to={`${item.route}`}>{item.link}</Link>
+                <NavLink
+                  to={`${item.route}`}
+                  activeClassName="active"
+                  className="dropdown__link"
+                >
+                  {item.link}
+                </NavLink>
               </div>
             );
           })}
