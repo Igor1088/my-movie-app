@@ -41,15 +41,12 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px;
+    padding: 10px 0;
 
     @media (max-width: 767px) {
       flex-direction: column;
       padding: 10px 0;
     }
-  }
-
-  &-search {
   }
 }
 
@@ -60,18 +57,19 @@
 
   &__input {
     width: 70px;
-    padding: 3px 5px;
+    padding: 5px 11px;
     font-weight: 300;
     font-size: 14px;
+    border-radius: 17px;
     border: none;
-    background: transparent;
-    border-bottom: 1px solid $primaryColor;
-    color: #676565;
+    background: #ecf0f1;
+    color: $primaryColor;
+    border-style: none;
     -webkit-transition: width 0.4s ease-in-out;
     transition: width 0.4s ease-in-out;
 
     &:focus {
-      width: 240px;
+      width: 180px;
     }
 
     &::placeholder {

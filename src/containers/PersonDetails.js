@@ -53,7 +53,7 @@ class PersonDetails extends Component {
     if (personDetails.combined_credits) {
       credits = personDetails.combined_credits.cast
         .sort((a, b) => b.popularity - a.popularity)
-        .slice(0, 18)
+        .slice(0, 21)
         .map((i) => {
           return (
             <Item
