@@ -3,19 +3,20 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import * as actions from "../actions";
-import {
+import tvshowDetails, {
   getTvShowDetailsError,
   getTvShowDetails,
-  getTvShowDetailsLoading
+  getTvShowDetailsLoading,
 } from "../reducers/tvshow-details";
 import Loader from "../components/Loader";
-import MovieInfo from "../components/MovieInfo";
-import TvData from "../components/TvData";
+import MediaInfo from "../components/MediaInfo";
 import Person from "../components/Person";
 import Item from "../components/Item";
 import Season from "../components/Season";
 import Image from "../components/Image";
 import Video from "../components/Video";
+import Section from "../components/Section";
+import Sidebar from "../components/Sidebar";
 
 class TvShowDetails extends Component {
   componentDidMount() {
@@ -45,16 +46,16 @@ class TvShowDetails extends Component {
     let items, seasons;
 
     if (tvShowDetails.length !== 0) {
-      cast = tvShowDetails.credits.cast.slice(0, 14).map(person => {
+      cast = tvShowDetails.credits.cast.slice(0, 14).map((person) => {
         return {
           name: person.name,
           role: person.character,
           poster: person.profile_path,
-          personID: person.id
+          personID: person.id,
         };
       });
 
-      items = tvShowDetails.similar.results.slice(0, 12).map(tv => {
+      items = tvShowDetails.similar.results.slice(0, 14).map((tv) => {
         return (
           <Item
             key={tv.id}
@@ -63,11 +64,12 @@ class TvShowDetails extends Component {
             title={tv.name}
             vote_average={tv.vote_average}
             media="tv"
+            year={tv.first_air_date}
           />
         );
       });
 
-      seasons = tvShowDetails.seasons.map(s => {
+      seasons = tvShowDetails.seasons.map((s) => {
         return (
           <Season
             key={s.id}
@@ -84,7 +86,7 @@ class TvShowDetails extends Component {
 
     return (
       <div>
-        <MovieInfo
+        {/* <MovieInfo
           title={tvShowDetails.name}
           poster={tvShowDetails.poster_path}
           overview={tvShowDetails.overview}
@@ -94,69 +96,90 @@ class TvShowDetails extends Component {
           vote_average={tvShowDetails.vote_average}
           director={[]}
           writers={[]}
+        /> */}
+
+        <MediaInfo
+          title={tvShowDetails.name}
+          poster={tvShowDetails.poster_path}
+          overview={tvShowDetails.overview}
+          tagline={tvShowDetails.tagline}
+          backdrop={tvShowDetails.backdrop_path}
+          genres={tvShowDetails.genres}
+          voteAverage={tvShowDetails.vote_average}
+          voteCount={tvShowDetails.vote_count}
+          director={[]}
+          writers={[]}
+          media="tv"
+          runtime={tvShowDetails.episode_run_time}
+          releaseDate={tvShowDetails.first_air_date}
+          createdBy={tvShowDetails.created_by}
         />
-        <div className="movie__content">
-          <div className="movie__sidebar">
-            <h4>Facts</h4>
-            <TvData
-              production={tvShowDetails.networks}
-              runtime={tvShowDetails.episode_run_time}
-              homepage={tvShowDetails.homepage}
-              release_date={tvShowDetails.first_air_date}
-              status={tvShowDetails.status}
-              language={tvShowDetails.original_language}
-            />
+        <main className="main">
+          <Sidebar
+            // heading="Facts"
+            media="tv"
+            production={tvShowDetails.networks}
+            runtime={tvShowDetails.episode_run_time}
+            homepage={tvShowDetails.homepage}
+            release_date={tvShowDetails.first_air_date}
+            status={tvShowDetails.status}
+            originalLanguage={tvShowDetails.original_language}
+            originalName={tvShowDetails.original_name}
+          />
+          <div className="main__content">
+            <Section heading="Featured Cast">
+              <div className="person__list">
+                {cast.map((person) => {
+                  return (
+                    <Person
+                      key={person.personID}
+                      id={person.personID}
+                      name={person.name}
+                      role={person.role}
+                      poster={person.poster}
+                    />
+                  );
+                })}
+              </div>
+            </Section>
+
+            <Section heading="Seasons">
+              <div className="grid">{seasons}</div>
+            </Section>
+
+            <Section heading="Trailers">
+              <div>
+                <Video videos={tvShowDetails.videos} />
+              </div>
+            </Section>
+
+            <Section heading="More Like This">
+              <div className="grid">{items}</div>
+            </Section>
           </div>
-          <div className="movie__content-main">
-            <h4>Featured Cast</h4>
-            <div className="person__list">
-              {cast.map(person => {
-                return (
-                  <Person
-                    key={person.personID}
-                    id={person.personID}
-                    name={person.name}
-                    role={person.role}
-                    poster={person.poster}
-                  />
-                );
-              })}
-            </div>
-
-            <h4>Seasons</h4>
-            <div className="row">{seasons}</div>
-
-            <h4>Trailers</h4>
-            <div>
-              <Video videos={tvShowDetails.videos} />
-            </div>
-
-            <h4>More Like This</h4>
-            <div className="row">{items}</div>
-          </div>
-        </div>
+        </main>
       </div>
     );
   }
 }
 
 TvShowDetails.defaultProps = {
-  tvShowDetails: []
+  tvShowDetails: [],
 };
 
 TvShowDetails.propTypes = {
   tvShowDetails: PropTypes.array,
-  loading: PropTypes.bool
+  loading: PropTypes.bool,
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   error: getTvShowDetailsError(state),
   loading: getTvShowDetailsLoading(state),
-  tvShowDetails: getTvShowDetails(state)
+  tvShowDetails: getTvShowDetails(state),
 });
 
-const mapDispatchToProps = dispatch => ({
-  fetchTvShowDetails: bindActionCreators(actions.fetchTvShowDetails, dispatch)
+const mapDispatchToProps = (dispatch) => ({
+  fetchTvShowDetails: bindActionCreators(actions.fetchTvShowDetails, dispatch),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(TvShowDetails);

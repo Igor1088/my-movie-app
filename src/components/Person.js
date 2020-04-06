@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
-const Person = props => {
+const Person = (props) => {
   const { id, name, role, poster } = props;
   const placeholder = "http://placehold.it/154x230";
   const path = poster
@@ -27,5 +27,5 @@ export default Person;
 Person.propTypes = {
   name: PropTypes.string,
   character: PropTypes.string,
-  poster: PropTypes.string
+  poster: PropTypes.string,
 };

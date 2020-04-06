@@ -1,22 +1,11 @@
 import React from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Link } from "react-router-dom";
 import * as actions from "../actions";
-import { getUser, getUserAuthorization } from "../reducers/user";
+import { getUser } from "../reducers/user";
 import User from "./User";
-
-const Login = ({ onLogin }) => {
-  return <Link onClick={onLogin}>Login</Link>;
-};
-
-const Logout = ({ onLogout }) => {
-  return (
-    <Link to="/" onClick={onLogout}>
-      Logout
-    </Link>
-  );
-};
+import Login from "../components/Login";
+import Logout from "../components/Logout";
 
 const Auth = ({ user, login, logout }) => {
   return (
@@ -37,13 +26,13 @@ const Auth = ({ user, login, logout }) => {
   );
 };
 
-const mapStateToProps = state => ({
-  user: getUser(state)
+const mapStateToProps = (state) => ({
+  user: getUser(state),
 });
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch) => ({
   login: bindActionCreators(actions.requestLogin, dispatch),
-  logout: bindActionCreators(actions.logout, dispatch)
+  logout: bindActionCreators(actions.logout, dispatch),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Auth);

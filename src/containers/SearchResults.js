@@ -5,7 +5,7 @@ import * as actions from "../actions";
 import {
   getSearchResults,
   getSearchResultsLoading,
-  getSearchResultsError
+  getSearchResultsError,
 } from "../reducers/search";
 import Item from "../components/Item";
 import Loader from "../components/Loader";
@@ -16,11 +16,11 @@ class SearchResults extends Component {
     super(props);
 
     this.state = {
-      current: 1
+      current: 1,
     };
   }
 
-  handlePageClick = page => {
+  handlePageClick = (page) => {
     this.setState({ current: page });
     this.props.fetchSearchResults(localStorage.getItem("query"), page);
   };
@@ -39,7 +39,7 @@ class SearchResults extends Component {
     }
 
     if (results.results) {
-      items = results.results.map(i => {
+      items = results.results.map((i) => {
         return (
           <Item
             key={i.id}
@@ -48,6 +48,7 @@ class SearchResults extends Component {
             title={i.title ? i.title : i.name}
             vote_average={i.vote_average}
             media={i.media_type}
+            year={i.release_date ? i.release_date : i.first_air_date}
           />
         );
       });
@@ -58,7 +59,7 @@ class SearchResults extends Component {
         <div className="row__head">
           <h3 className="row__title">Search Results</h3>
         </div>
-        <div className="row">{items}</div>
+        <div className="grid">{items}</div>
         <div className="pagination">
           <Pagination
             onChange={this.handlePageClick}
@@ -71,14 +72,14 @@ class SearchResults extends Component {
   }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   results: getSearchResults(state),
   loading: getSearchResultsLoading(state),
-  error: getSearchResultsError(state)
+  error: getSearchResultsError(state),
 });
 
-const mapDispatchToProps = dispatch => ({
-  fetchSearchResults: bindActionCreators(actions.fetchSearchResults, dispatch)
+const mapDispatchToProps = (dispatch) => ({
+  fetchSearchResults: bindActionCreators(actions.fetchSearchResults, dispatch),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(SearchResults);

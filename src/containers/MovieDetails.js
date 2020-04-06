@@ -6,29 +6,18 @@ import * as actions from "../actions";
 import {
   getMovieDetailsError,
   getMovieDetails,
-  getMovieDetailsLoading
+  getMovieDetailsLoading,
 } from "../reducers/movie-details";
 import Loader from "../components/Loader";
-import MovieInfo from "../components/MovieInfo";
-import MovieData from "../components/MovieData";
+import MediaInfo from "../components/MediaInfo";
 import Person from "../components/Person";
 import Item from "../components/Item";
 import Image from "../components/Image";
 import Video from "../components/Video";
 import ReviewList from "../components/ReviewList";
-
-function groupByArray(xs, key) {
-  return xs.reduce(function(rv, x) {
-    let v = key instanceof Function ? key(x) : x[key];
-    let el = rv.find(r => r && r.key === v);
-    if (el) {
-      el.values.push(x);
-    } else {
-      rv.push({ key: v, values: [x] });
-    }
-    return rv;
-  }, []);
-}
+import Section from "../components/Section";
+import Sidebar from "../components/Sidebar";
+import { groupByArray } from "../utils/helpers";
 
 class MovieDetails extends Component {
   componentDidMount() {
@@ -62,12 +51,12 @@ class MovieDetails extends Component {
     let writers = [];
 
     if (movieDetails.length !== 0) {
-      cast = movieDetails.credits.cast.slice(0, 14).map(person => {
+      cast = movieDetails.credits.cast.slice(0, 14).map((person) => {
         return {
           name: person.name,
           role: person.character,
           poster: person.profile_path,
-          personID: person.id
+          personID: person.id,
         };
       });
 
@@ -80,7 +69,7 @@ class MovieDetails extends Component {
       //   };
       // });
 
-      similar = movieDetails.similar.results.slice(0, 12).map(movie => {
+      similar = movieDetails.similar.results.slice(0, 14).map((movie) => {
         return (
           <Item
             key={`${movie.id}-${movie.title}`}
@@ -89,6 +78,7 @@ class MovieDetails extends Component {
             title={movie.title}
             vote_average={movie.vote_average}
             media="movie"
+            year={movie.release_date}
           />
         );
       });
@@ -97,11 +87,11 @@ class MovieDetails extends Component {
         movieDetails.credits.crew,
         "department"
       );
-      const foundDirector = featuredCrew.find(e => e.key === "Directing");
-      const foundWriters = featuredCrew.find(e => e.key === "Writing");
+      const foundDirector = featuredCrew.find((e) => e.key === "Directing");
+      const foundWriters = featuredCrew.find((e) => e.key === "Writing");
 
       if (foundDirector) {
-        director.push(foundDirector.values.find(d => d.job === "Director"));
+        director.push(foundDirector.values.find((d) => d.job === "Director"));
       }
 
       if (foundWriters) {
@@ -110,50 +100,66 @@ class MovieDetails extends Component {
     }
 
     return (
-      <div>
-        <MovieInfo
+      <main>
+        <MediaInfo
           title={movieDetails.title}
           poster={movieDetails.poster_path}
           overview={movieDetails.overview}
           tagline={movieDetails.tagline}
-          release_date={movieDetails.release_date}
+          releaseDate={movieDetails.release_date}
           backdrop={movieDetails.backdrop_path}
           genres={movieDetails.genres}
-          vote_average={movieDetails.vote_average}
+          voteAverage={movieDetails.vote_average}
+          voteCount={movieDetails.vote_count}
           director={director}
           writers={writers}
+          imdb={movieDetails.imdb_id}
+          media="movie"
+          runtime={movieDetails.runtime}
         />
-        <div className="movie__content">
-          <div className="movie__sidebar">
-            <h4>Facts</h4>
-            <MovieData
-              production={movieDetails.production_companies}
-              runtime={movieDetails.runtime}
-              budget={movieDetails.budget}
-              revenue={movieDetails.revenue}
-              release_date={movieDetails.release_date}
-              imdb={movieDetails.imdb_id}
-              status={movieDetails.status}
-              homepage={movieDetails.homepage}
-              // language={movieDetails.spoken_languages ? movieDetails.spoken_languages[0].name : ""}
-              language={movieDetails.original_language}
-            />
-          </div>
-          <div className="movie__content-main">
-            <h4>Featured Cast</h4>
-            <div className="person__list">
-              {cast.map(person => {
-                return (
-                  <Person
-                    key={`${person.personID}-${person.name}`}
-                    id={person.personID}
-                    name={person.name}
-                    role={person.role}
-                    poster={person.poster}
-                  />
-                );
-              })}
-            </div>
+        <div className="main">
+          <Sidebar
+            // heading="Facts"
+            media="movie"
+            // info={[
+            //   { label: "status", data: movieDetails.status },
+            //   { label: "Release Date", data: movieDetails.release_date },
+            //   {
+            //     label: "Original Language",
+            //     data: movieDetails.original_language,
+            //   },
+            //   { label: "Budget", data: movieDetails.budget },
+            //   { label: "Revenue", data: movieDetails.revenue },
+            //   { label: "Production", data: movieDetails.production },
+            //   // { label: "Homepage", data: movieDetails.homepage },
+            //   { label: "Budget", data: movieDetails.budget },
+            // ]}
+            status={movieDetails.status}
+            release_date={movieDetails.release_date}
+            originalLanguage={movieDetails.original_language}
+            runtime={movieDetails.runtime}
+            budget={movieDetails.budget}
+            revenue={movieDetails.revenue}
+            production={movieDetails.production_companies}
+            homepage={movieDetails.homepage}
+            imdb={movieDetails.imdb_id}
+          />
+          <div className="main__content">
+            <Section heading="Featured Cast">
+              <div className="person__list">
+                {cast.map((person) => {
+                  return (
+                    <Person
+                      key={`${person.personID}-${person.name}`}
+                      id={person.personID}
+                      name={person.name}
+                      role={person.role}
+                      poster={person.poster}
+                    />
+                  );
+                })}
+              </div>
+            </Section>
 
             {/* <h4>Featured Crew</h4>
             <div className="person__list">
@@ -170,14 +176,15 @@ class MovieDetails extends Component {
               })}
             </div> */}
 
-            <h4>Trailers</h4>
-            <div>
-              {movieDetails.videos ? (
-                <Video videos={movieDetails.videos} />
-              ) : (
-                <p>No Trailers</p>
-              )}
-            </div>
+            <Section heading="Trailers">
+              <div>
+                {movieDetails.videos ? (
+                  <Video videos={movieDetails.videos} />
+                ) : (
+                  <p>No Trailers</p>
+                )}
+              </div>
+            </Section>
 
             {/* <h4>Images</h4>
                         <div className="photo__container">
@@ -189,36 +196,36 @@ class MovieDetails extends Component {
                         </div> */}
 
             {similar.length ? (
-              <div>
-                <h4>More Like This</h4>
-                <div className="row">{similar}</div>
-              </div>
+              <Section heading="More Like This">
+                <div className="grid">{similar}</div>
+              </Section>
             ) : null}
+
             {/* <ReviewList reviews={movieDetails.reviews} /> */}
           </div>
         </div>
-      </div>
+      </main>
     );
   }
 }
 
 MovieDetails.defaultProps = {
-  movieDetails: []
+  movieDetails: [],
 };
 
 MovieDetails.propTypes = {
   movieDetails: PropTypes.array,
-  loading: PropTypes.bool
+  loading: PropTypes.bool,
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   error: getMovieDetailsError(state),
   loading: getMovieDetailsLoading(state),
-  movieDetails: getMovieDetails(state)
+  movieDetails: getMovieDetails(state),
 });
 
-const mapDispatchToProps = dispatch => ({
-  fetchMovieDetails: bindActionCreators(actions.fetchMovieDetails, dispatch)
+const mapDispatchToProps = (dispatch) => ({
+  fetchMovieDetails: bindActionCreators(actions.fetchMovieDetails, dispatch),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(MovieDetails);

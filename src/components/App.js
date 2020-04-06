@@ -27,13 +27,13 @@ function App({ children }) {
           <Route exact path="/" component={Home} />
           <Route
             path="/movies/popular"
-            render={props => (
+            render={(props) => (
               <Movies {...props} category="popular" heading="Popular Movies" />
             )}
           />
           <Route
             path="/movies/upcoming"
-            render={props => (
+            render={(props) => (
               <Movies
                 {...props}
                 category="upcoming"
@@ -43,7 +43,7 @@ function App({ children }) {
           />
           <Route
             path="/movies/top-rated"
-            render={props => (
+            render={(props) => (
               <Movies
                 {...props}
                 category="top_rated"
@@ -53,7 +53,7 @@ function App({ children }) {
           />
           <Route
             path="/movies/now-playing"
-            render={props => (
+            render={(props) => (
               <Movies
                 {...props}
                 category="now_playing"
@@ -63,7 +63,7 @@ function App({ children }) {
           />
           <Route
             path="/tv-show/popular"
-            render={props => (
+            render={(props) => (
               <TvShows
                 {...props}
                 category="popular"
@@ -73,7 +73,7 @@ function App({ children }) {
           />
           <Route
             path="/tv-show/top-rated"
-            render={props => (
+            render={(props) => (
               <TvShows
                 {...props}
                 category="top_rated"
@@ -83,7 +83,7 @@ function App({ children }) {
           />
           <Route
             path="/tv-show/on-tv"
-            render={props => (
+            render={(props) => (
               <TvShows
                 {...props}
                 category="on_the_air"
@@ -93,7 +93,7 @@ function App({ children }) {
           />
           <Route
             path="/tv-show/airing-today"
-            render={props => (
+            render={(props) => (
               <TvShows
                 {...props}
                 category="airing_today"

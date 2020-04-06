@@ -1,7 +1,7 @@
 import React from "react";
 import CreditsList from "./CreditsList";
 
-const Credits = props => {
+const Credits = (props) => {
   const { creditsCast, creditsCrew, media, heading } = props;
 
   return (
@@ -14,7 +14,7 @@ const Credits = props => {
       <CreditsList
         credits={
           creditsCrew
-            ? creditsCrew.filter(c => c.department === "Directing")
+            ? creditsCrew.filter((c) => c.department === "Directing")
             : null
         }
         media={media}
@@ -23,7 +23,7 @@ const Credits = props => {
       <CreditsList
         credits={
           creditsCrew
-            ? creditsCrew.filter(c => c.department === "Production")
+            ? creditsCrew.filter((c) => c.department === "Production")
             : null
         }
         media={media}
@@ -32,7 +32,7 @@ const Credits = props => {
       <CreditsList
         credits={
           creditsCrew
-            ? creditsCrew.filter(c => c.department === "Writing")
+            ? creditsCrew.filter((c) => c.department === "Writing")
             : null
         }
         media={media}

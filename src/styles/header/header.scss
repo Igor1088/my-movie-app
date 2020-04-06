@@ -1,20 +1,18 @@
 .header {
-  padding-top: 7px;
-  background-color: $primaryColor;
-
   &__top {
     display: flex;
     justify-content: flex-end;
+    background-color: #ecf0f1;
+    padding: 5px 10px;
   }
 
   &__top {
     &-info {
       display: flex;
       align-items: center;
-      padding: 0 10px;
 
       a {
-        color: #c7c5c5;
+        color: lighten($primaryColor, 20%);
       }
     }
   }
@@ -42,7 +40,7 @@
     }
 
     &-name {
-      color: #fff;
+      color: $primaryColor;
     }
   }
 }

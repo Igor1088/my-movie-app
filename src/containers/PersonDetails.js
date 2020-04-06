@@ -6,32 +6,35 @@ import * as actions from "../actions";
 import {
   getPersonDetailsError,
   getPersonDetails,
-  getPersonDetailsLoading
+  getPersonDetailsLoading,
 } from "../reducers/person-details";
 import Loader from "../components/Loader";
 import PersonInfo from "../components/PersonInfo";
-import PersonData from "../components/PersonData";
 import Credits from "../components/Credits";
 import Item from "../components/Item";
+import Sidebar from "../components/Sidebar";
+import Section from "../components/Section";
 
 class PersonDetails extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      creditsList: true
+      selectedOption: "movies",
     };
   }
   componentDidMount() {
     this.props.fetchPersonDetails(this.props.match.params.id);
   }
 
-  changeCreditsList = () => {
-    this.setState({ creditsList: !this.state.creditsList });
+  changeCreditsList = (e) => {
+    this.setState({ selectedOption: e.target.textContent.toLowerCase() });
   };
 
   render() {
     const { error, loading, personDetails } = this.props;
+
+    console.log("selected", this.state.selectedOption);
 
     if (error) {
       return <div>Error!</div>;
@@ -51,7 +54,7 @@ class PersonDetails extends Component {
       credits = personDetails.combined_credits.cast
         .sort((a, b) => b.popularity - a.popularity)
         .slice(0, 18)
-        .map(i => {
+        .map((i) => {
           return (
             <Item
               key={i.id}
@@ -66,13 +69,13 @@ class PersonDetails extends Component {
     }
 
     if (personDetails.movie_credits) {
-      personDetails.movie_credits.cast.map(c => movieCreditsCastList.push(c));
-      personDetails.movie_credits.crew.map(c => movieCreditsCrewList.push(c));
+      personDetails.movie_credits.cast.map((c) => movieCreditsCastList.push(c));
+      personDetails.movie_credits.crew.map((c) => movieCreditsCrewList.push(c));
     }
 
     if (personDetails.tv_credits) {
-      personDetails.tv_credits.cast.map(c => tvCreditsCastList.push(c));
-      personDetails.tv_credits.crew.map(c => movieCreditsCrewList.push(c));
+      personDetails.tv_credits.cast.map((c) => tvCreditsCastList.push(c));
+      personDetails.tv_credits.crew.map((c) => movieCreditsCrewList.push(c));
     }
 
     return (
@@ -84,34 +87,60 @@ class PersonDetails extends Component {
           social={personDetails.external_ids}
         />
 
-        <div className="person__container">
-          <div className="person__sidebar">
+        <main className="main">
+          {/* <div className="person__sidebar">
             <h4>Personal Info</h4>
             <PersonData {...personDetails} />
-          </div>
-          <div className="person__main">
-            <h4>Known For</h4>
-            <div className="row">{credits}</div>
+          </div> */}
+          <Sidebar
+            birthday={personDetails.birthday}
+            gender={personDetails.gender}
+            imdbId={personDetails.imdb_id}
+            homepage={personDetails.homepage}
+            knownForDepartment={personDetails.known_for_department}
+            placeOfBirth={personDetails.place_of_birth}
+            movieCredits={personDetails.movie_credits}
+            tvCredits={personDetails.tv_credits}
+            media="person"
+          />
+          <div className="main__content">
+            <Section heading="Known For">
+              <div className="grid">{credits}</div>
+            </Section>
             <div className="credits">
-              <div className="credits__options">
-                <div
-                  className={`credits__options-item ${
-                    this.state.creditsList ? "selected" : ""
-                  }`}
-                  onClick={this.changeCreditsList}
-                >
-                  Movies
+              {this.state.selectedOption === "movies" ? (
+                <div className="credits__options">
+                  <div
+                    className="credits__options-item selected"
+                    onClick={this.changeCreditsList}
+                  >
+                    Movies
+                  </div>
+                  <div
+                    className={`credits__options-item`}
+                    onClick={this.changeCreditsList}
+                  >
+                    Tv Shows
+                  </div>
                 </div>
-                <div
-                  className={`credits__options-item ${
-                    this.state.creditsList ? "" : "selected"
-                  }`}
-                  onClick={this.changeCreditsList}
-                >
-                  TV Shows
+              ) : (
+                <div className="credits__options">
+                  <div
+                    className={`credits__options-item`}
+                    onClick={this.changeCreditsList}
+                  >
+                    Movies
+                  </div>
+                  <div
+                    className="credits__options-item selected"
+                    onClick={this.changeCreditsList}
+                  >
+                    Tv Shows
+                  </div>
                 </div>
-              </div>
-              {this.state.creditsList ? (
+              )}
+
+              {this.state.selectedOption === "movies" ? (
                 <Credits
                   creditsCast={movieCreditsCastList}
                   creditsCrew={movieCreditsCrewList}
@@ -126,28 +155,28 @@ class PersonDetails extends Component {
               )}
             </div>
           </div>
-        </div>
+        </main>
       </div>
     );
   }
 }
 
 PersonDetails.defaultProps = {
-  personDetails: []
+  personDetails: [],
 };
 
 PersonDetails.propTypes = {
-  loading: PropTypes.bool
+  loading: PropTypes.bool,
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   error: getPersonDetailsError(state),
   personDetails: getPersonDetails(state),
-  loading: getPersonDetailsLoading(state)
+  loading: getPersonDetailsLoading(state),
 });
 
-const mapDispatchToProps = dispatch => ({
-  fetchPersonDetails: bindActionCreators(actions.fetchPersonDetails, dispatch)
+const mapDispatchToProps = (dispatch) => ({
+  fetchPersonDetails: bindActionCreators(actions.fetchPersonDetails, dispatch),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(PersonDetails);

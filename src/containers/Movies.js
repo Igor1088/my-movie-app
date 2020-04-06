@@ -6,7 +6,7 @@ import * as actions from "../actions";
 import {
   getMoviesError,
   getMovies,
-  getMoviesLoading
+  getMoviesLoading,
 } from "../reducers/movies";
 import Item from "../components/Item";
 import Loader from "../components/Loader";
@@ -18,7 +18,7 @@ class Movies extends Component {
 
     this.state = {
       current: 1,
-      filter: "day"
+      filter: "day",
     };
   }
 
@@ -30,12 +30,12 @@ class Movies extends Component {
     );
   }
 
-  handlePageClick = page => {
+  handlePageClick = (page) => {
     this.setState({ current: page });
     this.props.fetchMovies(this.props.category, page, this.state.filter);
   };
 
-  handleFilterClick = e => {
+  handleFilterClick = (e) => {
     const filterValue = e.target.textContent.toLowerCase();
     this.setState({ filter: filterValue });
 
@@ -62,7 +62,7 @@ class Movies extends Component {
     }
 
     if (movies.results) {
-      items = movies.results.map(movie => {
+      items = movies.results.map((movie) => {
         return (
           <Item
             key={movie.id}
@@ -71,6 +71,7 @@ class Movies extends Component {
             title={movie.title}
             vote_average={movie.vote_average}
             media={"movie"}
+            year={movie.release_date}
           />
         );
       });
@@ -100,7 +101,7 @@ class Movies extends Component {
             </div>
           ) : null}
         </div>
-        <div className="row">{items}</div>
+        <div className="grid">{items}</div>
         <div className="pagination">
           <Pagination
             onChange={this.handlePageClick}
@@ -114,24 +115,24 @@ class Movies extends Component {
 }
 
 Movies.defaultProps = {
-  movies: []
+  movies: [],
 };
 
 Movies.propTypes = {
   // movies: PropTypes.object,
   loading: PropTypes.bool,
   category: PropTypes.string,
-  heading: PropTypes.string
+  heading: PropTypes.string,
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   error: getMoviesError(state),
   loading: getMoviesLoading(state),
-  movies: getMovies(state)
+  movies: getMovies(state),
 });
 
-const mapDispatchToProps = dispatch => ({
-  fetchMovies: bindActionCreators(actions.fetchMovies, dispatch)
+const mapDispatchToProps = (dispatch) => ({
+  fetchMovies: bindActionCreators(actions.fetchMovies, dispatch),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Movies);

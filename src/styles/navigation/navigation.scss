@@ -32,7 +32,7 @@
       display: none;
       transition: all 0.1s ease;
       border: 1px solid #d4d6d6;
-      background-color: #ecf0f1;
+      background-color: #fff;
       box-shadow: 3px 2px 5px 0px rgba(122, 116, 122, 1);
     }
   }
@@ -41,8 +41,6 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #ecf0f1;
-    margin: 7px 0;
     padding: 10px;
 
     @media (max-width: 767px) {

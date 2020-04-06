@@ -23,7 +23,7 @@
 
   &__overview {
     &-holder {
-      padding: 30px;
+      padding: 0 30px 30px 30px;
       flex: 1 1 auto;
 
       @media (max-width: 767px) {
@@ -33,20 +33,14 @@
 
     &-heading {
       color: $primaryColor;
-      font-size: 126%;
-      margin-bottom: 20px;
+      font-size: 1.1em;
+      margin-bottom: 10px;
     }
   }
 
   &__biography {
     line-height: 1.4;
     text-align: justify;
-
-    &-text {
-      max-height: 300px;
-      overflow-y: auto;
-      padding-right: 10px;
-    }
   }
 
   &__container {
@@ -75,9 +69,9 @@
   }
 
   &__heading {
-    font-size: 240%;
+    font-size: 1.2em;
     text-transform: uppercase;
-    margin-bottom: 50px;
+    margin-bottom: 20px;
     margin-top: 0;
     font-weight: 700;
     word-spacing: 2px;
@@ -86,7 +80,7 @@
 
     @media (max-width: 767px) {
       flex-direction: column;
-      font-size: 180%;
+      font-size: 1em;
       margin-bottom: 10px;
     }
   }
@@ -95,11 +89,16 @@
     margin-left: 15px;
 
     @media (max-width: 767px) {
-      margin: 10px 0;
+      margin: 10px 0 0 0;
     }
 
     a {
       color: inherit;
+      display: inline-block;
+
+      & + a {
+        margin-left: 7px;
+      }
     }
   }
 

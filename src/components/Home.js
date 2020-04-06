@@ -5,11 +5,11 @@ import People from "../containers/People";
 
 const Home = () => {
   return (
-    <div>
+    <main>
       <Movies category="trending" heading="Trending Movies" filters={true} />
       <TvShows category="trending" heading="Trending TV Shows" filters={true} />
       <People category="trending" heading="Trending People" filters={true} />
-    </div>
+    </main>
   );
 };
 

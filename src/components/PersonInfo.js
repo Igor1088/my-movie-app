@@ -1,7 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { ReactComponent as FbLogo } from "../img/facebook.svg";
+import { ReactComponent as TwtLogo } from "../img/twitter.svg";
+import { ReactComponent as InstLogo } from "../img/instagram.svg";
 
-const PersonInfo = props => {
+const PersonInfo = (props) => {
   const { name, biography, poster, social } = props;
 
   const facebookLink = social ? social.facebook_id : "";
@@ -21,30 +24,44 @@ const PersonInfo = props => {
         <div className="person__heading">
           <h1>{name}</h1>
           <div className="person__icons-holder">
-            <a
-              href={`https://www.facebook.com/${facebookLink}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              title="Facebook"
-            >
-              <ion-icon name="logo-facebook"></ion-icon>
-            </a>
-            <a
-              href={`https://www.twitter.com/${twitterLink}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              title="Twitter"
-            >
-              <ion-icon name="logo-twitter"></ion-icon>
-            </a>
-            <a
-              href={`https://www.instagram.com/${instagramLink}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              title="Instagram"
-            >
-              <ion-icon name="logo-instagram"></ion-icon>
-            </a>
+            {facebookLink ? (
+              <a
+                href={`https://www.facebook.com/${facebookLink}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                title="Facebook"
+              >
+                <i className="icon-fb">
+                  <FbLogo />
+                </i>
+              </a>
+            ) : null}
+
+            {instagramLink ? (
+              <a
+                href={`https://www.instagram.com/${instagramLink}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                title="Instagram"
+              >
+                <i className="icon-inst">
+                  <InstLogo />
+                </i>
+              </a>
+            ) : null}
+
+            {twitterLink ? (
+              <a
+                href={`https://www.twitter.com/${twitterLink}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                title="Twitter"
+              >
+                <i className="icon-twt">
+                  <TwtLogo />
+                </i>
+              </a>
+            ) : null}
           </div>
         </div>
         <div className="person__biography">
@@ -61,5 +78,5 @@ export default PersonInfo;
 PersonInfo.propTypes = {
   name: PropTypes.string,
   biography: PropTypes.string,
-  poster: PropTypes.string
+  poster: PropTypes.string,
 };

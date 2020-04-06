@@ -6,7 +6,7 @@ import * as actions from "../actions";
 import {
   getPeopleError,
   getPeople,
-  getPeopleLoading
+  getPeopleLoading,
 } from "../reducers/people";
 import Person from "../components/Person";
 import Item from "../components/Item";
@@ -19,7 +19,7 @@ class People extends Component {
 
     this.state = {
       current: 1,
-      filter: "day"
+      filter: "day",
     };
   }
 
@@ -31,12 +31,12 @@ class People extends Component {
     );
   }
 
-  handlePageClick = page => {
+  handlePageClick = (page) => {
     this.setState({ current: page });
     this.props.fetchPeople(page, this.props.category, this.state.filter);
   };
 
-  handleFilterClick = e => {
+  handleFilterClick = (e) => {
     const filterValue = e.target.textContent.toLowerCase();
     this.setState({ filter: filterValue });
 
@@ -64,7 +64,7 @@ class People extends Component {
     let items;
 
     if (people.results) {
-      items = people.results.map(person => {
+      items = people.results.map((person) => {
         return (
           <Item
             key={person.id}
@@ -103,7 +103,7 @@ class People extends Component {
             </div>
           ) : null}
         </div>
-        <div className="row">{items}</div>
+        <div className="grid">{items}</div>
         <div className="pagination">
           <Pagination
             onChange={this.handlePageClick}
@@ -119,17 +119,17 @@ class People extends Component {
 People.propTypes = {
   people: PropTypes.array,
   loading: PropTypes.bool,
-  heading: PropTypes.string
+  heading: PropTypes.string,
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   error: getPeopleError(state),
   loading: getPeopleLoading(state),
-  people: getPeople(state)
+  people: getPeople(state),
 });
 
-const mapDispatchToProps = dispatch => ({
-  fetchPeople: bindActionCreators(actions.fetchPeople, dispatch)
+const mapDispatchToProps = (dispatch) => ({
+  fetchPeople: bindActionCreators(actions.fetchPeople, dispatch),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(People);

@@ -6,7 +6,7 @@ import * as actions from "../actions";
 import {
   getTvShowsError,
   getTvShows,
-  getTvShowsLoading
+  getTvShowsLoading,
 } from "../reducers/tv-shows";
 import Item from "../components/Item";
 import Loader from "../components/Loader";
@@ -18,7 +18,7 @@ class TvShows extends Component {
 
     this.state = {
       current: 1,
-      filter: "day"
+      filter: "day",
     };
   }
 
@@ -30,12 +30,12 @@ class TvShows extends Component {
     );
   }
 
-  handlePageClick = page => {
+  handlePageClick = (page) => {
     this.setState({ current: page });
     this.props.fetchTvShows(this.props.category, page, this.state.filter);
   };
 
-  handleFilterClick = e => {
+  handleFilterClick = (e) => {
     const filterValue = e.target.textContent.toLowerCase();
     this.setState({ filter: filterValue });
 
@@ -63,7 +63,7 @@ class TvShows extends Component {
     let items;
 
     if (tvShows.results) {
-      items = tvShows.results.map(tv => {
+      items = tvShows.results.map((tv) => {
         return (
           <Item
             key={tv.id}
@@ -72,6 +72,7 @@ class TvShows extends Component {
             title={tv.name}
             vote_average={tv.vote_average}
             media="tv"
+            year={tv.first_air_date}
           />
         );
       });
@@ -101,7 +102,7 @@ class TvShows extends Component {
             </div>
           ) : null}
         </div>
-        <div className="row">{items}</div>
+        <div className="grid">{items}</div>
         <div className="pagination">
           <Pagination
             onChange={this.handlePageClick}
@@ -115,22 +116,22 @@ class TvShows extends Component {
 }
 
 TvShows.defaultProps = {
-  tvShows: []
+  tvShows: [],
 };
 
 TvShows.propTypes = {
   // tvShows: PropTypes.object,
-  loading: PropTypes.bool
+  loading: PropTypes.bool,
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   error: getTvShowsError(state),
   loading: getTvShowsLoading(state),
-  tvShows: getTvShows(state)
+  tvShows: getTvShows(state),
 });
 
-const mapDispatchToProps = dispatch => ({
-  fetchTvShows: bindActionCreators(actions.fetchTvShows, dispatch)
+const mapDispatchToProps = (dispatch) => ({
+  fetchTvShows: bindActionCreators(actions.fetchTvShows, dispatch),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(TvShows);

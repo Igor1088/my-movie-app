@@ -1,8 +1,8 @@
-import React from "react";
+import React, { Fragment } from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
-const CreditsList = props => {
+const CreditsList = (props) => {
   const { credits, media, heading } = props;
 
   //   let list = credits ? credits : [];
@@ -15,7 +15,7 @@ const CreditsList = props => {
           ? b.release_date.slice(0, 4) - a.release_date.slice(0, 4)
           : ""
       )
-      .map(credit => {
+      .map((credit) => {
         return (
           <div key={credit.id} className="credits__item">
             <span className="credits__item-year">
@@ -33,16 +33,16 @@ const CreditsList = props => {
   }
 
   return (
-    <div className="credits__list">
+    <Fragment>
       {credits.length !== 0 ? (
-        <div>
-          <h4>{heading}</h4>
-          {creditsList}
+        <div className="credits__list">
+          <div>
+            <h4>{heading}</h4>
+            {creditsList}
+          </div>
         </div>
-      ) : (
-        <div></div>
-      )}
-    </div>
+      ) : null}
+    </Fragment>
   );
 };
 
@@ -50,5 +50,5 @@ export default CreditsList;
 
 CreditsList.propTypes = {
   movie_credits: PropTypes.object,
-  tv_credits: PropTypes.object
+  tv_credits: PropTypes.object,
 };
