@@ -12,7 +12,6 @@ import Loader from "../components/Loader";
 import MediaInfo from "../components/MediaInfo";
 import Person from "../components/Person";
 import Item from "../components/Item";
-import Image from "../components/Image";
 import Video from "../components/Video";
 import ReviewList from "../components/ReviewList";
 import Section from "../components/Section";

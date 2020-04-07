@@ -8,7 +8,6 @@ import {
   getPeople,
   getPeopleLoading,
 } from "../reducers/people";
-import Person from "../components/Person";
 import Item from "../components/Item";
 import Loader from "../components/Loader";
 import Pagination from "rc-pagination";
@@ -40,7 +39,7 @@ class People extends Component {
     const filterValue = e.target.textContent.toLowerCase();
     this.setState({ filter: filterValue });
 
-    if (this.state.filter != filterValue) {
+    if (this.state.filter !== filterValue) {
       this.props.fetchPeople(
         this.state.current,
         this.props.category,

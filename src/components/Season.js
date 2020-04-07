@@ -1,8 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const Season = props => {
-  const { poster, title, tvShowID, media, episodes, number } = props;
+const Season = (props) => {
+  const { poster, title, tvShowID, episodes, number } = props;
   const placeholder = "http://placehold.it/154x230";
   const path = poster
     ? `https://image.tmdb.org/t/p/w154/${poster}`

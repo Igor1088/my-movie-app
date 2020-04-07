@@ -39,7 +39,7 @@ class TvShows extends Component {
     const filterValue = e.target.textContent.toLowerCase();
     this.setState({ filter: filterValue });
 
-    if (this.state.filter != filterValue) {
+    if (this.state.filter !== filterValue) {
       this.props.fetchTvShows(
         this.props.category,
         this.state.current,

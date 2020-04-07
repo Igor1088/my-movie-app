@@ -1,14 +1,13 @@
 import React, { Component } from "react";
-import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import * as actions from "../actions";
 import {
   getSeasonDetailsError,
   getSeasonDetails,
-  getSeasonDetailsLoading
+  getSeasonDetailsLoading,
 } from "../reducers/tv-season";
-import tvshowDetails, { getTvShowDetails } from "../reducers/tvshow-details";
+import { getTvShowDetails } from "../reducers/tvshow-details";
 import Loader from "../components/Loader";
 import Episode from "../components/Episode";
 import { Link } from "react-router-dom";
@@ -47,7 +46,7 @@ class SeasonDetails extends Component {
     let items, episodesCount;
 
     if (seasonDetails.episodes) {
-      items = seasonDetails.episodes.map(i => (
+      items = seasonDetails.episodes.map((i) => (
         <Episode
           key={i.episode_number}
           name={i.name}
@@ -141,19 +140,19 @@ class SeasonDetails extends Component {
 }
 
 SeasonDetails.defaultProps = {
-  seasonDetails: []
+  seasonDetails: [],
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   error: getSeasonDetailsError(state),
   seasonDetails: getSeasonDetails(state),
   loading: getSeasonDetailsLoading(state),
-  tvShowDetails: getTvShowDetails(state)
+  tvShowDetails: getTvShowDetails(state),
 });
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch) => ({
   fetchSeasonDetails: bindActionCreators(actions.fetchSeasonDetails, dispatch),
-  fetchTvShowDetails: bindActionCreators(actions.fetchTvShowDetails, dispatch)
+  fetchTvShowDetails: bindActionCreators(actions.fetchTvShowDetails, dispatch),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(SeasonDetails);

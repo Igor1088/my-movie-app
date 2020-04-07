@@ -5,7 +5,7 @@ import * as actions from "../actions";
 import {
   getUserData,
   getUserDataLoading,
-  getUserDataError
+  getUserDataError,
 } from "../reducers/userData";
 import Loader from "../components/Loader";
 import ListItem from "../components/ListItem";
@@ -36,10 +36,14 @@ class UserPageList extends Component {
       return <Loader />;
     }
 
+    if (error) {
+      return <div>Error!</div>;
+    }
+
     return (
       <div>
         {items.total_results
-          ? items.results.map(i => {
+          ? items.results.map((i) => {
               return <ListItem key={i.id} item={i} media={media} />;
             })
           : null}
@@ -48,14 +52,14 @@ class UserPageList extends Component {
   }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   items: getUserData(state),
   loading: getUserDataLoading(state),
-  error: getUserDataError(state)
+  error: getUserDataError(state),
 });
 
-const mapDispatchToProps = dispatch => ({
-  fetchUserData: bindActionCreators(actions.fetchUserData, dispatch)
+const mapDispatchToProps = (dispatch) => ({
+  fetchUserData: bindActionCreators(actions.fetchUserData, dispatch),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserPageList);

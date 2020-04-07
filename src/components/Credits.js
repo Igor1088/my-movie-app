@@ -2,7 +2,7 @@ import React from "react";
 import CreditsList from "./CreditsList";
 
 const Credits = (props) => {
-  const { creditsCast, creditsCrew, media, heading } = props;
+  const { creditsCast, creditsCrew, media } = props;
 
   return (
     <div>

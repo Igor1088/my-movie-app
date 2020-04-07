@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import * as actions from "../actions";
-import tvshowDetails, {
+import {
   getTvShowDetailsError,
   getTvShowDetails,
   getTvShowDetailsLoading,
@@ -13,7 +13,6 @@ import MediaInfo from "../components/MediaInfo";
 import Person from "../components/Person";
 import Item from "../components/Item";
 import Season from "../components/Season";
-import Image from "../components/Image";
 import Video from "../components/Video";
 import Section from "../components/Section";
 import Sidebar from "../components/Sidebar";
