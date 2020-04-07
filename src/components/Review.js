@@ -14,7 +14,9 @@ const Review = ({ author, content, url }) => {
         </a>
       </div>
       <div className="review__content">
-        {short ? (
+        {content.length < 500 ? (
+          content
+        ) : short ? (
           <p className="review__content-short">
             {`${content.slice(0, 500)}...`}
             <button className="review__btn" onClick={() => toggle(!short)}>
