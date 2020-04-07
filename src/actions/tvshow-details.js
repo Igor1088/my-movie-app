@@ -2,18 +2,18 @@ import * as types from "../constants/actionTypes";
 import { API_KEY } from "../constants/config";
 
 export function fetchTvShowDetails(id) {
-  return dispatch => {
+  return (dispatch) => {
     dispatch(fetchTvShowDetailsBegin());
     fetch(
-      `https://api.themoviedb.org/3/tv/${id}?api_key=${API_KEY}&language=en-US&append_to_response=credits,images,similar,videos`
+      `https://api.themoviedb.org/3/tv/${id}?api_key=${API_KEY}&language=en-US&append_to_response=credits,images,similar,videos,reviews`
     )
       .then(handleErrors)
-      .then(response => response.json())
-      .then(data => {
+      .then((response) => response.json())
+      .then((data) => {
         dispatch(fetchTvShowDetailsSuccess(data));
         return data;
       })
-      .catch(error => {
+      .catch((error) => {
         dispatch(fetchTvShowDetailsError(error));
       });
   };
@@ -28,12 +28,12 @@ function handleErrors(response) {
 
 const fetchTvShowDetailsBegin = () => ({ type: types.FETCH_SHOW_BEGIN });
 
-const fetchTvShowDetailsSuccess = tvShows => ({
+const fetchTvShowDetailsSuccess = (tvShows) => ({
   type: types.FETCH_SHOW_SUCCESS,
-  payload: tvShows
+  payload: tvShows,
 });
 
-const fetchTvShowDetailsError = error => ({
+const fetchTvShowDetailsError = (error) => ({
   type: types.FETCH_SHOW_ERROR,
-  payload: error
+  payload: error,
 });

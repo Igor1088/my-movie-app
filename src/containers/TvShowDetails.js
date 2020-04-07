@@ -17,6 +17,7 @@ import Image from "../components/Image";
 import Video from "../components/Video";
 import Section from "../components/Section";
 import Sidebar from "../components/Sidebar";
+import ReviewList from "../components/ReviewList";
 
 class TvShowDetails extends Component {
   componentDidMount() {
@@ -155,6 +156,10 @@ class TvShowDetails extends Component {
 
             <Section heading="More Like This">
               <div className="grid">{items}</div>
+            </Section>
+
+            <Section heading="Reviews">
+              <ReviewList reviews={tvShowDetails.reviews} />
             </Section>
           </div>
         </main>
