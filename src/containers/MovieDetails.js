@@ -121,19 +121,6 @@ class MovieDetails extends Component {
           <Sidebar
             // heading="Facts"
             media="movie"
-            // info={[
-            //   { label: "status", data: movieDetails.status },
-            //   { label: "Release Date", data: movieDetails.release_date },
-            //   {
-            //     label: "Original Language",
-            //     data: movieDetails.original_language,
-            //   },
-            //   { label: "Budget", data: movieDetails.budget },
-            //   { label: "Revenue", data: movieDetails.revenue },
-            //   { label: "Production", data: movieDetails.production },
-            //   // { label: "Homepage", data: movieDetails.homepage },
-            //   { label: "Budget", data: movieDetails.budget },
-            // ]}
             status={movieDetails.status}
             release_date={movieDetails.release_date}
             originalLanguage={movieDetails.original_language}
@@ -201,7 +188,9 @@ class MovieDetails extends Component {
               </Section>
             ) : null}
 
-            {/* <ReviewList reviews={movieDetails.reviews} /> */}
+            <Section heading="Reviews">
+              <ReviewList reviews={movieDetails.reviews} />
+            </Section>
           </div>
         </div>
       </main>

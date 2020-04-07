@@ -1,0 +1,47 @@
+.review {
+  &__item {
+    border: 1px solid #e3e3e3;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+
+    & + & {
+      margin-top: 15px;
+    }
+  }
+
+  &__author {
+    font-size: 1em;
+    margin-bottom: 10px;
+
+    span {
+      font-weight: 700;
+    }
+  }
+
+  &__link {
+    margin-bottom: 15px;
+
+    a {
+      color: $secondaryColor;
+    }
+  }
+
+  &__content {
+    line-height: 1.3em;
+    letter-spacing: 0.1px;
+    text-align: justify;
+  }
+
+  &__btn {
+    border: none;
+    background: transparent;
+    padding: 0;
+    cursor: pointer;
+    outline: none;
+
+    &.expanded {
+      display: block;
+      margin-top: 20px;
+    }
+  }
+}

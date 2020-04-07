@@ -22,13 +22,13 @@
   &__title {
     font-size: 12px;
     font-weight: 700;
-    color: #2c3e50;
+    color: $secondaryColor;
     transition: all 0.5s ease;
   }
 
   &__year {
     font-size: 12px;
-    color: #2c3e50;
+    color: $primaryColor;
   }
 
   &__add-info {
