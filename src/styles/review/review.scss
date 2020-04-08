@@ -13,8 +13,13 @@
     font-size: 1em;
     margin-bottom: 10px;
 
+    em {
+      font-size: 0.9em;
+    }
+
     span {
       font-weight: 700;
+      margin-left: 5px;
     }
   }
 
@@ -26,8 +31,8 @@
     }
   }
 
-  &__content {
-    line-height: 1.3em;
+  &__text {
+    line-height: 1.4em;
     letter-spacing: 0.1px;
     text-align: justify;
   }
@@ -38,10 +43,21 @@
     padding: 0;
     cursor: pointer;
     outline: none;
+    color: $secondaryColor;
 
     &.expanded {
       display: block;
       margin-top: 20px;
+    }
+  }
+
+  &__toggle {
+    text-align: center;
+    padding: 20px;
+    cursor: pointer;
+
+    &:hover {
+      color: $secondaryColor;
     }
   }
 }

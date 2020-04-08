@@ -45,7 +45,7 @@ class MovieDetails extends Component {
     }
 
     let cast = [];
-    let images;
+    let images, reviews;
     // let crew = [];
     let similar = [];
     let director = [];
@@ -53,6 +53,7 @@ class MovieDetails extends Component {
 
     if (movieDetails.length !== 0) {
       images = movieDetails.images.backdrops;
+      reviews = movieDetails.reviews.results;
       cast = movieDetails.credits.cast.slice(0, 14).map((person) => {
         return {
           name: person.name,
@@ -191,7 +192,11 @@ class MovieDetails extends Component {
             ) : null}
 
             <Section heading="Reviews">
-              <ReviewList reviews={movieDetails.reviews} />
+              <ReviewList
+                reviews={reviews}
+                maxTextLength={500}
+                maxNumOfReviews={2}
+              />
             </Section>
           </div>
         </div>

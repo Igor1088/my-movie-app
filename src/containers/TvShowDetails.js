@@ -44,11 +44,11 @@ class TvShowDetails extends Component {
     }
 
     let cast = [];
-    let images;
-    let items, seasons;
+    let images, items, seasons, reviews;
 
     if (tvShowDetails.length !== 0) {
       images = tvShowDetails.images.backdrops;
+      reviews = tvShowDetails.reviews.results;
       cast = tvShowDetails.credits.cast.slice(0, 14).map((person) => {
         return {
           name: person.name,
@@ -170,7 +170,11 @@ class TvShowDetails extends Component {
             </Section>
 
             <Section heading="Reviews">
-              <ReviewList reviews={tvShowDetails.reviews} />
+              <ReviewList
+                reviews={reviews}
+                maxTextLength={500}
+                maxNumOfReviews={2}
+              />
             </Section>
           </div>
         </main>

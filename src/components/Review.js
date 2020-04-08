@@ -1,34 +1,48 @@
 import React, { useState } from "react";
 
-const Review = ({ author, content, url }) => {
-  const [short, toggle] = useState(true);
+const Review = ({ author, text, url, maxTextLength }) => {
+  const [short, setText] = useState(true);
+
+  if (text.length <= maxTextLength) {
+    return (
+      <div className="review__item">
+        <div className="review__author">
+          Written by <span>{author}</span>
+        </div>
+        <div className="review__link">
+          <a href={`${url}`} target="__blank">
+            Read a review on tmdb
+          </a>
+        </div>
+        <div className="review__text">{text}</div>
+      </div>
+    );
+  }
 
   return (
     <div className="review__item">
       <div className="review__author">
-        Written by <span>{author}</span>
+        <em>Written by</em> <span>{author}</span>
       </div>
       <div className="review__link">
         <a href={`${url}`} target="__blank">
           Read a review on tmdb
         </a>
       </div>
-      <div className="review__content">
-        {content.length < 500 ? (
-          content
-        ) : short ? (
-          <p className="review__content-short">
-            {`${content.slice(0, 500)}...`}
-            <button className="review__btn" onClick={() => toggle(!short)}>
+      <div className="review__text">
+        {short ? (
+          <p>
+            {`${text.substr(0, maxTextLength).trim()}...`}
+            <button className="review__btn" onClick={() => setText(!short)}>
               Read More
             </button>
           </p>
         ) : (
-          <p className="review__content-long">
-            {content}
+          <p>
+            {text}
             <button
               className="review__btn expanded"
-              onClick={() => toggle(!short)}
+              onClick={() => setText(!short)}
             >
               Read less
             </button>

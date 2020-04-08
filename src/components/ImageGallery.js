@@ -1,12 +1,21 @@
 import React, { useState } from "react";
 import Image from "./Image";
 
-const ImageGallery = ({ images, previewNumber, previewWidth, fullWidth }) => {
+const ImageGallery = ({
+  images = [],
+  previewNumber,
+  previewWidth,
+  fullWidth,
+}) => {
   const [all, setView] = useState(false);
   const [modalOpen, setModal] = useState({
     open: false,
     link: "",
   });
+
+  if (images.length === 0) {
+    return <div>No Images</div>;
+  }
 
   if (images.length <= previewNumber) {
     return (
@@ -22,13 +31,20 @@ const ImageGallery = ({ images, previewNumber, previewWidth, fullWidth }) => {
               />
             );
           })}
+          <div className={`gallery__modal ${modalOpen.open ? "open" : ""}`}>
+            <span
+              className="gallery__modal-close"
+              onClick={() => setModal(false)}
+            ></span>
+            <img
+              className="gallery__modal-img"
+              src={`https://image.tmdb.org/t/p/w${fullWidth}/${modalOpen.link}`}
+              alt="backdrop"
+            />
+          </div>
         </div>
       </div>
     );
-  }
-
-  if (images.length === 0) {
-    return <div>No Images</div>;
   }
 
   return (
@@ -77,7 +93,3 @@ const ImageGallery = ({ images, previewNumber, previewWidth, fullWidth }) => {
 };
 
 export default ImageGallery;
-
-ImageGallery.defaultProps = {
-  images: [],
-};
