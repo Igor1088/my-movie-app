@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import Image from "./Image";
 
 const ImageGallery = ({ images, previewNumber, previewWidth, fullWidth }) => {
-  const [all, toggleView] = useState(false);
-  const [modalOpen, toggleModal] = useState({
+  const [all, setView] = useState(false);
+  const [modalOpen, setModal] = useState({
     open: false,
     link: "",
   });
@@ -18,7 +18,7 @@ const ImageGallery = ({ images, previewNumber, previewWidth, fullWidth }) => {
                 key={i.file_path}
                 size={previewWidth}
                 path={i.file_path}
-                handleClick={toggleModal}
+                handleClick={setModal}
               />
             );
           })}
@@ -34,7 +34,7 @@ const ImageGallery = ({ images, previewNumber, previewWidth, fullWidth }) => {
   return (
     <div>
       <div className="gallery--toggle">
-        <button onClick={() => toggleView(!all)}>
+        <button onClick={() => setView(!all)}>
           {all ? "Show Less" : `All Images(${images.length})`}
         </button>
       </div>
@@ -46,7 +46,7 @@ const ImageGallery = ({ images, previewNumber, previewWidth, fullWidth }) => {
                   key={i.file_path}
                   size={previewWidth}
                   path={i.file_path}
-                  handleClick={toggleModal}
+                  handleClick={setModal}
                 />
               );
             })
@@ -56,14 +56,14 @@ const ImageGallery = ({ images, previewNumber, previewWidth, fullWidth }) => {
                   key={i.file_path}
                   size={previewWidth}
                   path={i.file_path}
-                  handleClick={toggleModal}
+                  handleClick={setModal}
                 />
               );
             })}
         <div className={`gallery__modal ${modalOpen.open ? "open" : ""}`}>
           <span
             className="gallery__modal-close"
-            onClick={() => toggleModal(false)}
+            onClick={() => setModal(false)}
           ></span>
           <img
             className="gallery__modal-img"
