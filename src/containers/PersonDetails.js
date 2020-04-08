@@ -34,8 +34,6 @@ class PersonDetails extends Component {
   render() {
     const { error, loading, personDetails } = this.props;
 
-    console.log("selected", this.state.selectedOption);
-
     if (error) {
       return <div>Error!</div>;
     }
@@ -88,10 +86,6 @@ class PersonDetails extends Component {
         />
 
         <main className="main">
-          {/* <div className="person__sidebar">
-            <h4>Personal Info</h4>
-            <PersonData {...personDetails} />
-          </div> */}
           <Sidebar
             birthday={personDetails.birthday}
             gender={personDetails.gender}

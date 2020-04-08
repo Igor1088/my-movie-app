@@ -17,6 +17,7 @@ import ReviewList from "../components/ReviewList";
 import Section from "../components/Section";
 import Sidebar from "../components/Sidebar";
 import { groupByArray } from "../utils/helpers";
+import ImageGallery from "../components/ImageGallery";
 
 class MovieDetails extends Component {
   componentDidMount() {
@@ -44,12 +45,14 @@ class MovieDetails extends Component {
     }
 
     let cast = [];
+    let images;
     // let crew = [];
     let similar = [];
     let director = [];
     let writers = [];
 
     if (movieDetails.length !== 0) {
+      images = movieDetails.images.backdrops;
       cast = movieDetails.credits.cast.slice(0, 14).map((person) => {
         return {
           name: person.name,
@@ -162,6 +165,15 @@ class MovieDetails extends Component {
               })}
             </div> */}
 
+            <Section heading="Photos">
+              <ImageGallery
+                images={images}
+                previewNumber={6}
+                previewWidth="300"
+                fullWidth="780"
+              />
+            </Section>
+
             <Section heading="Trailers">
               <div>
                 {movieDetails.videos ? (
@@ -171,15 +183,6 @@ class MovieDetails extends Component {
                 )}
               </div>
             </Section>
-
-            {/* <h4>Images</h4>
-                        <div className="photo__container">
-                            {movieDetails.images.map( (img) => {
-                                return(
-                                <Image key={img.backdrop} size="w780" poster={img.backdrop}  specClass="photo"/>
-                                );
-                            })}
-                        </div> */}
 
             {similar.length ? (
               <Section heading="More Like This">

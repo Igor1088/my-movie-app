@@ -17,6 +17,7 @@ import Video from "../components/Video";
 import Section from "../components/Section";
 import Sidebar from "../components/Sidebar";
 import ReviewList from "../components/ReviewList";
+import ImageGallery from "../components/ImageGallery";
 
 class TvShowDetails extends Component {
   componentDidMount() {
@@ -43,9 +44,11 @@ class TvShowDetails extends Component {
     }
 
     let cast = [];
+    let images;
     let items, seasons;
 
     if (tvShowDetails.length !== 0) {
+      images = tvShowDetails.images.backdrops;
       cast = tvShowDetails.credits.cast.slice(0, 14).map((person) => {
         return {
           name: person.name,
@@ -145,6 +148,15 @@ class TvShowDetails extends Component {
 
             <Section heading="Seasons">
               <div className="grid">{seasons}</div>
+            </Section>
+
+            <Section heading="Photos">
+              <ImageGallery
+                images={images}
+                previewNumber={6}
+                previewWidth="300"
+                fullWidth="780"
+              />
             </Section>
 
             <Section heading="Trailers">
