@@ -7,20 +7,20 @@ import { fetchSearchResults } from "../actions";
 import {
   getSearchResultsError,
   getSearchResultsLoading,
-  getSearchResults
+  getSearchResults,
 } from "../reducers/search";
 import { withRouter } from "react-router-dom";
 
 let results = [];
 
-const getSuggestions = value => {
+const getSuggestions = (value) => {
   return results;
 };
 
-const getSuggestionValue = suggestion =>
+const getSuggestionValue = (suggestion) =>
   suggestion.title ? suggestion.title : suggestion.name;
 
-const renderSuggestion = suggestion => (
+const renderSuggestion = (suggestion) => (
   <div>{suggestion.title ? suggestion.title : suggestion.name}</div>
 );
 
@@ -31,16 +31,16 @@ class Search extends Component {
     this.state = {
       value: "",
       suggestions: [],
-      toResults: false
+      toResults: false,
     };
   }
 
-  fetchResults = query => {
+  fetchResults = (query) => {
     fetch(
       `https://api.themoviedb.org/3/search/multi?api_key=${API_KEY}&language=en-US&query=${query}&page=1&include_adult=false`
     )
-      .then(response => response.json())
-      .then(data => {
+      .then((response) => response.json())
+      .then((data) => {
         results = [...data.results];
       });
   };
@@ -50,27 +50,28 @@ class Search extends Component {
       this.fetchResults(newValue);
     }
     this.setState({
-      value: newValue
+      value: newValue,
     });
   };
 
   onSuggestionsFetchRequested = ({ value }) => {
     this.setState({
-      suggestions: getSuggestions(value)
+      suggestions: getSuggestions(value),
     });
   };
 
   onSuggestionsClearRequested = () => {
     this.setState({
-      suggestions: []
+      suggestions: [],
     });
   };
 
-  handleSubmit = e => {
+  handleSubmit = (e) => {
     if (e.key === "Enter") {
       this.props.fetchSearchResults(this.state.value);
       // this.setState({ value: "", suggestions: [], toResults: true });
       this.props.history.push("/search");
+      this.setState({ value: "" });
       localStorage.setItem("query", this.state.value);
     }
   };
@@ -81,7 +82,7 @@ class Search extends Component {
     const inputProps = {
       placeholder: "Search...",
       value,
-      onChange: this.onChange
+      onChange: this.onChange,
     };
 
     return (
@@ -100,14 +101,14 @@ class Search extends Component {
   }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   error: getSearchResultsError(state),
   loading: getSearchResultsLoading(state),
-  results: getSearchResults(state)
+  results: getSearchResults(state),
 });
 
-const mapDispatchToProps = dispatch => ({
-  fetchSearchResults: bindActionCreators(fetchSearchResults, dispatch)
+const mapDispatchToProps = (dispatch) => ({
+  fetchSearchResults: bindActionCreators(fetchSearchResults, dispatch),
 });
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Search));
