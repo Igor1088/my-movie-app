@@ -110,12 +110,13 @@ class TvShowDetails extends Component {
           genres={tvShowDetails.genres}
           voteAverage={tvShowDetails.vote_average}
           voteCount={tvShowDetails.vote_count}
-          director={[]}
-          writers={[]}
           media="tv"
           runtime={tvShowDetails.episode_run_time}
           releaseDate={tvShowDetails.first_air_date}
           createdBy={tvShowDetails.created_by}
+          imdb={
+            tvShowDetails.external_ids && tvShowDetails.external_ids.imdb_id
+          }
         />
         <main className="main">
           <Sidebar

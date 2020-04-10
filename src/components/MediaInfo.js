@@ -15,14 +15,16 @@ const MovieInfo = (props) => {
     backdrop,
     genres = [],
     voteAverage,
-    director,
-    writers,
+    director = [],
+    writers = [],
     media,
     runtime,
     imdb,
     createdBy,
     voteCount,
   } = props;
+
+  console.log("imdb", imdb);
 
   return (
     <div className="media__container">
@@ -44,6 +46,20 @@ const MovieInfo = (props) => {
         <div className="media__details">
           <h1 className="media__title">{title}</h1>
           <div className="media__options">
+            {/* {media === "movie" ? ( */}
+            <div>
+              <a
+                href={`http://www.imdb.com/title/${imdb}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                title="imdb"
+              >
+                <i className="icon-imdb">
+                  <ImdbLogo />
+                </i>
+              </a>
+            </div>
+            {/* ) : null} */}
             <div className="media__vote">
               <i className="icon-star">
                 <StarIcon />
@@ -54,20 +70,6 @@ const MovieInfo = (props) => {
                 </span>
               </div>
             </div>
-            {media === "movie" ? (
-              <div>
-                <a
-                  href={`http://www.imdb.com/title/${imdb}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  title="imdb"
-                >
-                  <i className="icon-imdb">
-                    <ImdbLogo />
-                  </i>
-                </a>
-              </div>
-            ) : null}
             <div>
               {media === "movie" ? (runtime ? timeFormat(runtime) : "-") : null}
               {media === "tv"

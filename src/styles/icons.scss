@@ -1,7 +1,11 @@
 .icon {
   &-imdb {
     display: inline-block;
-    width: 50px;
+    width: 35px;
+
+    @media (max-width: 767px) {
+      width: 25px;
+    }
 
     svg {
       width: 100%;

@@ -8,9 +8,10 @@ import {
   getUserLoading,
   getUser,
   getUserError,
-  getUserAuthorization
+  getUserAuthorization,
 } from "../reducers/user";
 import { getSession } from "../reducers/auth";
+import { ReactComponent as UserIcon } from "../img/user.svg";
 
 class User extends Component {
   componentDidMount() {
@@ -38,10 +39,12 @@ class User extends Component {
         <div className="header__user">
           <div
             className="header__user-img"
-            style={{
-              backgroundImage: `url(${background})`
-            }}
-          ></div>
+            // style={{
+            //   backgroundImage: `url(${background})`,
+            // }}
+          >
+            <UserIcon />
+          </div>
           <div className="header__user-details">
             <div className="header__user-name">{user.name}</div>
             View Profile
@@ -54,19 +57,19 @@ class User extends Component {
 
 User.propTypes = {
   user: PropTypes.object,
-  loading: PropTypes.bool
+  loading: PropTypes.bool,
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   error: getUserError(state),
   loading: getUserLoading(state),
   user: getUser(state),
   userAuthorized: getUserAuthorization(state),
-  sessionID: getSession(state)
+  sessionID: getSession(state),
 });
 
-const mapDispatchToProps = dispatch => ({
-  fetchLoggedUser: bindActionCreators(actions.fetchLoggedUser, dispatch)
+const mapDispatchToProps = (dispatch) => ({
+  fetchLoggedUser: bindActionCreators(actions.fetchLoggedUser, dispatch),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(User);
