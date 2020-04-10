@@ -22,7 +22,7 @@ const PersonInfo = (props) => {
       </div>
       <div className="person__overview-holder">
         <div className="person__heading">
-          <h1>{name}</h1>
+          <h2>{name}</h2>
           <div className="person__icons-holder">
             {facebookLink ? (
               <a
@@ -66,7 +66,9 @@ const PersonInfo = (props) => {
         </div>
         <div className="person__biography">
           <h4 className="person__overview-heading">Biography</h4>
-          <p className="person__biography-text">{biography}</p>
+          <p className="person__biography-text">
+            {biography ? biography : `We don't have a biography for ${name}.`}
+          </p>
         </div>
       </div>
     </div>
