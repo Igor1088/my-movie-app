@@ -9,6 +9,24 @@
     }
   }
 
+  &--toggle {
+    text-align: right;
+    margin-bottom: 7px;
+
+    button {
+      background: transparent;
+      outline: none;
+      border: none;
+      cursor: pointer;
+      color: $secondaryColor;
+      padding: 0;
+
+      &:hover {
+        color: darken($secondaryColor, 20%);
+      }
+    }
+  }
+
   &__author {
     font-size: 1em;
     margin-bottom: 10px;
@@ -48,16 +66,6 @@
     &.expanded {
       display: block;
       margin-top: 20px;
-    }
-  }
-
-  &__toggle {
-    text-align: center;
-    padding: 20px;
-    cursor: pointer;
-
-    &:hover {
-      color: $secondaryColor;
     }
   }
 }

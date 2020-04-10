@@ -90,6 +90,7 @@
   &__vote {
     display: flex;
     align-items: center;
+    line-height: 1;
 
     .icon-star {
       margin-right: 3px;
@@ -98,10 +99,6 @@
     svg {
       font-size: 21px;
       line-height: 25px;
-    }
-
-    span {
-      margin-left: 3px;
     }
   }
 
@@ -183,7 +180,7 @@
         color: $secondaryColor;
 
         &:hover {
-          color: darken($secondaryColor, 30%);
+          color: darken($secondaryColor, 20%);
         }
       }
 

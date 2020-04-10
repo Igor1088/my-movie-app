@@ -17,6 +17,9 @@ const ReviewList = ({ reviews = [], maxTextLength, maxNumOfReviews }) => {
   if (reviews.length <= maxNumOfReviews) {
     return (
       <div className="review">
+        <div className="review--toggle">
+          <button>Reviews({reviews.length})</button>
+        </div>
         <div className="review__list">
           {reviews.map((i) => (
             <Review
@@ -34,6 +37,11 @@ const ReviewList = ({ reviews = [], maxTextLength, maxNumOfReviews }) => {
 
   return (
     <div className="review">
+      <div className="review--toggle">
+        <button onClick={() => setView(!all)}>
+          {all ? "Show Less" : `All Reviews(${reviews.length})`}
+        </button>
+      </div>
       <div className="review__list">
         {all
           ? reviews.map((i) => (
@@ -56,9 +64,6 @@ const ReviewList = ({ reviews = [], maxTextLength, maxNumOfReviews }) => {
                   maxTextLength={maxTextLength}
                 />
               ))}
-      </div>
-      <div className="review__toggle" onClick={() => setView(!all)}>
-        {all ? "Show Less" : "Read More"}
       </div>
     </div>
   );

@@ -63,9 +63,8 @@ const MovieInfo = (props) => {
                 <StarIcon />
               </i>
               <div>
-                <span>
-                  {voteAverage} / 10 <small>({voteCount})</small>
-                </span>
+                <div>{voteAverage} / 10</div>
+                <small>({voteCount})</small>
               </div>
             </div>
             <div>
