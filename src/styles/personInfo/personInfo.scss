@@ -78,12 +78,13 @@
     align-items: baseline;
 
     h2 {
-      font-size: 1.8em;
+      font-size: 2em;
       word-spacing: 2px;
       letter-spacing: 1px;
       margin-right: 15px;
 
       @media (max-width: 767px) {
+        font-size: 1.8em;
         margin-right: 5px;
         margin-bottom: 5px;
       }
