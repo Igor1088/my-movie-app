@@ -24,8 +24,6 @@ const MovieInfo = (props) => {
     voteCount,
   } = props;
 
-  console.log("imdb", imdb);
-
   return (
     <div className="media__container">
       <div

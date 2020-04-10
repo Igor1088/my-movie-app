@@ -122,8 +122,9 @@
     width: 250px;
 
     @media (max-width: 767px) {
-      top: -70px;
-      width: 90px;
+      top: 106%;
+      left: 4px;
+      width: 70px;
     }
 
     img {
@@ -135,7 +136,8 @@
     padding-top: 20px;
 
     @media (max-width: 767px) {
-      padding-left: 10px;
+      padding-left: 0;
+      padding-top: 10px;
     }
 
     @media (min-width: 768px) {
@@ -145,6 +147,12 @@
   }
 
   &__overview {
+    @media (max-width: 767px) {
+      padding-left: 80px;
+      min-height: 110px;
+      text-align: justify;
+    }
+
     &-heading {
       font-size: 1.3em;
       margin-bottom: 10px;

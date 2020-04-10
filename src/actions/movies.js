@@ -2,32 +2,32 @@ import * as types from "../constants/actionTypes";
 import { API_KEY } from "../constants/config";
 
 export function fetchMovies(category, page, filter) {
-  return dispatch => {
+  return (dispatch) => {
     dispatch(fetchMoviesBegin());
     if (category === "trending") {
       fetch(
-        `https://api.themoviedb.org/3/trending/movie/${filter}?api_key=${API_KEY}&language=en-US&page=${page}`
+        `https://api.themoviedb.org/3/trending/movie/${filter}?api_key=${API_KEY}&page=${page}`
       )
         .then(handleErrors)
-        .then(response => response.json())
-        .then(data => {
+        .then((response) => response.json())
+        .then((data) => {
           dispatch(fetchMoviesSuccess(data));
           return data;
         })
-        .catch(error => {
+        .catch((error) => {
           dispatch(fetchMoviesError(error));
         });
     } else {
       fetch(
-        `https://api.themoviedb.org/3/movie/${category}?api_key=${API_KEY}&language=en-US&page=${page}`
+        `https://api.themoviedb.org/3/movie/${category}?api_key=${API_KEY}&page=${page}`
       )
         .then(handleErrors)
-        .then(response => response.json())
-        .then(data => {
+        .then((response) => response.json())
+        .then((data) => {
           dispatch(fetchMoviesSuccess(data));
           return data;
         })
-        .catch(error => {
+        .catch((error) => {
           dispatch(fetchMoviesError(error));
         });
     }
@@ -43,12 +43,12 @@ function handleErrors(response) {
 
 const fetchMoviesBegin = () => ({ type: types.FETCH_MOVIES_BEGIN });
 
-const fetchMoviesSuccess = movies => ({
+const fetchMoviesSuccess = (movies) => ({
   type: types.FETCH_MOVIES_SUCCESS,
-  payload: movies
+  payload: movies,
 });
 
-const fetchMoviesError = error => ({
+const fetchMoviesError = (error) => ({
   type: types.FETCH_MOVIES_ERROR,
-  payload: error
+  payload: error,
 });

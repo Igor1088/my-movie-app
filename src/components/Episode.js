@@ -6,7 +6,7 @@ class Episode extends Component {
     super(props);
 
     this.state = {
-      expanded: false
+      expanded: false,
     };
   }
 
@@ -25,7 +25,7 @@ class Episode extends Component {
       episodeNumber,
       airDate,
       crew,
-      guestStars
+      guestStars,
     } = this.props;
 
     const placeholder = "http://placehold.it/154x230";
@@ -33,8 +33,8 @@ class Episode extends Component {
       ? `https://image.tmdb.org/t/p/w154/${poster}`
       : placeholder;
 
-    const director = crew.find(i => i.department === "Directing");
-    const writers = crew.filter(i => i.department === "Writing");
+    const director = crew.find((i) => i.department === "Directing");
+    const writers = crew.filter((i) => i.department === "Writing");
 
     return (
       <div className="episode">
@@ -65,34 +65,36 @@ class Episode extends Component {
             this.state.expanded ? "expanded" : ""
           }`}
         >
-          <div className="episode__expanded-crew">
-            <h4 className="episode__expanded-heading">Crew</h4>
-            <p className="episode__director">
-              <strong>Directed by:&nbsp;</strong>
-              {director ? director.name : "-"}
-            </p>
-            <p className="episode__writers">
-              <strong>Written by:&nbsp;</strong>
-              {writers.map(i => (
-                <span>{i.name}</span>
-              ))}
-            </p>
-          </div>
-          <div className="episode__expanded-credits">
-            <h4 className="episode__expanded-heading">Guest Stars</h4>
-            <ul>
-              {guestStars.map(i => (
-                <li>
-                  <PersonSmall
-                    key={i.id}
-                    id={i.id}
-                    name={i.name}
-                    role={i.character}
-                    poster={i.profile_path}
-                  />
-                </li>
-              ))}
-            </ul>
+          <div className="episode__expanded-details">
+            <div className="episode__expanded-crew">
+              <h4 className="episode__expanded-heading">Crew</h4>
+              <p className="episode__director">
+                <strong>Directed by:&nbsp;</strong>
+                {director ? director.name : "-"}
+              </p>
+              <p className="episode__writers">
+                <strong>Written by:&nbsp;</strong>
+                {writers.map((i) => (
+                  <span>{i.name}</span>
+                ))}
+              </p>
+            </div>
+            <div className="episode__expanded-credits">
+              <h4 className="episode__expanded-heading">Guest Stars</h4>
+              <ul>
+                {guestStars.map((i) => (
+                  <li>
+                    <PersonSmall
+                      key={i.id}
+                      id={i.id}
+                      name={i.name}
+                      role={i.character}
+                      poster={i.profile_path}
+                    />
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
         </div>
         <div className="episode__toggle" onClick={this.handleToggle}>
