@@ -19,14 +19,14 @@ export default function (state = initialState, action) {
       return {
         ...state,
         loading: true,
-        favorite: {
-          movies: {},
-          tv: {},
-        },
-        watchlist: {
-          movies: {},
-          tv: {},
-        },
+        // favorite: {
+        //   movies: {},
+        //   tv: {},
+        // },
+        // watchlist: {
+        //   movies: {},
+        //   tv: {},
+        // },
         error: null,
       };
     case types.FETCH_USER_DATA_SUCCESS:

@@ -21,8 +21,10 @@ const MovieInfo = ({
   imdb,
   createdBy,
   voteCount,
-  handleFav,
+  handleFavoriteClick,
   isFavorite,
+  handleWatchlistClick,
+  inWatchlist,
 }) => {
   return (
     <div className="media__container">
@@ -145,9 +147,15 @@ const MovieInfo = ({
         <div className="media__list">
           <div
             className="media__list-btn"
-            onClick={() => handleFav(!isFavorite)}
+            onClick={() => handleFavoriteClick(!isFavorite)}
           >
             {isFavorite ? "Remove a favorite" : "Add a favorite"}
+          </div>
+          <div
+            className="media__list-btn"
+            onClick={() => handleWatchlistClick(!inWatchlist)}
+          >
+            {inWatchlist ? "Remove from Watchlist" : "Add to Watchlist"}
           </div>
         </div>
       </div>

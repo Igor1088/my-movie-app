@@ -1,5 +1,6 @@
 import * as types from "../constants/actionTypes";
 import { API_KEY } from "../constants/config";
+import { fetchTvShowDetails } from "./tvshow-details";
 
 export function fetchUser(session_id) {
   return (dispatch) => {
@@ -32,9 +33,9 @@ export function fetchLoggedUser() {
           dispatch(fetchUserSuccess(data));
           localStorage.setItem("user_id", data.id);
           dispatch(fetchUserData("favorite", "movies"));
-          // dispatch(fetchUserData(data.id, "favorite", "tv"));
-          // dispatch(fetchUserData(data.id, "watchlist", "movies"));
-          // dispatch(fetchUserData(data.id, "watchlist", "tv"));
+          dispatch(fetchUserData("favorite", "tv"));
+          dispatch(fetchUserData("watchlist", "movies"));
+          dispatch(fetchUserData("watchlist", "tv"));
         })
         .catch((error) => {
           dispatch(fetchUserError(error));
@@ -63,28 +64,14 @@ export function fetchUserData(category, media, sort) {
   };
 }
 
-export function userListAction(id, mediaType, like) {
+export function userListAction(id, list, mediaType, like) {
   return function (dispatch, getState) {
     const sessionID = localStorage.getItem("session_id");
     const userID = localStorage.getItem("user_id");
-    let inList;
-
-    if (mediaType === "movie") {
-      inList = getState().userData.favorite.movies.results.some(
-        (r) => r.id === Number(id)
-      );
-    }
-
-    // if (mediaType === "tv") {
-    //   inList = getState().userData.data.favorite.tv.results.some(
-    //     (r) => r.id === Number(id)
-    //   );
-    // }
-
-    // const like = inList ? false : true;
+    const media = mediaType === "movie" ? "movies" : "tv";
 
     fetch(
-      `https://api.themoviedb.org/3/account/${userID}/favorite?api_key=${API_KEY}&session_id=${sessionID}`,
+      `https://api.themoviedb.org/3/account/${userID}/${list}?api_key=${API_KEY}&session_id=${sessionID}`,
       {
         method: "POST",
         headers: {
@@ -93,11 +80,33 @@ export function userListAction(id, mediaType, like) {
         body: JSON.stringify({
           media_type: mediaType,
           media_id: id,
-          favorite: like,
+          [list]: like,
         }),
       }
-    );
+    )
+      .then(handleErrors)
+      .then((response) => response.json())
+      .then((data) => {
+        dispatch(fetchUserData(list, media));
+      })
+      .catch((error) => {
+        console.log("error", error);
+      });
   };
+}
+
+function fetchHandler(res) {
+  if (res.status >= 400 && res.status < 600) {
+    return Promise.reject(res);
+  }
+  return res.json();
+}
+
+function handleErrors(response) {
+  if (!response.ok) {
+    throw Error(response.statusMessage);
+  }
+  return response;
 }
 
 const fetchUserBegin = () => ({

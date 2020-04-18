@@ -35,14 +35,27 @@ class MovieDetails extends Component {
     // ReactDOM.findDOMNode(this).scrollIntoView();
   }
 
-  handleFav = (like) => {
-    this.props.userListAction(this.props.match.params.id, "movie", like);
-    console.log("like", like);
-    setTimeout(
-      function () {
-        this.props.fetchUserData("favorite", "movies");
-      }.bind(this),
-      500
+  handleFavoriteClick = (like) => {
+    this.props.userListAction(
+      this.props.match.params.id,
+      "favorite",
+      "movie",
+      like
+    );
+    // setTimeout(
+    //   function () {
+    //     this.props.fetchUserData("favorite", "movies");
+    //   }.bind(this),
+    //   500
+    // );
+  };
+
+  handleWatchlistClick = (like) => {
+    this.props.userListAction(
+      this.props.match.params.id,
+      "watchlist",
+      "movie",
+      like
     );
   };
 
@@ -72,11 +85,9 @@ class MovieDetails extends Component {
       (i) => i.id === Number(this.props.match.params.id)
     );
 
-    console.log("fav", isFavorite);
-
-    const watchlistMovies = isEmpty(userLists.favorite.movies)
+    const watchlistMovies = isEmpty(userLists.watchlist.movies)
       ? []
-      : userLists.favorite.movies.results;
+      : userLists.watchlist.movies.results;
 
     const inWatchlist = watchlistMovies.some(
       (i) => i.id === Number(this.props.match.params.id)
@@ -150,9 +161,10 @@ class MovieDetails extends Component {
           imdb={movieDetails.imdb_id}
           media="movie"
           runtime={movieDetails.runtime}
-          handleFav={this.handleFav}
+          handleFavoriteClick={this.handleFavoriteClick}
           isFavorite={isFavorite}
           inWatchlist={inWatchlist}
+          handleWatchlistClick={this.handleWatchlistClick}
         />
         <div className="main">
           <Sidebar
