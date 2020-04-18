@@ -35,14 +35,15 @@ class User extends Component {
     }
 
     return (
-      <Link to="/u" className="header__user-link">
+      <Link
+        to={{
+          pathname: "/u/favorites",
+          state: { category: "favorite", media: "movies" },
+        }}
+        className="header__user-link"
+      >
         <div className="header__user">
-          <div
-            className="header__user-img"
-            // style={{
-            //   backgroundImage: `url(${background})`,
-            // }}
-          >
+          <div className="header__user-img">
             <UserIcon />
           </div>
           <div className="header__user-details">

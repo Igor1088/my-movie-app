@@ -5,25 +5,25 @@ import { dateFormat, timeFormat } from "../utils/helpers";
 import { ReactComponent as StarIcon } from "../img/star.svg";
 import { ReactComponent as ImdbLogo } from "../img/imdb.svg";
 
-const MovieInfo = (props) => {
-  const {
-    poster,
-    tagline,
-    overview,
-    title,
-    releaseDate,
-    backdrop,
-    genres = [],
-    voteAverage,
-    director = [],
-    writers = [],
-    media,
-    runtime,
-    imdb,
-    createdBy,
-    voteCount,
-  } = props;
-
+const MovieInfo = ({
+  poster,
+  tagline,
+  overview,
+  title,
+  releaseDate,
+  backdrop,
+  genres = [],
+  voteAverage,
+  director = [],
+  writers = [],
+  media,
+  runtime,
+  imdb,
+  createdBy,
+  voteCount,
+  handleFav,
+  isFavorite,
+}) => {
   return (
     <div className="media__container">
       <div
@@ -140,6 +140,14 @@ const MovieInfo = (props) => {
             ) : (
               ""
             )}
+          </div>
+        </div>
+        <div className="media__list">
+          <div
+            className="media__list-btn"
+            onClick={() => handleFav(!isFavorite)}
+          >
+            {isFavorite ? "Remove a favorite" : "Add a favorite"}
           </div>
         </div>
       </div>

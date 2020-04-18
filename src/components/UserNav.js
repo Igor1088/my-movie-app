@@ -6,7 +6,7 @@ class Nav extends Component {
     super(props);
 
     this.state = {
-      open: false
+      open: false,
     };
   }
 
@@ -18,10 +18,24 @@ class Nav extends Component {
             <span>Favorites</span>
             <ul className="sub-nav">
               <li>
-                <Link to="/u/favorites">Movies</Link>
+                <Link
+                  to={{
+                    pathname: "/u/favorites",
+                    state: { category: "favorite", media: "movies" },
+                  }}
+                >
+                  Movies
+                </Link>
               </li>
               <li>
-                <Link to="/u/favorites/tv">TV Shows</Link>
+                <Link
+                  to={{
+                    pathname: "/u/favorites/tv",
+                    state: { category: "favorite", media: "tv" },
+                  }}
+                >
+                  TV Shows
+                </Link>
               </li>
             </ul>
           </li>
@@ -29,10 +43,24 @@ class Nav extends Component {
             <span>Watchlist</span>
             <ul className="sub-nav">
               <li>
-                <Link to="/u/watchlist">Movies</Link>
+                <Link
+                  to={{
+                    pathname: "/u/watchlist/movies",
+                    state: { category: "watchlist", media: "movies" },
+                  }}
+                >
+                  Movies
+                </Link>
               </li>
               <li>
-                <Link to="/u/watchlist/tv">TV Shows</Link>
+                <Link
+                  to={{
+                    pathname: "/u/watchlist/tv",
+                    state: { category: "watchlist", media: "tv" },
+                  }}
+                >
+                  TV Shows
+                </Link>
               </li>
             </ul>
           </li>

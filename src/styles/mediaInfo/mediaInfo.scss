@@ -204,4 +204,17 @@
       }
     }
   }
+
+  &__list {
+    margin-top: 20px;
+
+    &-btn {
+      display: inline-block;
+      padding: 7px 15px;
+      background-color: $secondaryColor;
+      border-radius: 3px;
+      color: #fff;
+      cursor: pointer;
+    }
+  }
 }

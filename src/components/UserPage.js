@@ -1,77 +1,19 @@
 import React from "react";
-import { Switch, Route } from "react-router-dom";
+import { Route } from "react-router-dom";
 import UserPageList from "../containers/UserPageList";
 import UserNav from "./UserNav";
+import Loader from "../components/Loader";
 
-const UserPage = () => (
-  <div>
-    <UserNav />
-    <Switch>
-      <Route
-        path="/u"
-        exact
-        render={props => (
-          <UserPageList
-            {...props}
-            category="favorite"
-            type="movies"
-            sortBy="desc"
-            media="movie"
-          />
-        )}
-      ></Route>
-      <Route
-        path="/u/favorites"
-        exact
-        render={props => (
-          <UserPageList
-            {...props}
-            category="favorite"
-            type="movies"
-            sortBy="desc"
-            media="movie"
-          />
-        )}
-      ></Route>
-      <Route
-        path="/u/favorites/tv"
-        render={props => (
-          <UserPageList
-            {...props}
-            category="favorite"
-            type="tv"
-            sortBy="desc"
-            media="tv"
-          />
-        )}
-      ></Route>
-      <Route
-        path="/u/watchlist"
-        exact
-        render={props => (
-          <UserPageList
-            {...props}
-            category="watchlist"
-            type="movies"
-            sortBy="desc"
-            media="movie"
-          />
-        )}
-      ></Route>
-      <Route
-        path="/u/watchlist/tv"
-        render={props => (
-          <UserPageList
-            {...props}
-            category="watchlist"
-            type="tv"
-            sortBy="desc"
-            media="tv"
-          />
-        )}
-      ></Route>
-    </Switch>
-  </div>
-);
+const UserPage = (props) => {
+  return (
+    <div>
+      <UserNav />
+      <Route path="/u/favorites" exact component={UserPageList}></Route>
+      <Route path="/u/favorites/tv" component={UserPageList}></Route>
+      <Route path="/u/watchlist/movies" exact component={UserPageList}></Route>
+      <Route path="/u/watchlist/tv" component={UserPageList}></Route>
+    </div>
+  );
+};
 
 export default UserPage;

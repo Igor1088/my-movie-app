@@ -1,8 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faStar } from "@fortawesome/free-solid-svg-icons";
+import { ReactComponent as StarIcon } from "../img/star.svg";
 
 const Item = (props) => {
   const { poster, vote_average, title, id, media, year } = props;
@@ -21,7 +20,9 @@ const Item = (props) => {
           {/* </figure> */}
           {vote_average ? (
             <div className="item__vote-average">
-              <FontAwesomeIcon icon={faStar} />
+              <i className="icon-star">
+                <StarIcon />
+              </i>
               <span>{vote_average}</span>
             </div>
           ) : (

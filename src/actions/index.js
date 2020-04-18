@@ -7,7 +7,12 @@ import { fetchTvShowDetails } from "./tvshow-details";
 import { fetchSeasonDetails } from "./tv-season";
 import { fetchSearchResults } from "./search";
 import { createSession, requestLogin, logout } from "./auth";
-import { fetchUser, fetchLoggedUser, fetchUserData } from "./user";
+import {
+  fetchUser,
+  fetchLoggedUser,
+  fetchUserData,
+  userListAction,
+} from "./user";
 
 export {
   fetchMovies,
@@ -23,5 +28,6 @@ export {
   fetchUser,
   fetchLoggedUser,
   fetchUserData,
-  fetchSearchResults
+  fetchSearchResults,
+  userListAction,
 };

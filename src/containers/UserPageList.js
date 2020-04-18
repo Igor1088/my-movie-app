@@ -2,60 +2,50 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import * as actions from "../actions";
-import {
-  getUserData,
-  getUserDataLoading,
-  getUserDataError,
-} from "../reducers/userData";
-import Loader from "../components/Loader";
+import { getUserDataLoading, getUserLists } from "../reducers/userData";
+import { isEmpty } from "lodash";
 import ListItem from "../components/ListItem";
+import Loader from "../components/Loader";
 
 class UserPageList extends Component {
   componentDidMount() {
-    this.props.fetchUserData(
-      this.props.category,
-      this.props.type,
-      this.props.sortBy
-    );
-  }
-
-  componentDidUpdate(prevProps) {
-    if (this.props.match.path !== prevProps.match.path) {
-      this.props.fetchUserData(
-        this.props.category,
-        this.props.type,
-        this.props.sortBy
-      );
-    }
+    const category = this.props.location.state.category;
+    const media = this.props.location.state.media;
+    this.props.fetchUserData(category, media);
   }
 
   render() {
-    const { error, loading, items, media } = this.props;
+    const { loading, list, location } = this.props;
+    const category = location.state.category;
+    const media = location.state.media;
 
     if (loading) {
       return <Loader />;
     }
 
-    if (error) {
-      return <div>Error!</div>;
+    if (isEmpty(list[category][media])) {
+      return <div>Nothing in the list</div>;
     }
 
     return (
       <div>
-        {items.total_results
-          ? items.results.map((i) => {
-              return <ListItem key={i.id} item={i} media={media} />;
-            })
-          : null}
+        {list[category][media].results.map((i) => {
+          return (
+            <ListItem
+              key={i.id}
+              item={i}
+              media={media === "movies" ? "movie" : media}
+            />
+          );
+        })}
       </div>
     );
   }
 }
 
 const mapStateToProps = (state) => ({
-  items: getUserData(state),
   loading: getUserDataLoading(state),
-  error: getUserDataError(state),
+  list: getUserLists(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
