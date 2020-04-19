@@ -30,7 +30,7 @@ const Sidebar = (props) => {
       return companie.logo_path ? (
         <div className="sidebar__companie-info">
           <img
-            src={`https://image.tmdb.org/t/p/h30/${companie.logo_path}`}
+            src={`https://image.tmdb.org/t/p/h30${companie.logo_path}`}
             className="companie-logo"
             alt="logo"
           />
