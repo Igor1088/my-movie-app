@@ -160,6 +160,7 @@ class TvShowDetails extends Component {
           handleWatchlistClick={this.handleWatchlistClick}
         />
         <main className="main">
+          {console.log(tvShowDetails.networks)}
           <Sidebar
             // heading="Facts"
             media="tv"

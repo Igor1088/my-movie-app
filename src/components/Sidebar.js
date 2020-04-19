@@ -26,8 +26,16 @@ const Sidebar = (props) => {
   let prodCompanies;
 
   if (production) {
-    prodCompanies = production.slice(0, 3).map((companie) => {
-      return { name: companie.name };
+    prodCompanies = production.map((companie) => {
+      return companie.logo_path ? (
+        <div className="sidebar__companie-info">
+          <img
+            src={`https://image.tmdb.org/t/p/h30/${companie.logo_path}`}
+            className="companie-logo"
+            alt="logo"
+          />
+        </div>
+      ) : null;
     });
   }
 
@@ -122,7 +130,8 @@ const Sidebar = (props) => {
             <div className="sidebar__row">
               <div className="sidebar__row-heading">Production Companies</div>
               <div className="sidebar__row-info">
-                <p>
+                {prodCompanies}
+                {/* <p>
                   {prodCompanies && prodCompanies[0]
                     ? prodCompanies[0].name
                     : ""}
@@ -136,7 +145,7 @@ const Sidebar = (props) => {
                   {prodCompanies && prodCompanies[2]
                     ? prodCompanies[2].name
                     : ""}
-                </p>
+                </p> */}
               </div>
             </div>
           </React.Fragment>

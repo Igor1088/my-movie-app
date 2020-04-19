@@ -223,8 +223,6 @@ class MovieDetails extends Component {
             </Section>
 
             <Section heading="Trailers">
-              {console.log(movieDetails.videos)}
-              {console.log(isEmpty(movieDetails.videos))}
               <div>
                 {videos.length > 0 ? (
                   <Video videos={videos} />

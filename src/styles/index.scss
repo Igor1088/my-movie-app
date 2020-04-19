@@ -242,6 +242,16 @@ section {
       justify-content: space-between;
     }
   }
+
+  &__companie {
+    &-info {
+      margin-top: 5px;
+    }
+  }
+
+  .companie-logo {
+    max-width: 60%;
+  }
 }
 
 @media (max-width: 767px) {
