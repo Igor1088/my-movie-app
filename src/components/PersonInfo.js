@@ -12,7 +12,7 @@ const PersonInfo = (props) => {
   const twitterLink = social ? social.twitter_id : "";
   const placeholder = "http://placehold.it/300x500";
   const path = poster
-    ? `https://image.tmdb.org/t/p/w500/${poster}`
+    ? `https://image.tmdb.org/t/p/w500${poster}`
     : placeholder;
 
   return (
