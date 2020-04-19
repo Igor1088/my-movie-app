@@ -68,6 +68,10 @@
       margin: 1px;
       border-right: 1px solid #868686;
 
+      &:first-child {
+        padding-left: 0;
+      }
+
       &:last-child {
         border-right-color: transparent;
       }
@@ -108,9 +112,7 @@
       }
 
       > div {
-        & + div {
-          margin-left: 8px;
-        }
+        margin-right: 10px;
       }
     }
   }

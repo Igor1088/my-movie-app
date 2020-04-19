@@ -10,15 +10,15 @@ const PersonInfo = (props) => {
   const facebookLink = social ? social.facebook_id : "";
   const instagramLink = social ? social.instagram_id : "";
   const twitterLink = social ? social.twitter_id : "";
+  const placeholder = "http://placehold.it/300x500";
+  const path = poster
+    ? `https://image.tmdb.org/t/p/w500/${poster}`
+    : placeholder;
 
   return (
     <div className="person__info">
       <div className="person__image-holder">
-        <img
-          src={`https://image.tmdb.org/t/p/w500/${poster}`}
-          className="person__image"
-          alt="poster"
-        />
+        <img src={path} className="person__image" alt="poster" />
       </div>
       <div className="person__overview-holder">
         <div className="person__heading">
