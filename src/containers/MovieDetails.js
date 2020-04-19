@@ -96,7 +96,7 @@ class MovieDetails extends Component {
     if (movieDetails.length !== 0) {
       images = movieDetails.images.backdrops;
       reviews = movieDetails.reviews.results;
-      cast = movieDetails.credits.cast.slice(0, 14).map((person) => {
+      cast = movieDetails.credits.cast.slice(0, 16).map((person) => {
         return {
           name: person.name,
           role: person.character,
@@ -182,7 +182,7 @@ class MovieDetails extends Component {
           />
           <div className="main__content">
             <Section heading="Featured Cast">
-              <div className="person__list">
+              <div className="grid people">
                 {cast.map((person) => {
                   return (
                     <Person

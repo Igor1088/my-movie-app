@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import PersonSmall from "./PersonSmall";
+import { dateFormat } from "../utils/helpers";
 
 class Episode extends Component {
   constructor(props) {
@@ -49,7 +50,7 @@ class Episode extends Component {
           <div className="episode__details">
             <div className="episode__heading">
               <h4 className="episode__name">{name}</h4>
-              <div className="episode__date">{airDate}</div>
+              <div className="episode__date">{dateFormat(airDate)}</div>
             </div>
             <div className="episode__info">
               <span className="episode__vote">

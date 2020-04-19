@@ -11,10 +11,6 @@
   }
 
   &__holder {
-    display: flex;
-    flex-direction: column;
-    width: 125px;
-    padding: 0 15px 10px 15px;
     cursor: pointer;
 
     @media (max-width: 767px) {
@@ -31,7 +27,6 @@
   &__img {
     width: 100%;
     border-radius: 4px;
-    height: 137px;
 
     @media (max-width: 767px) {
       height: auto;
