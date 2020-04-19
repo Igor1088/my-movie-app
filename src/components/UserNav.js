@@ -20,7 +20,7 @@ class Nav extends Component {
               <li>
                 <Link
                   to={{
-                    pathname: "/u/favorites",
+                    pathname: "/u/favorites/movies",
                     state: { category: "favorite", media: "movies" },
                   }}
                 >

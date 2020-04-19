@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-import { ReactComponent as StarIcon } from "../img/star.svg";
+import { FaStar } from "react-icons/fa";
 
 const Item = (props) => {
   const { poster, vote_average, title, id, media, year } = props;
@@ -21,7 +21,7 @@ const Item = (props) => {
           {vote_average ? (
             <div className="item__vote-average">
               <i className="icon-star">
-                <StarIcon />
+                <FaStar />
               </i>
               <span>{vote_average}</span>
             </div>

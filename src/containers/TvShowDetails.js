@@ -8,6 +8,8 @@ import {
   getTvShowDetails,
   getTvShowDetailsLoading,
 } from "../reducers/tvshow-details";
+import { getUserLists } from "../reducers/userData";
+import { isEmpty } from "lodash";
 import Loader from "../components/Loader";
 import MediaInfo from "../components/MediaInfo";
 import Person from "../components/Person";
@@ -32,8 +34,26 @@ class TvShowDetails extends Component {
     }
   }
 
+  handleFavoriteClick = (like) => {
+    this.props.userListAction(
+      this.props.match.params.id,
+      "favorite",
+      "tv",
+      like
+    );
+  };
+
+  handleWatchlistClick = (like) => {
+    this.props.userListAction(
+      this.props.match.params.id,
+      "watchlist",
+      "tv",
+      like
+    );
+  };
+
   render() {
-    const { error, loading, tvShowDetails } = this.props;
+    const { error, loading, tvShowDetails, userLists } = this.props;
 
     if (error) {
       return <div>Error!</div>;
@@ -45,6 +65,22 @@ class TvShowDetails extends Component {
 
     let cast = [];
     let images, items, seasons, reviews;
+
+    const favoritesTV = isEmpty(userLists.favorite.tv)
+      ? []
+      : userLists.favorite.tv.results;
+
+    const isFavorite = favoritesTV.some(
+      (i) => i.id === Number(this.props.match.params.id)
+    );
+
+    const watchlistTV = isEmpty(userLists.watchlist.tv)
+      ? []
+      : userLists.watchlist.tv.results;
+
+    const inWatchlist = watchlistTV.some(
+      (i) => i.id === Number(this.props.match.params.id)
+    );
 
     if (tvShowDetails.length !== 0) {
       images = tvShowDetails.images.backdrops;
@@ -117,6 +153,10 @@ class TvShowDetails extends Component {
           imdb={
             tvShowDetails.external_ids && tvShowDetails.external_ids.imdb_id
           }
+          handleFavoriteClick={this.handleFavoriteClick}
+          isFavorite={isFavorite}
+          inWatchlist={inWatchlist}
+          handleWatchlistClick={this.handleWatchlistClick}
         />
         <main className="main">
           <Sidebar
@@ -197,10 +237,13 @@ const mapStateToProps = (state) => ({
   error: getTvShowDetailsError(state),
   loading: getTvShowDetailsLoading(state),
   tvShowDetails: getTvShowDetails(state),
+  userLists: getUserLists(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
   fetchTvShowDetails: bindActionCreators(actions.fetchTvShowDetails, dispatch),
+  userListAction: bindActionCreators(actions.userListAction, dispatch),
+  fetchUserData: bindActionCreators(actions.fetchUserData, dispatch),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(TvShowDetails);

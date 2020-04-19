@@ -37,7 +37,7 @@ class User extends Component {
     return (
       <Link
         to={{
-          pathname: "/u/favorites",
+          pathname: "/u/favorites/movies",
           state: { category: "favorite", media: "movies" },
         }}
         className="header__user-link"
