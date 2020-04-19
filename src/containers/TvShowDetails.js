@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import * as actions from "../actions";
-import {
+import tvshowDetails, {
   getTvShowDetailsError,
   getTvShowDetails,
   getTvShowDetailsLoading,
@@ -54,6 +54,7 @@ class TvShowDetails extends Component {
 
   render() {
     const { error, loading, tvShowDetails, userLists } = this.props;
+    const videos = tvShowDetails.videos ? tvShowDetails.videos.results : [];
 
     if (error) {
       return <div>Error!</div>;
@@ -202,7 +203,11 @@ class TvShowDetails extends Component {
 
             <Section heading="Trailers">
               <div>
-                <Video videos={tvShowDetails.videos} />
+                {videos.length > 0 ? (
+                  <Video videos={videos} />
+                ) : (
+                  <p>No Trailers</p>
+                )}
               </div>
             </Section>
 
