@@ -2,7 +2,7 @@ import React from "react";
 
 const Video = (props) => {
   const { videos = { results: [] } } = props;
-  const videosList = videos.results.map((video) => {
+  const videosList = videos.map((video) => {
     return {
       key: video.key,
     };

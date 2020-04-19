@@ -76,6 +76,7 @@ class MovieDetails extends Component {
     let similar = [];
     let director = [];
     let writers = [];
+    const videos = movieDetails.videos ? movieDetails.videos.results : [];
 
     const favoritesMovies = isEmpty(userLists.favorite.movies)
       ? []
@@ -222,9 +223,11 @@ class MovieDetails extends Component {
             </Section>
 
             <Section heading="Trailers">
+              {console.log(movieDetails.videos)}
+              {console.log(isEmpty(movieDetails.videos))}
               <div>
-                {movieDetails.videos ? (
-                  <Video videos={movieDetails.videos} />
+                {videos.length > 0 ? (
+                  <Video videos={videos} />
                 ) : (
                   <p>No Trailers</p>
                 )}
