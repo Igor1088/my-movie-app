@@ -1,5 +1,6 @@
 import * as types from "../constants/actionTypes";
 import { API_KEY } from "../constants/config";
+import { handleErrors } from "../utils/helpers";
 
 export function fetchMovies(category, page, filter) {
   return (dispatch) => {
@@ -32,13 +33,6 @@ export function fetchMovies(category, page, filter) {
         });
     }
   };
-}
-
-function handleErrors(response) {
-  if (!response.ok) {
-    throw Error(response.statusMessage);
-  }
-  return response;
 }
 
 const fetchMoviesBegin = () => ({ type: types.FETCH_MOVIES_BEGIN });

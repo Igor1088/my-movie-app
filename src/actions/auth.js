@@ -1,18 +1,20 @@
 import * as types from "../constants/actionTypes";
 import { API_KEY } from "../constants/config";
 import { fetchUser } from "./user";
+import { handleErrors } from "../utils/helpers";
 
 export function requestLogin() {
   let win = window.open("", "_blank");
-  return dispatch => {
+  return (dispatch) => {
     fetch(
       `https://api.themoviedb.org/3/authentication/token/new?api_key=${API_KEY}`
     )
-      .then(response => response.json())
-      .then(data => {
+      .then(handleErrors)
+      .then((response) => response.json())
+      .then((data) => {
         localStorage.setItem("token", data.request_token);
         win.location = `https://www.themoviedb.org/authenticate/${data.request_token}`;
-        let timer = setInterval(function() {
+        let timer = setInterval(function () {
           if (win.closed) {
             clearInterval(timer);
             dispatch(createSession(data.request_token));
@@ -24,13 +26,14 @@ export function requestLogin() {
 
 export function createSession(token) {
   // let sessionID;
-  return dispatch => {
+  return (dispatch) => {
     createSessionBegin();
     fetch(
       `https://api.themoviedb.org/3/authentication/session/new?api_key=${API_KEY}&request_token=${token}`
     )
-      .then(response => response.json())
-      .then(data => {
+      .then(handleErrors)
+      .then((response) => response.json())
+      .then((data) => {
         if (!data.failure) {
           localStorage.setItem("session_id", data.session_id);
           dispatch(createSessionSuccess(data));
@@ -42,13 +45,13 @@ export function createSession(token) {
         //     dispatch(fetchUser(sessionID));
         // }, 1000);
       })
-      .catch(error => {
+      .catch((error) => {
         dispatch(createSessionError(error));
       });
   };
 }
 
-export const logout = () => dispatch => {
+export const logout = () => (dispatch) => {
   localStorage.clear();
   dispatch(deleteSession());
   dispatch(deleteUser());
@@ -56,14 +59,14 @@ export const logout = () => dispatch => {
 
 const createSessionBegin = () => ({ type: types.CREATE_SESSION_BEGIN });
 
-const createSessionSuccess = session => ({
+const createSessionSuccess = (session) => ({
   type: types.CREATE_SESSION_SUCCESS,
-  payload: session
+  payload: session,
 });
 
-const createSessionError = error => ({
+const createSessionError = (error) => ({
   type: types.CREATE_SESSION_ERROR,
-  payload: error
+  payload: error,
 });
 
 const deleteSession = () => ({ type: types.DELETE_SESSION });

@@ -71,3 +71,17 @@ export const dateFormat = (date) => {
 
   return `${monthFormat(month)} ${day}, ${year}`;
 };
+
+export const handleErrors = (response) => {
+  if (!response.ok) {
+    throw Error(response.statusMessage);
+  }
+  return response;
+};
+
+export const fetchHandler = (res) => {
+  if (res.status >= 400 && res.status < 600) {
+    return Promise.reject(res);
+  }
+  return res.json();
+};

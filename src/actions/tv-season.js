@@ -1,5 +1,6 @@
 import * as types from "../constants/actionTypes";
 import { API_KEY } from "../constants/config";
+import { handleErrors } from "../utils/helpers";
 
 export function fetchSeasonDetails(id, number) {
   return (dispatch) => {
@@ -18,13 +19,6 @@ export function fetchSeasonDetails(id, number) {
       });
   };
 }
-
-const handleErrors = (response) => {
-  if (!response.ok) {
-    throw Error(response.statusMessage);
-  }
-  return response;
-};
 
 const fetchSeasonBegin = () => {
   return {

@@ -1,5 +1,6 @@
 import * as types from "../constants/actionTypes";
 import { API_KEY } from "../constants/config";
+import { handleErrors } from "../utils/helpers";
 
 export function fetchTvShowDetails(id) {
   return (dispatch) => {
@@ -17,13 +18,6 @@ export function fetchTvShowDetails(id) {
         dispatch(fetchTvShowDetailsError(error));
       });
   };
-}
-
-function handleErrors(response) {
-  if (!response.ok) {
-    throw Error(response.statusMessage);
-  }
-  return response;
 }
 
 const fetchTvShowDetailsBegin = () => ({ type: types.FETCH_SHOW_BEGIN });

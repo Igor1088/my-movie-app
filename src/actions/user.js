@@ -1,6 +1,6 @@
 import * as types from "../constants/actionTypes";
 import { API_KEY } from "../constants/config";
-import { fetchTvShowDetails } from "./tvshow-details";
+import { handleErrors } from "../utils/helpers";
 
 export function fetchUser(session_id) {
   return (dispatch) => {
@@ -93,20 +93,6 @@ export function userListAction(id, list, mediaType, like) {
         console.log("error", error);
       });
   };
-}
-
-function fetchHandler(res) {
-  if (res.status >= 400 && res.status < 600) {
-    return Promise.reject(res);
-  }
-  return res.json();
-}
-
-function handleErrors(response) {
-  if (!response.ok) {
-    throw Error(response.statusMessage);
-  }
-  return response;
 }
 
 const fetchUserBegin = () => ({
