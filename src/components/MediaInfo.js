@@ -140,7 +140,7 @@ const MovieInfo = ({
               </div>
             </div>
           </div>
-          <p className="media__tagline">{tagline}</p>
+          {tagline ? <p className="media__tagline">{tagline}</p> : null}
         </div>
       </div>
       <div className="media__desc">
