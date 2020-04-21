@@ -48,7 +48,7 @@ class User extends Component {
           </div>
           <div className="header__user-details">
             <div className="header__user-name">{user.name}</div>
-            View Profile
+            View Lists
           </div>
         </div>
       </Link>

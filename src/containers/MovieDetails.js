@@ -145,8 +145,6 @@ class MovieDetails extends Component {
       }
     }
 
-    console.log(movieDetails);
-
     return (
       <main>
         <MediaInfo

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
-import PersonSmall from "./PersonSmall";
 import { dateFormat } from "../utils/helpers";
+import { Link } from "react-router-dom";
+import CastList from "./CastList";
 
 class Episode extends Component {
   constructor(props) {
@@ -71,30 +72,24 @@ class Episode extends Component {
               <h4 className="episode__expanded-heading">Crew</h4>
               <p className="episode__director">
                 <strong>Directed by:&nbsp;</strong>
-                {director ? director.name : "-"}
+                {director ? (
+                  <Link to={`/person/${director.id}`}>{director.name}</Link>
+                ) : (
+                  "-"
+                )}
               </p>
               <p className="episode__writers">
                 <strong>Written by:&nbsp;</strong>
-                {writers.map((i) => (
-                  <span>{i.name}</span>
-                ))}
+                {writers.length > 0
+                  ? writers.map((i) => (
+                      <Link to={`/person/${i.id}`}>{i.name}</Link>
+                    ))
+                  : "-"}
               </p>
             </div>
             <div className="episode__expanded-credits">
               <h4 className="episode__expanded-heading">Guest Stars</h4>
-              <ul>
-                {guestStars.map((i) => (
-                  <li>
-                    <PersonSmall
-                      key={i.id}
-                      id={i.id}
-                      name={i.name}
-                      role={i.character}
-                      poster={i.profile_path}
-                    />
-                  </li>
-                ))}
-              </ul>
+              <CastList list={guestStars} message="No guest stars" />
             </div>
           </div>
         </div>

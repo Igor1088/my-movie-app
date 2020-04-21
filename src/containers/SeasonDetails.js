@@ -7,10 +7,15 @@ import {
   getSeasonDetails,
   getSeasonDetailsLoading,
 } from "../reducers/tv-season";
-import { getTvShowDetails } from "../reducers/tvshow-details";
+import tvshowDetails, { getTvShowDetails } from "../reducers/tvshow-details";
+import { FaArrowCircleLeft } from "react-icons/fa";
 import Loader from "../components/Loader";
 import Episode from "../components/Episode";
 import { Link } from "react-router-dom";
+import Section from "../components/Section";
+import CastList from "../components/CastList";
+// import Video from "../components/Video";
+
 class SeasonDetails extends Component {
   componentDidMount() {
     this.props.fetchTvShowDetails(this.props.match.params.id);
@@ -34,6 +39,7 @@ class SeasonDetails extends Component {
 
   render() {
     const { error, loading, seasonDetails, tvShowDetails } = this.props;
+    // const videos = seasonDetails.videos ? seasonDetails.videos.results : [];
 
     if (error) {
       return <div>Error!</div>;
@@ -78,6 +84,10 @@ class SeasonDetails extends Component {
 
     return (
       <div className="season">
+        <Link className="season__back-link" to={`/tv/${tvShowDetails.id}`}>
+          <FaArrowCircleLeft />
+          <span>Back to {tvshowDetails ? tvShowDetails.name : "Tv Show"}</span>
+        </Link>
         <div className="season__heading">
           <div className="season__img-holder">
             {seasonDetails.poster_path ? (
@@ -108,6 +118,17 @@ class SeasonDetails extends Component {
             </div>
           </div>
         </div>
+        <Section heading="Cast">
+          <CastList
+            list={seasonDetails.credits ? seasonDetails.credits.cast : []}
+            message="No Cast"
+          />
+        </Section>
+        {/* <Section heading="Trailers">
+          <div>
+            {videos.length > 0 ? <Video videos={videos} /> : <p>No Trailers</p>}
+          </div>
+        </Section> */}
         <div className="season__nav">
           <div>
             {prev ? (
@@ -128,12 +149,14 @@ class SeasonDetails extends Component {
             )}
           </div>
         </div>
-        <div className="episode__list">
-          <h4 className="episode__list-count">
-            <strong>Episodes:</strong> {episodesCount}
-          </h4>
-          {items}
-        </div>
+        <Section>
+          <div className="episode__list">
+            <div className="episode__list-count">
+              <strong>Episodes:</strong> {episodesCount}
+            </div>
+            {items}
+          </div>
+        </Section>
       </div>
     );
   }

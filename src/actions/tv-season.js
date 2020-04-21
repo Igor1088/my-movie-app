@@ -6,7 +6,7 @@ export function fetchSeasonDetails(id, number) {
   return (dispatch) => {
     dispatch(fetchSeasonBegin());
     fetch(
-      `https://api.themoviedb.org/3/tv/${id}/season/${number}?api_key=${API_KEY}`
+      `https://api.themoviedb.org/3/tv/${id}/season/${number}?api_key=${API_KEY}&append_to_response=credits,videos`
     )
       .then(handleErrors)
       .then((response) => response.json())

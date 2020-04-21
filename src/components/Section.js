@@ -2,7 +2,7 @@ import React from "react";
 
 const Section = (props) => (
   <section>
-    <h4>{props.heading}</h4>
+    {props.heading ? <h4>{props.heading}</h4> : null}
     {props.children}
   </section>
 );
