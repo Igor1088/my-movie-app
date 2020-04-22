@@ -93,10 +93,6 @@
       &.watchlist {
         color: $secondaryColor;
       }
-
-      & + & {
-        margin-left: 10px;
-      }
     }
 
     &-row {
@@ -104,6 +100,16 @@
       align-items: center;
       flex-wrap: wrap;
       font-weight: 700;
+
+      @media (max-width: 767px) {
+        & + & {
+          margin-top: 5px;
+        }
+      }
+
+      > div {
+        margin-right: 10px;
+      }
 
       @media (min-width: 768px) {
         & + & {
@@ -121,14 +127,28 @@
     display: flex;
     align-items: center;
     line-height: 1;
+    position: relative;
+    cursor: pointer;
 
     .icon-star {
       margin-right: 3px;
     }
 
-    svg {
-      font-size: 21px;
-      line-height: 25px;
+    .rating__container {
+      position: absolute;
+      top: 90%;
+      left: -10px;
+      display: none;
+      padding: 10px;
+      background-color: #111921;
+      border-radius: 5px;
+      font-size: 1.5em;
+    }
+
+    &:hover {
+      .rating__container {
+        display: block;
+      }
     }
   }
 

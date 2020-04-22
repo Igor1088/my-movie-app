@@ -11,11 +11,6 @@ export function fetchUser(session_id) {
       .then((response) => response.json())
       .then((data) => {
         dispatch(fetchUserSuccess(data));
-        // if (data.status_message) {
-        //   dispatch(fetchUserError(data));
-        // } else {
-        // }
-        // return data;
       });
   };
 }
@@ -32,10 +27,10 @@ export function fetchLoggedUser() {
         .then((data) => {
           dispatch(fetchUserSuccess(data));
           localStorage.setItem("user_id", data.id);
-          dispatch(fetchUserData("favorite", "movies"));
-          dispatch(fetchUserData("favorite", "tv"));
-          dispatch(fetchUserData("watchlist", "movies"));
-          dispatch(fetchUserData("watchlist", "tv"));
+          // dispatch(fetchUserData("favorite", "movies"));
+          // dispatch(fetchUserData("favorite", "tv"));
+          // dispatch(fetchUserData("watchlist", "movies"));
+          // dispatch(fetchUserData("watchlist", "tv"));
         })
         .catch((error) => {
           dispatch(fetchUserError(error));
@@ -65,10 +60,10 @@ export function fetchUserData(category, media, sort) {
 }
 
 export function userListAction(id, list, mediaType, like) {
-  return function (dispatch, getState) {
+  return (dispatch) => {
     const sessionID = localStorage.getItem("session_id");
     const userID = localStorage.getItem("user_id");
-    const media = mediaType === "movie" ? "movies" : "tv";
+    // const media = mediaType === "movie" ? "movies" : "tv";
 
     fetch(
       `https://api.themoviedb.org/3/account/${userID}/${list}?api_key=${API_KEY}&session_id=${sessionID}`,
@@ -87,10 +82,53 @@ export function userListAction(id, list, mediaType, like) {
       .then(handleErrors)
       .then((response) => response.json())
       .then((data) => {
-        dispatch(fetchUserData(list, media));
+        // dispatch(fetchUserData(list, media));
+        dispatch(fetchAccountStates(id, mediaType));
       })
       .catch((error) => {
         console.log("error", error);
+      });
+  };
+}
+
+export function userRateAction(id, mediaType, rating) {
+  return (dispatch) => {
+    const sessionID = localStorage.getItem("session_id");
+    fetch(
+      `https://api.themoviedb.org/3/${mediaType}/${id}/rating?api_key=${API_KEY}&session_id=${sessionID}`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          value: rating,
+        }),
+      }
+    )
+      .then(handleErrors)
+      .then((response) => response.json())
+      .then((data) => {
+        dispatch(fetchAccountStates(id, "movie"));
+      });
+  };
+}
+
+export function fetchAccountStates(id, mediaType) {
+  return (dispatch) => {
+    const sessionID = localStorage.getItem("session_id");
+
+    dispatch(fetchAccountStatesBegin());
+    fetch(
+      `https://api.themoviedb.org/3/${mediaType}/${id}/account_states?api_key=${API_KEY}&language=en-US&session_id=${sessionID}`
+    )
+      .then(handleErrors)
+      .then((response) => response.json())
+      .then((data) => {
+        dispatch(fetchAccountStatesSuccess(data));
+      })
+      .catch((error) => {
+        dispatch(fetchAccountStatesError(error));
       });
   };
 }
@@ -122,6 +160,20 @@ const fetchUserDataSuccess = (user, category, media) => ({
 
 const fetchUserDataError = (error) => ({
   type: types.FETCH_USER_DATA_ERROR,
+  payload: error,
+});
+
+const fetchAccountStatesBegin = () => ({
+  type: types.FETCH_ACC_STATES_BEGIN,
+});
+
+const fetchAccountStatesSuccess = (data) => ({
+  type: types.FETCH_ACC_STATES_SUCCESS,
+  payload: data,
+});
+
+const fetchAccountStatesError = (error) => ({
+  type: types.FETCH_ACC_STATES_ERROR,
   payload: error,
 });
 

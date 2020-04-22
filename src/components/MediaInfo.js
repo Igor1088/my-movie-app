@@ -1,7 +1,9 @@
 import React, { Fragment } from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
+import Rating from "./Rating";
 import { dateFormat, timeFormat } from "../utils/helpers";
+import { isEmpty } from "lodash";
 import { FaHeart, FaBookmark, FaImdb, FaStar } from "react-icons/fa";
 
 const MovieInfo = ({
@@ -24,6 +26,8 @@ const MovieInfo = ({
   isFavorite,
   handleWatchlistClick,
   inWatchlist,
+  handleUserRating,
+  accountStates,
 }) => {
   return (
     <div className="media__container">
@@ -46,6 +50,36 @@ const MovieInfo = ({
           <h1 className="media__title">{title}</h1>
           <div className="media__options">
             <div className="media__options-row">
+              <div>
+                <a
+                  href={`http://www.imdb.com/title/${imdb}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  title="imdb"
+                >
+                  <i className="icon-imdb">
+                    <FaImdb />
+                  </i>
+                </a>
+              </div>
+              <div className="media__vote">
+                <i className="icon-star">
+                  <FaStar />
+                </i>
+                <div>
+                  <div>{voteAverage} / 10</div>
+                  <small>({voteCount})</small>
+                </div>
+                <div className="rating__container">
+                  <Rating
+                    totalStars={10}
+                    currentRating={
+                      !isEmpty(accountStates) ? accountStates.rated.value : 0
+                    }
+                    handleUserRating={handleUserRating}
+                  />
+                </div>
+              </div>
               {isFavorite ? (
                 <div
                   className="media__options-btn favorite"
@@ -80,40 +114,8 @@ const MovieInfo = ({
                   <FaBookmark />
                 </div>
               )}
-              {/* <div
-                className="media__options-btn watchlist"
-                onClick={() => handleWatchlistClick(!inWatchlist)}
-                title={
-                  !inWatchlist
-                    ? "Add to your watchlist"
-                    : "Remove from your watchlist "
-                }
-              >
-                {inWatchlist ? <FaBookmark /> : <FaRegBookmark />}
-              </div> */}
             </div>
             <div className="media__options-row">
-              <div>
-                <a
-                  href={`http://www.imdb.com/title/${imdb}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  title="imdb"
-                >
-                  <i className="icon-imdb">
-                    <FaImdb />
-                  </i>
-                </a>
-              </div>
-              <div className="media__vote">
-                <i className="icon-star">
-                  <FaStar />
-                </i>
-                <div>
-                  <div>{voteAverage} / 10</div>
-                  <small>({voteCount})</small>
-                </div>
-              </div>
               <div>
                 {media === "movie"
                   ? runtime

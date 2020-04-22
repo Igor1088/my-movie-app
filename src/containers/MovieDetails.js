@@ -9,6 +9,7 @@ import {
   getMovieDetailsLoading,
 } from "../reducers/movie-details";
 import { getUserLists } from "../reducers/userData";
+import { getAccountStates } from "../reducers/account-states";
 import { groupByArray } from "../utils/helpers";
 import { isEmpty } from "lodash";
 import Loader from "../components/Loader";
@@ -24,6 +25,7 @@ import ImageGallery from "../components/ImageGallery";
 class MovieDetails extends Component {
   componentDidMount() {
     this.props.fetchMovieDetails(this.props.match.params.id);
+    this.props.fetchAccountStates(this.props.match.params.id, "movie");
   }
 
   componentDidUpdate(prevProps) {
@@ -42,12 +44,6 @@ class MovieDetails extends Component {
       "movie",
       like
     );
-    // setTimeout(
-    //   function () {
-    //     this.props.fetchUserData("favorite", "movies");
-    //   }.bind(this),
-    //   500
-    // );
   };
 
   handleWatchlistClick = (like) => {
@@ -59,8 +55,18 @@ class MovieDetails extends Component {
     );
   };
 
+  handleUserRating = (rating) => {
+    this.props.userRateAction(this.props.match.params.id, "movie", rating);
+  };
+
   render() {
-    const { error, loading, movieDetails, userLists } = this.props;
+    const {
+      error,
+      loading,
+      movieDetails,
+      userLists,
+      accountStates,
+    } = this.props;
 
     if (error) {
       return <div>Error!</div>;
@@ -77,22 +83,24 @@ class MovieDetails extends Component {
     let director = [];
     let writers = [];
     const videos = movieDetails.videos ? movieDetails.videos.results : [];
+    const inWatchlist = accountStates.watchlist;
+    const isFavorite = accountStates.favorite;
 
-    const favoritesMovies = isEmpty(userLists.favorite.movies)
-      ? []
-      : userLists.favorite.movies.results;
+    // const favoritesMovies = isEmpty(userLists.favorite.movies)
+    //   ? []
+    //   : userLists.favorite.movies.results;
 
-    const isFavorite = favoritesMovies.some(
-      (i) => i.id === Number(this.props.match.params.id)
-    );
+    // const isFavorite = favoritesMovies.some(
+    //   (i) => i.id === Number(this.props.match.params.id)
+    // );
 
-    const watchlistMovies = isEmpty(userLists.watchlist.movies)
-      ? []
-      : userLists.watchlist.movies.results;
+    // const watchlistMovies = isEmpty(userLists.watchlist.movies)
+    //   ? []
+    //   : userLists.watchlist.movies.results;
 
-    const inWatchlist = watchlistMovies.some(
-      (i) => i.id === Number(this.props.match.params.id)
-    );
+    // const inWatchlist = watchlistMovies.some(
+    //   (i) => i.id === Number(this.props.match.params.id)
+    // );
 
     if (movieDetails.length !== 0) {
       images = movieDetails.images.backdrops;
@@ -166,6 +174,8 @@ class MovieDetails extends Component {
           isFavorite={isFavorite}
           inWatchlist={inWatchlist}
           handleWatchlistClick={this.handleWatchlistClick}
+          handleUserRating={this.handleUserRating}
+          accountStates={accountStates}
         />
         <div className="main">
           <Sidebar
@@ -266,12 +276,15 @@ const mapStateToProps = (state) => ({
   loading: getMovieDetailsLoading(state),
   movieDetails: getMovieDetails(state),
   userLists: getUserLists(state),
+  accountStates: getAccountStates(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
   fetchMovieDetails: bindActionCreators(actions.fetchMovieDetails, dispatch),
   userListAction: bindActionCreators(actions.userListAction, dispatch),
   fetchUserData: bindActionCreators(actions.fetchUserData, dispatch),
+  userRateAction: bindActionCreators(actions.userRateAction, dispatch),
+  fetchAccountStates: bindActionCreators(actions.fetchAccountStates, dispatch),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(MovieDetails);

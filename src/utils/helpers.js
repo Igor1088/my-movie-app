@@ -74,7 +74,8 @@ export const dateFormat = (date) => {
 
 export const handleErrors = (response) => {
   if (!response.ok) {
-    throw Error(response.statusMessage);
+    return Promise.reject(response);
+    // throw Error(response.statusMessage);
   }
   return response;
 };

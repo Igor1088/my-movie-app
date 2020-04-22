@@ -3,12 +3,13 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import * as actions from "../actions";
-import tvshowDetails, {
+import {
   getTvShowDetailsError,
   getTvShowDetails,
   getTvShowDetailsLoading,
 } from "../reducers/tvshow-details";
 import { getUserLists } from "../reducers/userData";
+import { getAccountStates } from "../reducers/account-states";
 import { isEmpty } from "lodash";
 import Loader from "../components/Loader";
 import MediaInfo from "../components/MediaInfo";
@@ -24,6 +25,7 @@ import ImageGallery from "../components/ImageGallery";
 class TvShowDetails extends Component {
   componentDidMount() {
     this.props.fetchTvShowDetails(this.props.match.params.id);
+    this.props.fetchAccountStates(this.props.match.params.id, "tv");
   }
 
   componentDidUpdate(prevProps) {
@@ -52,9 +54,23 @@ class TvShowDetails extends Component {
     );
   };
 
+  handleUserRating = (rating) => {
+    this.props.userRateAction(this.props.match.params.id, "tv", rating);
+  };
+
   render() {
-    const { error, loading, tvShowDetails, userLists } = this.props;
+    const {
+      error,
+      loading,
+      tvShowDetails,
+      userLists,
+      accountStates,
+    } = this.props;
     const videos = tvShowDetails.videos ? tvShowDetails.videos.results : [];
+    const inWatchlist = accountStates.watchlist;
+    const isFavorite = accountStates.favorite;
+    let cast = [];
+    let images, items, seasons, reviews;
 
     if (error) {
       return <div>Error!</div>;
@@ -64,24 +80,21 @@ class TvShowDetails extends Component {
       return <Loader />;
     }
 
-    let cast = [];
-    let images, items, seasons, reviews;
+    // const favoritesTV = isEmpty(userLists.favorite.tv)
+    //   ? []
+    //   : userLists.favorite.tv.results;
 
-    const favoritesTV = isEmpty(userLists.favorite.tv)
-      ? []
-      : userLists.favorite.tv.results;
+    // const isFavorite = favoritesTV.some(
+    //   (i) => i.id === Number(this.props.match.params.id)
+    // );
 
-    const isFavorite = favoritesTV.some(
-      (i) => i.id === Number(this.props.match.params.id)
-    );
+    // const watchlistTV = isEmpty(userLists.watchlist.tv)
+    //   ? []
+    //   : userLists.watchlist.tv.results;
 
-    const watchlistTV = isEmpty(userLists.watchlist.tv)
-      ? []
-      : userLists.watchlist.tv.results;
-
-    const inWatchlist = watchlistTV.some(
-      (i) => i.id === Number(this.props.match.params.id)
-    );
+    // const inWatchlist = watchlistTV.some(
+    //   (i) => i.id === Number(this.props.match.params.id)
+    // );
 
     if (tvShowDetails.length !== 0) {
       images = tvShowDetails.images.backdrops;
@@ -126,18 +139,6 @@ class TvShowDetails extends Component {
 
     return (
       <div>
-        {/* <MovieInfo
-          title={tvShowDetails.name}
-          poster={tvShowDetails.poster_path}
-          overview={tvShowDetails.overview}
-          tagline={tvShowDetails.tagline}
-          backdrop={tvShowDetails.backdrop_path}
-          genres={tvShowDetails.genres}
-          vote_average={tvShowDetails.vote_average}
-          director={[]}
-          writers={[]}
-        /> */}
-
         <MediaInfo
           title={tvShowDetails.name}
           poster={tvShowDetails.poster_path}
@@ -158,6 +159,8 @@ class TvShowDetails extends Component {
           isFavorite={isFavorite}
           inWatchlist={inWatchlist}
           handleWatchlistClick={this.handleWatchlistClick}
+          handleUserRating={this.handleUserRating}
+          accountStates={accountStates}
         />
         <main className="main">
           <Sidebar
@@ -243,12 +246,15 @@ const mapStateToProps = (state) => ({
   loading: getTvShowDetailsLoading(state),
   tvShowDetails: getTvShowDetails(state),
   userLists: getUserLists(state),
+  accountStates: getAccountStates(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
   fetchTvShowDetails: bindActionCreators(actions.fetchTvShowDetails, dispatch),
   userListAction: bindActionCreators(actions.userListAction, dispatch),
   fetchUserData: bindActionCreators(actions.fetchUserData, dispatch),
+  userRateAction: bindActionCreators(actions.userRateAction, dispatch),
+  fetchAccountStates: bindActionCreators(actions.fetchAccountStates, dispatch),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(TvShowDetails);
