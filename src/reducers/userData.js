@@ -10,6 +10,10 @@ const initialState = {
     movies: {},
     tv: {},
   },
+  rated: {
+    movies: {},
+    tv: {},
+  },
   error: null,
 };
 

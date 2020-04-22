@@ -64,6 +64,31 @@ class Nav extends Component {
               </li>
             </ul>
           </li>
+          <li className="acc-nav__item">
+            <span>Ratings</span>
+            <ul className="sub-nav">
+              <li>
+                <Link
+                  to={{
+                    pathname: "/u/rated/movies",
+                    state: { category: "rated", media: "movies" },
+                  }}
+                >
+                  Movies
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to={{
+                    pathname: "/u/rated/tv",
+                    state: { category: "rated", media: "tv" },
+                  }}
+                >
+                  TV Shows
+                </Link>
+              </li>
+            </ul>
+          </li>
         </ul>
       </nav>
     );

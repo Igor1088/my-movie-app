@@ -14,6 +14,17 @@ class UserPageList extends Component {
     this.props.fetchUserData(category, media);
   }
 
+  componentDidUpdate(prevProps) {
+    const oldId = prevProps.match.params.id;
+    const newId = this.props.match.params.id;
+    const category = this.props.location.state.category;
+    const media = this.props.location.state.media;
+
+    if (oldId !== newId) {
+      this.props.fetchUserData(category, media);
+    }
+  }
+
   render() {
     const { loading, list, location } = this.props;
     const category = location.state.category;
