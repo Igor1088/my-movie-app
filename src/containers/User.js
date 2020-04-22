@@ -11,7 +11,7 @@ import {
   getUserAuthorization,
 } from "../reducers/user";
 import { getSession } from "../reducers/auth";
-import { ReactComponent as UserIcon } from "../img/user.svg";
+import { FaUserCircle } from "react-icons/fa";
 
 class User extends Component {
   componentDidMount() {
@@ -44,7 +44,7 @@ class User extends Component {
       >
         <div className="header__user">
           <div className="header__user-img">
-            <UserIcon />
+            <FaUserCircle />
           </div>
           <div className="header__user-details">
             <div className="header__user-name">{user.name}</div>

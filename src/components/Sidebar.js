@@ -2,7 +2,6 @@ import React from "react";
 import PropTypes from "prop-types";
 import languages from "../constants/languages";
 import { dateFormat } from "../utils/helpers";
-import { ReactComponent as ImdbLogo } from "../img/imdb.svg";
 
 const Sidebar = (props) => {
   const {
@@ -16,7 +15,6 @@ const Sidebar = (props) => {
     media,
     birthday,
     gender,
-    imdbId,
     knownForDepartment,
     placeOfBirth,
     movieCredits,
@@ -49,31 +47,6 @@ const Sidebar = (props) => {
 
   return (
     <aside className="sidebar">
-      {/* <h4 className="sidebar__heading">{props.heading}</h4> */}
-      {/* <div className="sidebar__list">
-        {props.info.map((i) => {
-          return (
-            <div className="sidebar__row">
-              <div className="sidebar__row-heading">{i.label}</div>
-              <div className="sidebar__row-info">{i.data}</div>
-            </div>
-          );
-        })}
-        {media === "movie" ? (
-          <div className="sidebar__row">
-            <div className="sidebar__row-info">
-              <a
-                href={`http://www.imdb.com/title/${imdb}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                title="imdb"
-              >
-                <img src={imdbLogo} className="icon-imdb" alt="logo" />
-              </a>
-            </div>
-          </div>
-        ) : null}
-      </div> */}
       <div className="sidebar__list">
         {media === "movie" || media === "tv" ? (
           <React.Fragment>
@@ -129,24 +102,7 @@ const Sidebar = (props) => {
             </div>
             <div className="sidebar__row">
               <div className="sidebar__row-heading">Production Companies</div>
-              <div className="sidebar__row-info">
-                {prodCompanies}
-                {/* <p>
-                  {prodCompanies && prodCompanies[0]
-                    ? prodCompanies[0].name
-                    : ""}
-                </p>
-                <p>
-                  {prodCompanies && prodCompanies[1]
-                    ? prodCompanies[1].name
-                    : ""}
-                </p>
-                <p>
-                  {prodCompanies && prodCompanies[2]
-                    ? prodCompanies[2].name
-                    : ""}
-                </p> */}
-              </div>
+              <div className="sidebar__row-info">{prodCompanies}</div>
             </div>
           </React.Fragment>
         ) : null}
@@ -193,20 +149,6 @@ const Sidebar = (props) => {
             <div className="sidebar__row">
               <div className="sidebar__row-heading">Known Credits</div>
               <div className="sidebar__row-info">{credits}</div>
-            </div>
-            <div className="sidebar__row">
-              <div className="sidebar__row-info">
-                <a
-                  href={`http://www.imdb.com/name/${imdbId}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  title="imdb"
-                >
-                  <i className="icon-imdb">
-                    <ImdbLogo />
-                  </i>
-                </a>
-              </div>
             </div>
           </React.Fragment>
         ) : null}

@@ -1,10 +1,4 @@
 .media {
-  &__container {
-    @media (max-width: 767px) {
-      padding-top: 75px;
-    }
-  }
-
   &__hero {
     height: 460px;
     background-position: right top;
@@ -76,15 +70,33 @@
         border-right-color: transparent;
       }
     }
+
+    @media (max-width: 767px) {
+      margin-top: 2px;
+    }
   }
 
   &__options {
+    display: flex;
+    align-items: center;
+
+    > div {
+      margin-right: 10px;
+    }
+
     &-btn {
       display: inline-block;
       border-radius: 3px;
       font-size: 1.5em;
       cursor: pointer;
-      color: #7f8c8d;
+      color: #4e4e4e;
+      background-color: hsla(0, 0%, 0%, 0.77);
+      border-radius: 50%;
+      width: 1.6em;
+      height: 1.6em;
+      display: flex;
+      align-items: center;
+      justify-content: center;
 
       &.favorite {
         color: #e74c3c;
@@ -95,31 +107,36 @@
       }
     }
 
-    &-row {
+    .icon {
+      &-star {
+        font-size: 1.5em;
+      }
+
+      &-imdb {
+        font-size: 2em;
+        line-height: 0em;
+      }
+    }
+  }
+
+  &__info {
+    margin-top: 7px;
+
+    > div {
+      margin-right: 10px;
+    }
+
+    &-holder {
+      display: flex;
+
+      > div {
+        margin-right: 10px;
+      }
+    }
+
+    @media (min-width: 768px) {
       display: flex;
       align-items: center;
-      flex-wrap: wrap;
-      font-weight: 700;
-
-      @media (max-width: 767px) {
-        & + & {
-          margin-top: 5px;
-        }
-      }
-
-      > div {
-        margin-right: 10px;
-      }
-
-      @media (min-width: 768px) {
-        & + & {
-          margin-top: 5px;
-        }
-      }
-
-      > div {
-        margin-right: 10px;
-      }
     }
   }
 

@@ -2,6 +2,10 @@
   &__info {
     display: flex;
     color: #2c3e50;
+
+    @media (max-width: 767px) {
+      text-align: center;
+    }
   }
 
   &__image {
@@ -69,35 +73,34 @@
   }
 
   &__heading {
-    text-transform: uppercase;
-    margin-bottom: 20px;
-    margin-top: 0;
-    font-weight: 700;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: baseline;
+    margin-bottom: 15px;
+    font-size: 2.4em;
+    word-spacing: 2px;
+    letter-spacing: 0.5px;
 
-    h2 {
-      font-size: 2em;
-      word-spacing: 2px;
-      letter-spacing: 1px;
-      margin-right: 15px;
-
-      @media (max-width: 767px) {
-        font-size: 1.8em;
-        margin-right: 5px;
-        margin-bottom: 5px;
-      }
+    @media (max-width: 767px) {
+      font-size: 1.8em;
+      margin-bottom: 10px;
     }
   }
 
   &__icons-holder {
+    margin-top: 20px;
+
     a {
       color: inherit;
       display: inline-block;
 
       & + a {
         margin-left: 7px;
+      }
+
+      svg {
+        font-size: 2.4em;
+
+        @media (max-width: 767px) {
+          font-size: 2em;
+        }
       }
     }
   }

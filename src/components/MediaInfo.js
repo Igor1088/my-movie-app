@@ -49,74 +49,74 @@ const MovieInfo = ({
         <div className="media__details">
           <h1 className="media__title">{title}</h1>
           <div className="media__options">
-            <div className="media__options-row">
-              <div>
-                <a
-                  href={`http://www.imdb.com/title/${imdb}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  title="imdb"
-                >
-                  <i className="icon-imdb">
-                    <FaImdb />
-                  </i>
-                </a>
-              </div>
-              <div className="media__vote">
-                <i className="icon-star">
-                  <FaStar />
+            <div>
+              <a
+                href={`http://www.imdb.com/title/${imdb}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                title="Go to Imdb"
+              >
+                <i className="icon-imdb">
+                  <FaImdb />
                 </i>
-                <div>
-                  <div>{voteAverage} / 10</div>
-                  <small>({voteCount})</small>
-                </div>
-                <div className="rating__container">
-                  <Rating
-                    totalStars={10}
-                    currentRating={
-                      !isEmpty(accountStates) ? accountStates.rated.value : 0
-                    }
-                    handleUserRating={handleUserRating}
-                  />
-                </div>
-              </div>
-              {isFavorite ? (
-                <div
-                  className="media__options-btn favorite"
-                  onClick={() => handleFavoriteClick(!isFavorite)}
-                  title="Remove from your favorite list"
-                >
-                  <FaHeart />
-                </div>
-              ) : (
-                <div
-                  className="media__options-btn"
-                  onClick={() => handleFavoriteClick(!isFavorite)}
-                  title="Mark as favorite"
-                >
-                  <FaHeart />
-                </div>
-              )}
-              {inWatchlist ? (
-                <div
-                  className="media__options-btn watchlist"
-                  onClick={() => handleWatchlistClick(!inWatchlist)}
-                  title="Remove from your watchlist"
-                >
-                  <FaBookmark />
-                </div>
-              ) : (
-                <div
-                  className="media__options-btn"
-                  onClick={() => handleWatchlistClick(!inWatchlist)}
-                  title="Add to your watchlist"
-                >
-                  <FaBookmark />
-                </div>
-              )}
+              </a>
             </div>
-            <div className="media__options-row">
+            <div className="media__vote">
+              <i className="icon-star">
+                <FaStar />
+              </i>
               <div>
+                <div>{voteAverage} / 10</div>
+                <small>({voteCount})</small>
+              </div>
+              <div className="rating__container">
+                <Rating
+                  totalStars={10}
+                  currentRating={
+                    !isEmpty(accountStates) ? accountStates.rated.value : 0
+                  }
+                  handleUserRating={handleUserRating}
+                />
+              </div>
+            </div>
+            {isFavorite ? (
+              <div
+                className="media__options-btn favorite"
+                onClick={() => handleFavoriteClick(!isFavorite)}
+                title="Remove from your favorite list"
+              >
+                <FaHeart />
+              </div>
+            ) : (
+              <div
+                className="media__options-btn"
+                onClick={() => handleFavoriteClick(!isFavorite)}
+                title="Mark as favorite"
+              >
+                <FaHeart />
+              </div>
+            )}
+            {inWatchlist ? (
+              <div
+                className="media__options-btn watchlist"
+                onClick={() => handleWatchlistClick(!inWatchlist)}
+                title="Remove from your watchlist"
+              >
+                <FaBookmark />
+              </div>
+            ) : (
+              <div
+                className="media__options-btn"
+                onClick={() => handleWatchlistClick(!inWatchlist)}
+                title="Add to your watchlist"
+              >
+                <FaBookmark />
+              </div>
+            )}
+          </div>
+          <div className="media__info">
+            <div className="media__info-holder">
+              <div className="media__runtime">
                 {media === "movie"
                   ? runtime
                     ? timeFormat(runtime)
@@ -131,15 +131,15 @@ const MovieInfo = ({
               <div className="media__release-year">
                 {releaseDate ? dateFormat(releaseDate) : "-"}
               </div>
-              <div className="media__genres">
-                {genres.map((g) => {
-                  return (
-                    <div key={g.id} className="media__genres-item">
-                      {g.name}
-                    </div>
-                  );
-                })}
-              </div>
+            </div>
+            <div className="media__genres">
+              {genres.map((g) => {
+                return (
+                  <div key={g.id} className="media__genres-item">
+                    {g.name}
+                  </div>
+                );
+              })}
             </div>
           </div>
           {tagline ? <p className="media__tagline">{tagline}</p> : null}

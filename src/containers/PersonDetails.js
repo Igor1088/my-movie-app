@@ -89,7 +89,6 @@ class PersonDetails extends Component {
           <Sidebar
             birthday={personDetails.birthday}
             gender={personDetails.gender}
-            imdbId={personDetails.imdb_id}
             homepage={personDetails.homepage}
             knownForDepartment={personDetails.known_for_department}
             placeOfBirth={personDetails.place_of_birth}
