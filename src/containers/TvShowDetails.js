@@ -34,6 +34,9 @@ class TvShowDetails extends Component {
     if (newId !== oldId) {
       this.props.fetchTvShowDetails(this.props.match.params.id);
     }
+
+    console.log(prevProps);
+    console.log("props", this.props);
   }
 
   handleFavoriteClick = (like) => {

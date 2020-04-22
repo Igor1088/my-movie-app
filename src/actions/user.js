@@ -109,7 +109,7 @@ export function userRateAction(id, mediaType, rating) {
       .then(handleErrors)
       .then((response) => response.json())
       .then((data) => {
-        dispatch(fetchAccountStates(id, "movie"));
+        dispatch(fetchAccountStates(id, mediaType));
       });
   };
 }
