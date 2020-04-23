@@ -16,6 +16,8 @@ class Movies extends Component {
   constructor(props) {
     super(props);
 
+    this.myRef = React.createRef();
+
     this.state = {
       current: 1,
       filter: "day",
@@ -33,6 +35,7 @@ class Movies extends Component {
   handlePageClick = (page) => {
     this.setState({ current: page });
     this.props.fetchMovies(this.props.category, page, this.state.filter);
+    window.scrollTo(0, this.myRef.current.offsetTop);
   };
 
   handleFilterClick = (e) => {
@@ -58,7 +61,14 @@ class Movies extends Component {
     }
 
     if (loading) {
-      return <Loader />;
+      return (
+        <div>
+          <div className="row__head">
+            <h3 className="row__title">{heading}</h3>
+          </div>
+          <Loader />
+        </div>
+      );
     }
 
     if (movies.results) {
@@ -77,7 +87,7 @@ class Movies extends Component {
       });
     }
     return (
-      <div>
+      <div ref={this.myRef}>
         <div className="row__head">
           <h3 className="row__title">{heading}</h3>
           {filters ? (

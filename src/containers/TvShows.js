@@ -16,6 +16,8 @@ class TvShows extends Component {
   constructor(props) {
     super(props);
 
+    this.myRef = React.createRef();
+
     this.state = {
       current: 1,
       filter: "day",
@@ -33,6 +35,8 @@ class TvShows extends Component {
   handlePageClick = (page) => {
     this.setState({ current: page });
     this.props.fetchTvShows(this.props.category, page, this.state.filter);
+    window.scrollTo(0, this.myRef.current.offsetTop);
+    // this.myRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
   };
 
   handleFilterClick = (e) => {
@@ -57,7 +61,14 @@ class TvShows extends Component {
     }
 
     if (loading) {
-      return <Loader />;
+      return (
+        <div>
+          <div className="row__head">
+            <h3 className="row__title">{heading}</h3>
+          </div>
+          <Loader />
+        </div>
+      );
     }
 
     let items;
@@ -78,7 +89,7 @@ class TvShows extends Component {
       });
     }
     return (
-      <div>
+      <div ref={this.myRef}>
         <div className="row__head">
           <h3 className="row__title">{heading}</h3>
           {filters ? (

@@ -40,7 +40,7 @@
 
   &__image {
     width: 100%;
-    border-radius: 4px;
+    border-radius: 3px;
     overflow: hidden;
 
     @media (min-width: 768px) {
@@ -56,7 +56,6 @@
     position: absolute;
     top: 0;
     right: 0;
-    height: 225px;
     left: 0;
     display: flex;
     align-items: center;
@@ -65,10 +64,14 @@
     color: #f1c40f;
     font-size: 1.4em;
     font-weight: 500;
-    border-radius: 4px;
+    border-radius: 3px;
     overflow: hidden;
     opacity: 0;
     transition: all 0.4s ease-in-out;
+
+    @media (min-width: 768px) {
+      height: 225px;
+    }
 
     span {
       margin-left: 3px;

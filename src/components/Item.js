@@ -7,7 +7,7 @@ const Item = (props) => {
   const { poster, vote_average, title, id, media, year } = props;
   const placeholder = "http://placehold.it/154x230";
   const path = poster
-    ? `https://image.tmdb.org/t/p/w154/${poster}`
+    ? `https://image.tmdb.org/t/p/w154${poster}`
     : placeholder;
 
   return (
@@ -29,7 +29,7 @@ const Item = (props) => {
         </div>
         <div className="item__info-holder">
           <p className="item__title">{title}</p>
-          <p className="item__year">({year ? year.slice(0, 4) : year})</p>
+          <p className="item__year">{year ? `(${year.slice(0, 4)})` : year}</p>
         </div>
       </Link>
     </div>

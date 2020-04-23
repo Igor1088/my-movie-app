@@ -16,6 +16,8 @@ class People extends Component {
   constructor(props) {
     super(props);
 
+    this.myRef = React.createRef();
+
     this.state = {
       current: 1,
       filter: "day",
@@ -33,6 +35,7 @@ class People extends Component {
   handlePageClick = (page) => {
     this.setState({ current: page });
     this.props.fetchPeople(page, this.props.category, this.state.filter);
+    window.scrollTo(0, this.myRef.current.offsetTop);
   };
 
   handleFilterClick = (e) => {
@@ -57,7 +60,16 @@ class People extends Component {
     }
 
     if (loading) {
-      return <Loader />;
+      return (
+        <div>
+          <div className="row__head">
+            <h3 className="row__title">
+              {heading ? heading : "Popular People"}
+            </h3>
+          </div>
+          <Loader />
+        </div>
+      );
     }
 
     let items;
@@ -78,7 +90,7 @@ class People extends Component {
     }
 
     return (
-      <div>
+      <div ref={this.myRef}>
         <div className="row__head">
           <h3 className="row__title">{heading ? heading : "Popular People"}</h3>
           {filters ? (

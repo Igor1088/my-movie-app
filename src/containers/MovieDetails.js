@@ -35,7 +35,6 @@ class MovieDetails extends Component {
       this.props.fetchMovieDetails(this.props.match.params.id);
       this.props.fetchAccountStates(this.props.match.params.id, "tv");
     }
-    // ReactDOM.findDOMNode(this).scrollIntoView();
   }
 
   handleFavoriteClick = (like) => {

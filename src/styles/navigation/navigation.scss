@@ -15,7 +15,7 @@
     }
 
     &:hover {
-      color: lighten($primaryColor, 30%);
+      color: $secondaryColor;
 
       .nav {
         display: flex;
