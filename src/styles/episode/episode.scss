@@ -139,7 +139,18 @@
   }
 
   &__vote {
-    color: #f1c40f;
+    display: flex;
+    align-items: center;
+    font-size: 1.1em;
+
+    .icon-star {
+      font-size: 1.3em;
+    }
+
+    &-details {
+      font-size: 0.8em;
+      margin-left: 3px;
+    }
   }
 
   &__overview {

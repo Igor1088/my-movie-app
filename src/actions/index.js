@@ -14,6 +14,7 @@ import {
   userListAction,
   userRateAction,
   fetchAccountStates,
+  deleteRating,
 } from "./user";
 
 export {
@@ -34,4 +35,5 @@ export {
   userListAction,
   userRateAction,
   fetchAccountStates,
+  deleteRating,
 };

@@ -160,11 +160,16 @@
       background-color: #111921;
       border-radius: 5px;
       font-size: 1.5em;
+      align-items: center;
+
+      .icon-remove {
+        margin-right: 10px;
+      }
     }
 
     &:hover {
       .rating__container {
-        display: block;
+        display: flex;
       }
     }
   }

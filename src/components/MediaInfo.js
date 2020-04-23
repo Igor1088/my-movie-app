@@ -5,6 +5,7 @@ import Rating from "./Rating";
 import { dateFormat, timeFormat } from "../utils/helpers";
 import { isEmpty } from "lodash";
 import { FaHeart, FaBookmark, FaImdb, FaStar } from "react-icons/fa";
+import { IoIosRemoveCircleOutline } from "react-icons/io";
 
 const MovieInfo = ({
   poster,
@@ -28,6 +29,7 @@ const MovieInfo = ({
   inWatchlist,
   handleUserRating,
   accountStates,
+  deleteRating,
 }) => {
   return (
     <div className="media__container">
@@ -70,6 +72,13 @@ const MovieInfo = ({
                 <small>({voteCount})</small>
               </div>
               <div className="rating__container">
+                <i
+                  className="icon-remove"
+                  title="Delete Rating"
+                  onClick={deleteRating}
+                >
+                  <IoIosRemoveCircleOutline />
+                </i>
                 <Rating
                   totalStars={10}
                   currentRating={

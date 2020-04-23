@@ -114,6 +114,28 @@ export function userRateAction(id, mediaType, rating) {
   };
 }
 
+export function deleteRating(id, mediaType) {
+  return (dispatch) => {
+    const sessionID = localStorage.getItem("session_id");
+    fetch(
+      `https://api.themoviedb.org/3/${mediaType}/${id}/rating?api_key=${API_KEY}&session_id=${sessionID}`,
+      {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    )
+      .then(handleErrors)
+      .then((response) => response.json())
+      .then((data) => {
+        setTimeout(function () {
+          dispatch(fetchAccountStates(id, mediaType));
+        }, 500);
+      });
+  };
+}
+
 export function fetchAccountStates(id, mediaType) {
   return (dispatch) => {
     const sessionID = localStorage.getItem("session_id");

@@ -20,6 +20,12 @@
 
       .nav {
         display: flex;
+
+        &__link {
+          &:hover {
+            background-color: #ececec;
+          }
+        }
       }
     }
 
@@ -211,6 +217,7 @@
 
       &:hover {
         color: $secondaryColor;
+        background-color: #ececec;
       }
     }
   }

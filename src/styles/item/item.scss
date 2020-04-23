@@ -62,14 +62,14 @@
     justify-content: center;
     background-color: rgba(0, 0, 0, 0.8);
     color: #f1c40f;
-    font-size: 21px;
-    line-height: 25px;
+    font-size: 1.4em;
     font-weight: 700;
     border-radius: 4px;
     overflow: hidden;
 
     span {
       margin-left: 3px;
+      font-size: 0.8em;
     }
   }
 }

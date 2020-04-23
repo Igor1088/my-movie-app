@@ -33,6 +33,7 @@ class TvShowDetails extends Component {
     let newId = this.props.match.params.id;
     if (newId !== oldId) {
       this.props.fetchTvShowDetails(this.props.match.params.id);
+      this.props.fetchAccountStates(this.props.match.params.id, "tv");
     }
 
     console.log(prevProps);
@@ -59,6 +60,10 @@ class TvShowDetails extends Component {
 
   handleUserRating = (rating) => {
     this.props.userRateAction(this.props.match.params.id, "tv", rating);
+  };
+
+  handleDeleteRating = () => {
+    this.props.deleteRating(this.props.match.params.id, "tv");
   };
 
   render() {
@@ -164,6 +169,7 @@ class TvShowDetails extends Component {
           handleWatchlistClick={this.handleWatchlistClick}
           handleUserRating={this.handleUserRating}
           accountStates={accountStates}
+          deleteRating={this.handleDeleteRating}
         />
         <main className="main">
           <Sidebar
@@ -258,6 +264,7 @@ const mapDispatchToProps = (dispatch) => ({
   fetchUserData: bindActionCreators(actions.fetchUserData, dispatch),
   userRateAction: bindActionCreators(actions.userRateAction, dispatch),
   fetchAccountStates: bindActionCreators(actions.fetchAccountStates, dispatch),
+  deleteRating: bindActionCreators(actions.deleteRating, dispatch),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(TvShowDetails);

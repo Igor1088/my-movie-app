@@ -20,9 +20,7 @@ const Item = (props) => {
           {/* </figure> */}
           {vote_average ? (
             <div className="item__vote-average">
-              <i className="icon-star">
-                <FaStar />
-              </i>
+              <FaStar />
               <span>{vote_average}</span>
             </div>
           ) : (

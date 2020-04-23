@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { dateFormat } from "../utils/helpers";
 import { Link } from "react-router-dom";
 import CastList from "./CastList";
+import { FaStar } from "react-icons/fa";
 
 class Episode extends Component {
   constructor(props) {
@@ -54,10 +55,15 @@ class Episode extends Component {
               <div className="episode__date">{dateFormat(airDate)}</div>
             </div>
             <div className="episode__info">
-              <span className="episode__vote">
-                <ion-icon name="star"></ion-icon>
-              </span>{" "}
-              {voteAverage.toFixed(1)} ({voteCount})
+              <div className="episode__vote">
+                <i className="icon-star">
+                  <FaStar />
+                </i>
+                <div className="episode__vote-details">
+                  <div>{voteAverage.toFixed(1)}/10</div>
+                  <small>({voteCount})</small>
+                </div>
+              </div>
             </div>
             <div className="episode__overview">{overview}</div>
           </div>
