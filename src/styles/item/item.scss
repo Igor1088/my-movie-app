@@ -10,7 +10,7 @@
       }
 
       &__vote-average {
-        display: flex;
+        opacity: 1;
       }
     }
   }
@@ -20,19 +20,20 @@
   }
 
   &__title {
-    font-size: 12px;
-    font-weight: 700;
+    font-size: 0.8em;
+    font-weight: 500;
     color: $secondaryColor;
     transition: all 0.5s ease;
   }
 
   &__year {
-    font-size: 12px;
+    font-size: 0.8em;
     color: $primaryColor;
+    font-weight: 300;
   }
 
   &__add-info {
-    font-size: 12px;
+    font-size: 0.8em;
     color: #2c3e50;
     margin-top: 5px;
   }
@@ -42,12 +43,12 @@
     border-radius: 4px;
     overflow: hidden;
 
+    @media (min-width: 768px) {
+      height: 225px;
+    }
+
     &-holder {
       position: relative;
-
-      @media (max-width: 767px) {
-        height: auto !important;
-      }
     }
   }
 
@@ -55,17 +56,19 @@
     position: absolute;
     top: 0;
     right: 0;
-    bottom: 0;
+    height: 225px;
     left: 0;
-    display: none;
+    display: flex;
     align-items: center;
     justify-content: center;
     background-color: rgba(0, 0, 0, 0.8);
     color: #f1c40f;
     font-size: 1.4em;
-    font-weight: 700;
+    font-weight: 500;
     border-radius: 4px;
     overflow: hidden;
+    opacity: 0;
+    transition: all 0.4s ease-in-out;
 
     span {
       margin-left: 3px;

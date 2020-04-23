@@ -29,7 +29,7 @@ const Item = (props) => {
         </div>
         <div className="item__info-holder">
           <p className="item__title">{title}</p>
-          <p className="item__year">{year ? year.slice(0, 4) : year}</p>
+          <p className="item__year">({year ? year.slice(0, 4) : year})</p>
         </div>
       </Link>
     </div>

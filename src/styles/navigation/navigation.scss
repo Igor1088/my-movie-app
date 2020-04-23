@@ -2,7 +2,6 @@
   display: flex;
   padding-left: 0;
   list-style: none;
-  font-size: 1.1rem;
 
   &__link {
     display: block;
@@ -40,6 +39,7 @@
       border: 1px solid #d4d6d6;
       background-color: #fff;
       box-shadow: 3px 2px 4px 0px rgba($color: #000000, $alpha: 0.5);
+      padding: 7px 0;
     }
   }
 
@@ -65,7 +65,7 @@
     width: 70px;
     padding: 5px 11px;
     font-weight: 300;
-    font-size: 14px;
+    font-size: 1em;
     border-radius: 17px;
     border: none;
     background: #ecf0f1;
@@ -208,6 +208,7 @@
   border: 1px solid #d4d6d6;
   background-color: #fff;
   box-shadow: 3px 2px 4px 0px rgba(0, 0, 0, 0.5);
+  padding: 7px 0;
 
   > li {
     a {

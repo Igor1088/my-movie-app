@@ -92,7 +92,8 @@ a {
   }
 
   &__title {
-    font-size: 24px;
+    font-size: 1.3em;
+    text-transform: uppercase;
   }
 
   @media (max-width: 767px) {
@@ -115,58 +116,6 @@ a {
   }
 }
 
-.movie {
-  &__content {
-    display: flex;
-    margin-top: 30px;
-
-    @media (max-width: 767px) {
-      flex-direction: column;
-    }
-
-    &-main {
-      padding-top: 20px;
-      // background-color: #ecf0f1;
-      flex: 1 auto;
-
-      .item {
-        width: 119px;
-
-        &__image-holder {
-          // height: 170px !important;
-          height: auto !important;
-        }
-      }
-
-      @media (max-width: 767px) {
-        flex-direction: column;
-      }
-
-      h4 {
-        margin: 15px 15px;
-        font-size: 120%;
-        font-weight: 700;
-      }
-    }
-  }
-
-  &__sidebar {
-    width: 20%;
-    min-width: 20%;
-    background-color: #ecf0f1;
-    padding: 20px 10px 10px 10px;
-
-    @media (max-width: 767px) {
-      width: auto;
-    }
-
-    h4 {
-      font-size: 120%;
-      font-weight: 700;
-    }
-  }
-}
-
 .main {
   margin-top: 10px;
 
@@ -184,14 +133,27 @@ a {
       &.people {
         grid-template-columns: repeat(auto-fit, 99px);
       }
+
+      .item {
+        &__vote-average {
+          height: 173px;
+        }
+
+        img {
+          @media (min-width: 768px) {
+            height: 173px;
+          }
+        }
+      }
     }
   }
 }
 
 section {
   > h4 {
-    font-size: 1.3em;
+    font-size: 1.2em;
     margin-bottom: 10px;
+    text-transform: uppercase;
   }
 
   & + & {
@@ -215,7 +177,7 @@ section {
 
     &-heading {
       color: lighten($primaryColor, 30%);
-      font-weight: 700;
+      font-weight: 500;
     }
 
     &-info {
