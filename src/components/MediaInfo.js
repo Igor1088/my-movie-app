@@ -30,6 +30,7 @@ const MovieInfo = ({
   handleUserRating,
   accountStates,
   deleteRating,
+  userLogged,
 }) => {
   return (
     <div className="media__container">
@@ -64,60 +65,86 @@ const MovieInfo = ({
               </a>
             </div>
             <div className="media__vote">
-              <i className="icon-star">
-                <FaStar />
-              </i>
+              {userLogged ? (
+                <i className="icon-star">
+                  <FaStar />
+                </i>
+              ) : (
+                <i className="icon-star" title="Login to rate">
+                  <FaStar />
+                </i>
+              )}
               <div>
                 <div>{voteAverage} / 10</div>
                 <small>({voteCount})</small>
               </div>
-              <div className="rating__container">
-                <i
-                  className="icon-remove"
-                  title="Delete Rating"
-                  onClick={deleteRating}
-                >
-                  <IoIosRemoveCircleOutline />
-                </i>
-                <Rating
-                  totalStars={10}
-                  currentRating={
-                    !isEmpty(accountStates) ? accountStates.rated.value : 0
-                  }
-                  handleUserRating={handleUserRating}
-                />
-              </div>
+              {userLogged ? (
+                <div className="rating__container">
+                  <i
+                    className="icon-remove"
+                    title="Delete Rating"
+                    onClick={deleteRating}
+                  >
+                    <IoIosRemoveCircleOutline />
+                  </i>
+                  <Rating
+                    totalStars={10}
+                    currentRating={
+                      !isEmpty(accountStates) ? accountStates.rated.value : 0
+                    }
+                    handleUserRating={handleUserRating}
+                  />
+                </div>
+              ) : null}
             </div>
-            {isFavorite ? (
-              <div
-                className="media__options-btn favorite"
-                onClick={() => handleFavoriteClick(!isFavorite)}
-                title="Remove from your favorite list"
-              >
-                <FaHeart />
-              </div>
+            {userLogged ? (
+              isFavorite ? (
+                <div
+                  className="media__options-btn favorite"
+                  onClick={() => handleFavoriteClick(!isFavorite)}
+                  title="Remove from your favorite list"
+                >
+                  <FaHeart />
+                </div>
+              ) : (
+                <div
+                  className="media__options-btn"
+                  onClick={() => handleFavoriteClick(!isFavorite)}
+                  title="Mark as favorite"
+                >
+                  <FaHeart />
+                </div>
+              )
             ) : (
               <div
                 className="media__options-btn"
-                onClick={() => handleFavoriteClick(!isFavorite)}
-                title="Mark as favorite"
+                title="Login to add to your favorite list"
               >
                 <FaHeart />
               </div>
             )}
-            {inWatchlist ? (
-              <div
-                className="media__options-btn watchlist"
-                onClick={() => handleWatchlistClick(!inWatchlist)}
-                title="Remove from your watchlist"
-              >
-                <FaBookmark />
-              </div>
+            {userLogged ? (
+              inWatchlist ? (
+                <div
+                  className="media__options-btn watchlist"
+                  onClick={() => handleWatchlistClick(!inWatchlist)}
+                  title="Remove from your watchlist"
+                >
+                  <FaBookmark />
+                </div>
+              ) : (
+                <div
+                  className="media__options-btn"
+                  onClick={() => handleWatchlistClick(!inWatchlist)}
+                  title="Add to your watchlist"
+                >
+                  <FaBookmark />
+                </div>
+              )
             ) : (
               <div
                 className="media__options-btn"
-                onClick={() => handleWatchlistClick(!inWatchlist)}
-                title="Add to your watchlist"
+                title="Login to add to your watchlist"
               >
                 <FaBookmark />
               </div>

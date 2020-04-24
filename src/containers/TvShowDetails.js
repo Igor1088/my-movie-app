@@ -8,6 +8,7 @@ import {
   getTvShowDetails,
   getTvShowDetailsLoading,
 } from "../reducers/tvshow-details";
+import { getUserAuthorization } from "../reducers/user";
 import { getUserLists } from "../reducers/userData";
 import { getAccountStates } from "../reducers/account-states";
 import { isEmpty } from "lodash";
@@ -70,6 +71,7 @@ class TvShowDetails extends Component {
       tvShowDetails,
       userLists,
       accountStates,
+      userLogged,
     } = this.props;
     const videos = tvShowDetails.videos ? tvShowDetails.videos.results : [];
     const inWatchlist = accountStates.watchlist;
@@ -167,6 +169,7 @@ class TvShowDetails extends Component {
           handleUserRating={this.handleUserRating}
           accountStates={accountStates}
           deleteRating={this.handleDeleteRating}
+          userLogged={userLogged}
         />
         <main className="main">
           <Sidebar
@@ -253,6 +256,7 @@ const mapStateToProps = (state) => ({
   tvShowDetails: getTvShowDetails(state),
   userLists: getUserLists(state),
   accountStates: getAccountStates(state),
+  userLogged: getUserAuthorization(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

@@ -52,7 +52,9 @@ class Episode extends Component {
           <div className="episode__details">
             <div className="episode__heading">
               <h4 className="episode__name">{name}</h4>
-              <div className="episode__date">{dateFormat(airDate)}</div>
+              <div className="episode__date">
+                {airDate ? dateFormat(airDate) : ""}
+              </div>
             </div>
             <div className="episode__info">
               <div className="episode__vote">

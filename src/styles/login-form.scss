@@ -57,6 +57,10 @@
     opacity: 0;
     transition: all 0.3s ease;
 
+    @media (max-width: 767px) {
+      right: 50%;
+    }
+
     &.open {
       z-index: 20;
       opacity: 1;

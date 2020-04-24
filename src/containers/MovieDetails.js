@@ -8,6 +8,7 @@ import {
   getMovieDetails,
   getMovieDetailsLoading,
 } from "../reducers/movie-details";
+import { getUserAuthorization } from "../reducers/user";
 import { getUserLists } from "../reducers/userData";
 import { getAccountStates } from "../reducers/account-states";
 import { groupByArray } from "../utils/helpers";
@@ -70,6 +71,7 @@ class MovieDetails extends Component {
       movieDetails,
       userLists,
       accountStates,
+      userLogged,
     } = this.props;
 
     if (error) {
@@ -181,6 +183,7 @@ class MovieDetails extends Component {
           handleUserRating={this.handleUserRating}
           accountStates={accountStates}
           deleteRating={this.handleDeleteRating}
+          userLogged={userLogged}
         />
         <div className="main">
           <Sidebar
@@ -282,6 +285,7 @@ const mapStateToProps = (state) => ({
   movieDetails: getMovieDetails(state),
   userLists: getUserLists(state),
   accountStates: getAccountStates(state),
+  userLogged: getUserAuthorization(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
