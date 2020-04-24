@@ -32,9 +32,21 @@ class LoginForm extends Component {
     this.props.handleLogin(username, password);
   };
 
+  handeSubmitOnEnter = (e) => {
+    const username = this.state.username;
+    const password = this.state.password;
+
+    if (e.key === "Enter") {
+      this.props.handleLogin(username, password);
+    }
+  };
+
   render() {
     return (
-      <div className={`login-form ${this.props.login ? "open" : ""}`}>
+      <div
+        className={`login-form ${this.props.login ? "open" : ""}`}
+        onKeyDown={this.handeSubmitOnEnter}
+      >
         {/* <div className="login-form__heading">Login</div> */}
         <div className="login-form__row">
           <div className="login-form__input-icon">
