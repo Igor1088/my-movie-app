@@ -8,6 +8,7 @@ class LoginForm extends Component {
     this.state = {
       username: "",
       password: "",
+      passwordHidden: true,
     };
   }
 
@@ -20,6 +21,10 @@ class LoginForm extends Component {
     });
   };
 
+  handlePasswordToggle = () => {
+    this.setState({ passwordHidden: !this.state.passwordHidden });
+  };
+
   handeSubmit = () => {
     const username = this.state.username;
     const password = this.state.password;
@@ -30,7 +35,7 @@ class LoginForm extends Component {
   render() {
     return (
       <div className={`login-form ${this.props.login ? "open" : ""}`}>
-        <div className="login-form__heading">Login</div>
+        {/* <div className="login-form__heading">Login</div> */}
         <div className="login-form__row">
           <div className="login-form__input-icon">
             <FaUser />
@@ -49,11 +54,14 @@ class LoginForm extends Component {
           </div>
           <input
             name="password"
-            type="password"
+            type={this.state.passwordHidden ? "password" : "text"}
             placeholder="Password"
             value={this.state.password}
             onChange={this.handleInputChange}
           />
+        </div>
+        <div className="login__toggle-pass">
+          <span onClick={this.handlePasswordToggle}>Show password</span>
         </div>
         {this.props.error ? (
           <div className="login-form__error">{this.props.error}</div>
@@ -69,6 +77,18 @@ class LoginForm extends Component {
         >
           Forgot Password?
         </a>
+        <hr />
+        <span className="login__register">
+          Don't have an account?&nbsp;
+          <a
+            href="https://www.themoviedb.org/account/signup"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="login__register-link"
+          >
+            Sign up
+          </a>
+        </span>
       </div>
     );
   }

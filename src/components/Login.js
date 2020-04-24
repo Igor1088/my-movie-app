@@ -8,14 +8,6 @@ const Login = ({ handleLogin, error }) => {
 
   return (
     <div className="login">
-      <a
-        href="https://www.themoviedb.org/account/signup"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="login-register"
-      >
-        Register
-      </a>
       <Link onClick={() => setLogin(!login)} className="login-btn">
         <span>Login</span>
         <FaSignInAlt />
