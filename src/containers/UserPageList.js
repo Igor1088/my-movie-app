@@ -48,12 +48,15 @@ class UserPageList extends Component {
     const { loading, list, location } = this.props;
     const category = location.state.category;
     const media = location.state.media;
+    const listEmpty = isEmpty(list[category][media])
+      ? false
+      : list[category][media].results.length;
 
     if (loading) {
       return <Loader />;
     }
 
-    if (isEmpty(list[category][media])) {
+    if (!listEmpty) {
       return <div>Nothing in the list</div>;
     }
 

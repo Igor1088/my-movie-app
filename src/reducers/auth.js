@@ -3,36 +3,37 @@ import * as types from "../constants/actionTypes";
 const initialState = {
   loading: false,
   session: null,
-  error: null
+  error: null,
 };
 
-export default function(state = initialState, action) {
+export default function (state = initialState, action) {
   switch (action.type) {
     case types.CREATE_SESSION_BEGIN:
       return {
         ...state,
-        loading: true
+        loading: true,
       };
     case types.CREATE_SESSION_SUCCESS:
       return {
         ...state,
         loading: false,
-        session: action.payload.session_id
+        session: action.payload.session_id,
       };
     case types.CREATE_SESSION_ERROR:
       return {
         ...state,
         loading: false,
-        error: action.payload
+        error: action.payload,
       };
     case types.DELETE_SESSION:
       return {
         ...state,
-        session: null
+        session: null,
       };
     default:
       return state;
   }
 }
 
-export const getSession = state => state.auth.session;
+export const getSession = (state) => state.auth.session;
+export const getSessionError = (state) => state.auth.error;

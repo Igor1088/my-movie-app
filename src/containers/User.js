@@ -47,8 +47,8 @@ class User extends Component {
             <FaUserCircle />
           </div>
           <div className="header__user-details">
-            <div className="header__user-name">{user.name}</div>
-            View Lists
+            <div className="header__user-name">{user.username}</div>
+            <span>View Lists</span>
           </div>
         </div>
       </Link>

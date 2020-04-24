@@ -69,7 +69,6 @@ class Search extends Component {
   handleSubmit = (e) => {
     if (e.key === "Enter") {
       this.props.fetchSearchResults(this.state.value);
-      // this.setState({ value: "", suggestions: [], toResults: true });
       this.props.history.push("/search");
       this.setState({ value: "" });
       localStorage.setItem("query", this.state.value);

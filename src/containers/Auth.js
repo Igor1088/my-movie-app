@@ -3,11 +3,12 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import * as actions from "../actions";
 import { getUser } from "../reducers/user";
+import { getSessionError } from "../reducers/auth";
 import User from "./User";
 import Login from "../components/Login";
 import Logout from "../components/Logout";
 
-const Auth = ({ user, login, logout }) => {
+const Auth = ({ user, login, logout, errorLogin }) => {
   return (
     <div className="header__top">
       {localStorage.getItem("session_id") ? (
@@ -18,7 +19,7 @@ const Auth = ({ user, login, logout }) => {
       ) : (
         <div>
           <div className="header__top-info">
-            <Login onLogin={login} />
+            <Login handleLogin={login} error={errorLogin} />
           </div>
         </div>
       )}
@@ -28,6 +29,7 @@ const Auth = ({ user, login, logout }) => {
 
 const mapStateToProps = (state) => ({
   user: getUser(state),
+  errorLogin: getSessionError(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

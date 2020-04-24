@@ -3,8 +3,7 @@ import { API_KEY } from "../constants/config";
 import { fetchUser } from "./user";
 import { handleErrors } from "../utils/helpers";
 
-export function requestLogin() {
-  let win = window.open("", "_blank");
+export function requestLogin(username, password) {
   return (dispatch) => {
     fetch(
       `https://api.themoviedb.org/3/authentication/token/new?api_key=${API_KEY}`
@@ -12,20 +11,41 @@ export function requestLogin() {
       .then(handleErrors)
       .then((response) => response.json())
       .then((data) => {
-        localStorage.setItem("token", data.request_token);
-        win.location = `https://www.themoviedb.org/authenticate/${data.request_token}`;
-        let timer = setInterval(function () {
-          if (win.closed) {
-            clearInterval(timer);
-            dispatch(createSession(data.request_token));
-          }
-        }, 0);
+        dispatch(authenticateToken(username, password, data.request_token));
+      });
+  };
+}
+
+export function authenticateToken(username, password, token) {
+  return (dispatch) => {
+    fetch(
+      `https://api.themoviedb.org/3/authentication/token/validate_with_login?api_key=${API_KEY}`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json;charset=utf-8",
+        },
+        body: JSON.stringify({
+          username: username,
+          password: password,
+          request_token: token,
+        }),
+      }
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        if (data.status_code) {
+          console.log(data.status_message);
+          dispatch(createSessionError(data.status_message));
+        } else {
+          dispatch(createSession(data.request_token));
+        }
       });
   };
 }
 
 export function createSession(token) {
-  // let sessionID;
   return (dispatch) => {
     createSessionBegin();
     fetch(
@@ -38,12 +58,8 @@ export function createSession(token) {
           localStorage.setItem("session_id", data.session_id);
           dispatch(createSessionSuccess(data));
           dispatch(fetchUser(data.session_id));
-          // sessionID = data.sessionID;
         }
         return;
-        // setTimeout(function() {
-        //     dispatch(fetchUser(sessionID));
-        // }, 1000);
       })
       .catch((error) => {
         dispatch(createSessionError(error));

@@ -19,6 +19,7 @@
 @import "icons";
 @import "rating";
 @import "list";
+@import "login-form";
 
 html {
   font-family: $font-family;
@@ -159,6 +160,19 @@ section {
 
   & + & {
     margin-top: 15px;
+  }
+}
+
+.mask {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 10;
+
+  &.hidden {
+    display: none;
   }
 }
 

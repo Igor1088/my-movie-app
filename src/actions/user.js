@@ -25,8 +25,13 @@ export function fetchLoggedUser() {
       )
         .then((response) => response.json())
         .then((data) => {
-          dispatch(fetchUserSuccess(data));
-          localStorage.setItem("user_id", data.id);
+          if (data.status_code) {
+            console.log(data.status_message);
+            dispatch(fetchUserError(data.status_message));
+          } else {
+            dispatch(fetchUserSuccess(data));
+            localStorage.setItem("user_id", data.id);
+          }
           // dispatch(fetchUserData("favorite", "movies"));
           // dispatch(fetchUserData("favorite", "tv"));
           // dispatch(fetchUserData("watchlist", "movies"));

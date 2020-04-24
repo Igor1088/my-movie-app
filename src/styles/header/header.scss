@@ -2,17 +2,13 @@
   &__top {
     display: flex;
     justify-content: flex-end;
-    padding: 5px 10px;
+    padding: 5px 0;
   }
 
   &__top {
     &-info {
       display: flex;
       align-items: center;
-
-      a {
-        color: lighten($primaryColor, 20%);
-      }
     }
   }
 
@@ -23,10 +19,14 @@
 
     &-details {
       margin-left: 10px;
+
+      span {
+        color: $primaryColor;
+      }
     }
 
     &-link {
-      font-size: 12px;
+      font-size: 0.9em;
     }
 
     &-img {
@@ -36,6 +36,7 @@
       background-position: center;
       background-repeat: no-repeat;
       border-radius: 50%;
+      color: $primaryColor;
 
       svg {
         width: 100%;
