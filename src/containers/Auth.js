@@ -7,10 +7,12 @@ import { getSessionError } from "../reducers/auth";
 import User from "./User";
 import Login from "../components/Login";
 import Logout from "../components/Logout";
+import SearchBox from "../containers/Search";
 
 const Auth = ({ user, login, logout, errorLogin }) => {
   return (
     <div className="header__top">
+      <SearchBox />
       {localStorage.getItem("session_id") ? (
         <div className="header__top-info">
           <User />

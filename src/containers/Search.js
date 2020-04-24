@@ -85,7 +85,7 @@ class Search extends Component {
     };
 
     return (
-      <div className="nav-search" onKeyDown={this.handleSubmit}>
+      <div className="search" onKeyDown={this.handleSubmit}>
         <Autosuggest
           suggestions={suggestions}
           onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}

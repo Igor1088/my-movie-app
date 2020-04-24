@@ -1,5 +1,4 @@
 import React from "react";
-import SearchBox from "../containers/Search";
 import Nav from "./Nav";
 
 const navLinks = [
@@ -32,7 +31,6 @@ const navLinks = [
 const NavBar = () => (
   <nav className="nav-bar">
     <Nav items={navLinks} />
-    <SearchBox />
   </nav>
 );
 
