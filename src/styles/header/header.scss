@@ -17,14 +17,6 @@
     align-items: center;
     margin-right: 20px;
 
-    &-details {
-      margin-left: 10px;
-
-      span {
-        color: $primaryColor;
-      }
-    }
-
     &-link {
       font-size: 0.9em;
     }
@@ -46,6 +38,7 @@
 
     &-name {
       color: $primaryColor;
+      margin-left: 3px;
     }
   }
 }

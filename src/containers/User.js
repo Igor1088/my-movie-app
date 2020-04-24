@@ -41,15 +41,13 @@ class User extends Component {
           state: { category: "favorite", media: "movies" },
         }}
         className="header__user-link"
+        title="Go to users lists"
       >
         <div className="header__user">
           <div className="header__user-img">
             <FaUserCircle />
           </div>
-          <div className="header__user-details">
-            <div className="header__user-name">{user.username}</div>
-            <span>View Lists</span>
-          </div>
+          <div className="header__user-name">{user.username}</div>
         </div>
       </Link>
     );

@@ -1,7 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 
-const NavItem = props => (
+const NavItem = (props) => (
   <li key={props.id} className="nav__item">
     <NavLink
       strict
