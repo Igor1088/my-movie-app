@@ -2,9 +2,13 @@
   margin-top: 20px;
 
   &__list {
-    border: 1px solid #e3e3e3;
+    border: 1px solid #d4dde9;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    padding: 5px;
+    padding: 10px;
+
+    h4 {
+      margin-bottom: 10px;
+    }
 
     & + & {
       margin-top: 15px;
@@ -13,8 +17,7 @@
 
   &__item {
     padding: 10px 0;
-    border-bottom: 1px solid #e3e3e3;
-    color: #2c3e50;
+    border-bottom: 1px solid #d4dde9;
     display: block;
 
     &:last-child {

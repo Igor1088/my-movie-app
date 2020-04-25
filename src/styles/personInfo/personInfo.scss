@@ -1,7 +1,6 @@
 .person {
   &__info {
     display: flex;
-    color: #2c3e50;
 
     @media (max-width: 767px) {
       text-align: center;
@@ -36,7 +35,6 @@
     }
 
     &-heading {
-      color: $primaryColor;
       font-size: 1.1em;
       margin-bottom: 10px;
     }
@@ -77,6 +75,7 @@
     font-size: 2.4em;
     word-spacing: 2px;
     letter-spacing: 0.5px;
+    color: #12263f;
 
     @media (max-width: 767px) {
       font-size: 1.8em;

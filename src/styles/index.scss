@@ -25,12 +25,13 @@ html {
   font-family: $font-family;
   font-size: 14px;
   line-height: 1.2;
-  color: #2c3e50;
+  color: #617691;
   scroll-behavior: smooth;
 }
 
 body {
   padding-bottom: 50px;
+  background-color: $backgroundColor;
 }
 
 * {
@@ -38,8 +39,9 @@ body {
 }
 
 a {
+  color: #65737e;
   &:hover {
-    color: darken($secondaryColor, 20%);
+    color: $secondaryColor;
   }
 }
 
@@ -159,7 +161,7 @@ section {
   }
 
   & + & {
-    margin-top: 15px;
+    margin-top: 30px;
   }
 }
 
@@ -177,8 +179,8 @@ section {
 }
 
 .sidebar {
-  background-color: #ecf0f1;
-  background: linear-gradient(180deg, #ecf0f1 0%, #fff 100%);
+  background-color: #edf1f5;
+  background: linear-gradient(180deg, #edf1f5 0%, #f5f7fa 100%);
   padding: 20px 10px 10px 10px;
 
   &__heading {
@@ -191,7 +193,7 @@ section {
     }
 
     &-heading {
-      color: lighten($primaryColor, 30%);
+      // color: lighten($primaryColor, 30%);
       font-weight: 500;
     }
 

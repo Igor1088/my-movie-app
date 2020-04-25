@@ -1,5 +1,5 @@
 .episode {
-  border: 1px solid #e3e3e3;
+  border: 1px solid #d4dde9;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 
   &__container {
@@ -14,12 +14,12 @@
     cursor: pointer;
     padding: 10px;
     text-align: center;
-    border-top: 1px solid #e3e3e3;
+    border-top: 1px solid #d4dde9;
   }
 
   &__expanded {
     padding: 10px;
-    border-top: 1px solid #e3e3e3;
+    border-top: 1px solid #d4dde9;
     display: none;
 
     &-heading {
@@ -129,7 +129,6 @@
 
   &__name {
     font-size: 17px;
-    color: $primaryColor;
   }
 
   &__info {
@@ -173,10 +172,6 @@
 .cast__list {
   display: flex;
   flex-wrap: wrap;
-  // @media (min-width: 768px) {
-  //   display: flex;
-  //   flex-wrap: wrap;
-  // }
 
   .cast__item {
     @media (max-width: 767px) {

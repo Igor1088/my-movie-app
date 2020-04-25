@@ -19,7 +19,7 @@
 
     &:hover {
       .person__name {
-        color: darken($primaryColor, 30%);
+        // color: darken($primaryColor, 30%);
       }
     }
   }
@@ -44,7 +44,7 @@
 
   &__role {
     margin-top: 5px;
-    color: lighten($primaryColor, 20%);
+    // color: lighten($primaryColor, 20%);
   }
 
   &__info {
