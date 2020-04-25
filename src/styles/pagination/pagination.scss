@@ -3,3 +3,18 @@
   justify-content: center;
   margin-top: 30px;
 }
+
+.rc-pagination-item {
+  &-active {
+    background-color: $secondaryColor !important;
+    border-color: $secondaryColor !important;
+  }
+
+  &:hover {
+    border-color: $secondaryColor !important;
+
+    a {
+      color: $secondaryColor !important;
+    }
+  }
+}

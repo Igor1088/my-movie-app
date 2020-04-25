@@ -165,7 +165,6 @@ Sidebar.propTypes = {
   budget: PropTypes.number,
   runtime: PropTypes.number,
   release_date: PropTypes.string,
-  imdb: PropTypes.string,
   status: PropTypes.string,
   language: PropTypes.string,
   homepage: PropTypes.string,

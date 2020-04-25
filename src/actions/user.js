@@ -136,7 +136,7 @@ export function deleteRating(id, mediaType) {
       .then((data) => {
         setTimeout(function () {
           dispatch(fetchAccountStates(id, mediaType));
-        }, 500);
+        }, 700);
       });
   };
 }

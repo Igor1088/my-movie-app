@@ -14,10 +14,7 @@ const Item = (props) => {
     <div className="item">
       <Link to={`/${media}/${id}`}>
         <div className="item__image-holder">
-          {/* <figure> */}
           <img src={path} className="item__image" alt="poster" />
-          {/* <figcaption>Item caption</figcaption> */}
-          {/* </figure> */}
           {vote_average ? (
             <div className="item__vote-average">
               <FaStar />

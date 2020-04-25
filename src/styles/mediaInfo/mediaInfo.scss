@@ -103,7 +103,7 @@
       }
 
       &.watchlist {
-        color: $secondaryColor;
+        color: $green;
       }
     }
 
@@ -248,6 +248,11 @@
       position: relative;
       display: inline-block;
       margin-right: 7px;
+      font-size: 0.94em;
+
+      span {
+        color: $primaryTextColor;
+      }
 
       a {
         color: $secondaryColor;

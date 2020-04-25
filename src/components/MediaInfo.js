@@ -1,11 +1,9 @@
-import React, { Fragment } from "react";
+import React from "react";
 import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
-import Rating from "./Rating";
 import { dateFormat, timeFormat } from "../utils/helpers";
-import { isEmpty } from "lodash";
-import { FaHeart, FaBookmark, FaImdb, FaStar } from "react-icons/fa";
-import { IoIosRemoveCircleOutline } from "react-icons/io";
+import Genres from "./Genres";
+import MediaOptions from "./MediaOptions";
+import MediaCrew from "./MediaCrew";
 
 const MovieInfo = ({
   poster,
@@ -18,10 +16,10 @@ const MovieInfo = ({
   voteAverage,
   director = [],
   writers = [],
+  createdBy = [],
   media,
   runtime,
   imdb,
-  createdBy,
   voteCount,
   handleFavoriteClick,
   isFavorite,
@@ -51,132 +49,38 @@ const MovieInfo = ({
         </div>
         <div className="media__details">
           <h1 className="media__title">{title}</h1>
-          <div className="media__options">
-            <div>
-              <a
-                href={`http://www.imdb.com/title/${imdb}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                title="Go to Imdb"
-              >
-                <i className="icon-imdb">
-                  <FaImdb />
-                </i>
-              </a>
-            </div>
-            <div className="media__vote">
-              {userLogged ? (
-                <i className="icon-star">
-                  <FaStar />
-                </i>
-              ) : (
-                <i className="icon-star" title="Login to rate">
-                  <FaStar />
-                </i>
-              )}
-              <div>
-                <div>{voteAverage} / 10</div>
-                <small>({voteCount})</small>
-              </div>
-              {userLogged ? (
-                <div className="rating__container">
-                  <i
-                    className="icon-remove"
-                    title="Delete Rating"
-                    onClick={deleteRating}
-                  >
-                    <IoIosRemoveCircleOutline />
-                  </i>
-                  <Rating
-                    totalStars={10}
-                    currentRating={
-                      !isEmpty(accountStates) ? accountStates.rated.value : 0
-                    }
-                    handleUserRating={handleUserRating}
-                  />
-                </div>
-              ) : null}
-            </div>
-            {userLogged ? (
-              isFavorite ? (
-                <div
-                  className="media__options-btn favorite"
-                  onClick={() => handleFavoriteClick(!isFavorite)}
-                  title="Remove from your favorite list"
-                >
-                  <FaHeart />
-                </div>
-              ) : (
-                <div
-                  className="media__options-btn"
-                  onClick={() => handleFavoriteClick(!isFavorite)}
-                  title="Mark as favorite"
-                >
-                  <FaHeart />
-                </div>
-              )
-            ) : (
-              <div
-                className="media__options-btn"
-                title="Login to add to your favorite list"
-              >
-                <FaHeart />
-              </div>
-            )}
-            {userLogged ? (
-              inWatchlist ? (
-                <div
-                  className="media__options-btn watchlist"
-                  onClick={() => handleWatchlistClick(!inWatchlist)}
-                  title="Remove from your watchlist"
-                >
-                  <FaBookmark />
-                </div>
-              ) : (
-                <div
-                  className="media__options-btn"
-                  onClick={() => handleWatchlistClick(!inWatchlist)}
-                  title="Add to your watchlist"
-                >
-                  <FaBookmark />
-                </div>
-              )
-            ) : (
-              <div
-                className="media__options-btn"
-                title="Login to add to your watchlist"
-              >
-                <FaBookmark />
-              </div>
-            )}
-          </div>
+          <MediaOptions
+            userLogged={userLogged}
+            imdb={imdb}
+            voteAverage={voteAverage}
+            voteCount={voteCount}
+            accountStates={accountStates}
+            handleUserRating={handleUserRating}
+            deleteRating={deleteRating}
+            isFavorite={isFavorite}
+            handleFavoriteClick={handleFavoriteClick}
+            inWatchlist={inWatchlist}
+            handleWatchlistClick={handleWatchlistClick}
+          />
           <div className="media__info">
             <div className="media__info-holder">
-              <div className="media__runtime">
-                {media === "movie"
-                  ? runtime
-                    ? timeFormat(runtime)
-                    : "-"
-                  : null}
-                {media === "tv"
-                  ? runtime
-                    ? `${runtime.join(", ")} min.`
-                    : "-"
-                  : null}
-              </div>
+              {media === "movie" ? (
+                runtime ? (
+                  <div className="media__runtime">{timeFormat(runtime)}</div>
+                ) : null
+              ) : null}
+              {media === "tv" ? (
+                runtime ? (
+                  <div className="media__runtime">{`${runtime.join(
+                    ", "
+                  )} min.`}</div>
+                ) : null
+              ) : null}
               <div className="media__release-year">
                 {releaseDate ? dateFormat(releaseDate) : "-"}
               </div>
             </div>
-            <div className="media__genres">
-              {genres.map((g) => {
-                return (
-                  <div key={g.id} className="media__genres-item">
-                    {g.name}
-                  </div>
-                );
-              })}
-            </div>
+            <Genres list={genres} />
           </div>
           {tagline ? <p className="media__tagline">{tagline}</p> : null}
         </div>
@@ -188,48 +92,13 @@ const MovieInfo = ({
         </div>
         <div className="media__crew">
           <div className="media__crew-row">
-            {director.length ? (
-              <Fragment>
-                <span className="media__crew-label">Director:</span>
-                <span className="media__crew-link">
-                  <Link to={`/person/${director[0].id}`}>
-                    {director[0].name}
-                  </Link>
-                </span>
-              </Fragment>
-            ) : (
-              ""
-            )}
-            {createdBy ? (
-              <Fragment>
-                <span className="media__crew-label">Creator:</span>
-                {createdBy.map((i) => {
-                  return (
-                    <Fragment>
-                      <span className="media__crew-link">
-                        <Link to={`/person/${i.id}`}>{i.name}</Link>
-                      </span>
-                    </Fragment>
-                  );
-                })}
-              </Fragment>
-            ) : null}
+            <MediaCrew label="Director" list={director} showJob={false} />
           </div>
           <div className="media__crew-row">
-            {writers.length ? (
-              <Fragment>
-                <span className="media__crew-label">Writers:</span>
-                {writers.map((writer) => (
-                  <span className="media__crew-link" key={writer.id}>
-                    <Link
-                      to={`/person/${writer.id}`}
-                    >{`${writer.name} (${writer.job})`}</Link>
-                  </span>
-                ))}
-              </Fragment>
-            ) : (
-              ""
-            )}
+            <MediaCrew label="Creator" list={createdBy} showJob={false} />
+          </div>
+          <div className="media__crew-row">
+            <MediaCrew label="Writers" list={writers} showJob={true} />
           </div>
         </div>
       </div>

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Image from "./Image";
+import ImageGalleryModal from "./ImageGalleryModal";
 
 const ImageGallery = ({
   images = [],
@@ -31,17 +32,11 @@ const ImageGallery = ({
               />
             );
           })}
-          <div className={`gallery__modal ${modalOpen.open ? "open" : ""}`}>
-            <span
-              className="gallery__modal-close"
-              onClick={() => setModal(false)}
-            ></span>
-            <img
-              className="gallery__modal-img"
-              src={`https://image.tmdb.org/t/p/w${fullWidth}/${modalOpen.link}`}
-              alt="backdrop"
-            />
-          </div>
+          <ImageGalleryModal
+            modalOpen={modalOpen}
+            setModal={setModal}
+            fullWidth={fullWidth}
+          />
         </div>
       </div>
     );
@@ -76,17 +71,11 @@ const ImageGallery = ({
                 />
               );
             })}
-        <div className={`gallery__modal ${modalOpen.open ? "open" : ""}`}>
-          <span
-            className="gallery__modal-close"
-            onClick={() => setModal(false)}
-          ></span>
-          <img
-            className="gallery__modal-img"
-            src={`https://image.tmdb.org/t/p/w${fullWidth}/${modalOpen.link}`}
-            alt="backdrop"
-          />
-        </div>
+        <ImageGalleryModal
+          modalOpen={modalOpen}
+          setModal={setModal}
+          fullWidth={fullWidth}
+        />
       </div>
     </div>
   );

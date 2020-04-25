@@ -27,7 +27,6 @@
       background-position: center;
       background-repeat: no-repeat;
       border-radius: 50%;
-      color: $primaryColor;
 
       svg {
         width: 100%;
@@ -36,7 +35,6 @@
     }
 
     &-name {
-      color: $primaryColor;
       margin-left: 3px;
     }
   }

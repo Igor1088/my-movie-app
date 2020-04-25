@@ -4,8 +4,6 @@ import { Link } from "react-router-dom";
 
 const CreditsList = (props) => {
   const { credits, media, heading } = props;
-
-  //   let list = credits ? credits : [];
   let creditsList;
 
   if (credits.length !== 0) {
@@ -19,7 +17,7 @@ const CreditsList = (props) => {
         return (
           <div key={credit.id} className="credits__item">
             <span className="credits__item-year">
-              {credit.release_date ? credit.release_date.slice(0, 4) : ""}{" "}
+              {credit.release_date ? credit.release_date.slice(0, 4) : "-"}{" "}
               {credit.first_air_date ? credit.first_air_date.slice(0, 4) : ""}{" "}
             </span>
             <Link to={`/${media}/${credit.id}`}>

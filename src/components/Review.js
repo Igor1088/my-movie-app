@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { FaExternalLinkAlt } from "react-icons/fa";
 
 const Review = ({ author, text, url, maxTextLength }) => {
   const [short, setText] = useState(true);
@@ -7,13 +8,11 @@ const Review = ({ author, text, url, maxTextLength }) => {
     return (
       <div className="review__item">
         <div className="review__author">
-          Written by <span>{author}</span>
+          Review by <span>{author}</span>
         </div>
-        <div className="review__link">
-          <a href={`${url}`} target="__blank">
-            Read a review on tmdb
-          </a>
-        </div>
+        <a href={`${url}`} target="__blank" className="review__link">
+          <span>Read on tmdb</span> <FaExternalLinkAlt />
+        </a>
         <div className="review__text">{text}</div>
       </div>
     );
@@ -22,13 +21,11 @@ const Review = ({ author, text, url, maxTextLength }) => {
   return (
     <div className="review__item">
       <div className="review__author">
-        <em>Written by</em> <span>{author}</span>
+        <em>Review by</em> <span>{author}</span>
       </div>
-      <div className="review__link">
-        <a href={`${url}`} target="__blank">
-          Read a review on tmdb
-        </a>
-      </div>
+      <a href={`${url}`} target="__blank" className="review__link">
+        <span>Read on tmdb</span> <FaExternalLinkAlt />
+      </a>
       <div className="review__text">
         {short ? (
           <p>

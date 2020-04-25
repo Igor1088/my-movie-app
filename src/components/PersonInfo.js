@@ -1,15 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
-import {
-  FaImdb,
-  FaFacebookSquare,
-  FaTwitterSquare,
-  FaInstagram,
-} from "react-icons/fa";
+import IconImdb from "./IconImdb";
+import IconFb from "./IconFb";
+import IconInstagram from "./IconInstagram";
+import IconTwitter from "./IconTwitter";
 
 const PersonInfo = (props) => {
   const { name, biography, poster, social } = props;
-
   const facebookLink = social ? social.facebook_id : "";
   const instagramLink = social ? social.instagram_id : "";
   const twitterLink = social ? social.twitter_id : "";
@@ -23,50 +20,12 @@ const PersonInfo = (props) => {
     <div className="person__info">
       <div className="person__image-holder">
         <img src={path} className="person__image" alt="poster" />
+
         <div className="person__icons-holder">
-          {facebookLink ? (
-            <a
-              href={`https://www.facebook.com/${facebookLink}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              title="Facebook"
-            >
-              <FaFacebookSquare />
-            </a>
-          ) : null}
-
-          {instagramLink ? (
-            <a
-              href={`https://www.instagram.com/${instagramLink}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              title="Instagram"
-            >
-              <FaInstagram />
-            </a>
-          ) : null}
-
-          {twitterLink ? (
-            <a
-              href={`https://www.twitter.com/${twitterLink}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              title="Twitter"
-            >
-              <FaTwitterSquare />
-            </a>
-          ) : null}
-
-          {imdbLink ? (
-            <a
-              href={`http://www.imdb.com/name/${imdbLink}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              title="Imdb"
-            >
-              <FaImdb />
-            </a>
-          ) : null}
+          <IconFb link={facebookLink} />
+          <IconInstagram link={instagramLink} />
+          <IconTwitter link={twitterLink} />
+          <IconImdb title="name" link={imdbLink} />
         </div>
       </div>
       <div className="person__overview-holder">

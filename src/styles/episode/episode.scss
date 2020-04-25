@@ -23,6 +23,8 @@
     display: none;
 
     &-heading {
+      color: darken($primaryTextColor, 20%);
+
       @media (max-width: 767px) {
         margin-bottom: 10px;
       }
@@ -44,7 +46,22 @@
 
     &-crew {
       a {
-        color: $primaryColor;
+        position: relative;
+        font-size: 0.9em;
+        margin-right: 5px;
+
+        &:after {
+          content: "\002C";
+          position: absolute;
+          bottom: 0;
+          left: 100%;
+        }
+
+        &:last-child {
+          &:after {
+            content: "";
+          }
+        }
       }
 
       @media (min-width: 768px) {
@@ -128,7 +145,8 @@
   }
 
   &__name {
-    font-size: 17px;
+    font-size: 1.2em;
+    color: darken($primaryTextColor, 20%);
   }
 
   &__info {

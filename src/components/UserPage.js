@@ -2,7 +2,6 @@ import React from "react";
 import { Route } from "react-router-dom";
 import UserPageList from "../containers/UserPageList";
 import UserNav from "./UserNav";
-import Loader from "../components/Loader";
 
 const UserPage = (props) => {
   return (
