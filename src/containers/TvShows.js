@@ -11,6 +11,7 @@ import {
 import Item from "../components/Item";
 import Loader from "../components/Loader";
 import Pagination from "rc-pagination";
+import Filter from "../components/Filter";
 
 class TvShows extends Component {
   constructor(props) {
@@ -93,24 +94,10 @@ class TvShows extends Component {
         <div className="row__head">
           <h3 className="row__title">{heading}</h3>
           {filters ? (
-            <div className="row__filter">
-              <div
-                className={`row__filter-item ${
-                  this.state.filter === "day" ? "active" : ""
-                }`}
-                onClick={this.handleFilterClick}
-              >
-                Day
-              </div>
-              <div
-                className={`row__filter-item ${
-                  this.state.filter === "week" ? "active" : ""
-                }`}
-                onClick={this.handleFilterClick}
-              >
-                Week
-              </div>
-            </div>
+            <Filter
+              filter={this.state.filter}
+              handleFilterClick={this.handleFilterClick}
+            />
           ) : null}
         </div>
         <div className="grid">{items}</div>

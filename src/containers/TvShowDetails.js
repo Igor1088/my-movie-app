@@ -173,7 +173,6 @@ class TvShowDetails extends Component {
         />
         <main className="main">
           <Sidebar
-            // heading="Facts"
             media="tv"
             production={tvShowDetails.networks}
             runtime={tvShowDetails.episode_run_time}
