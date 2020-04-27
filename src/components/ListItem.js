@@ -19,6 +19,9 @@ const ListItem = ({ item, media }) => {
           </Link>
         </div>
         <div className="list__item-overview">{item.overview}</div>
+        {item.rating ? (
+          <div className="list__item-rating">Your Rating: {item.rating}</div>
+        ) : null}
       </div>
     </div>
   );

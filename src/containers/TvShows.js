@@ -8,10 +8,10 @@ import {
   getTvShows,
   getTvShowsLoading,
 } from "../reducers/tv-shows";
-import Item from "../components/Item";
 import Loader from "../components/Loader";
 import Pagination from "rc-pagination";
 import Filter from "../components/Filter";
+import Grid from "../components/Grid";
 
 class TvShows extends Component {
   constructor(props) {
@@ -56,39 +56,28 @@ class TvShows extends Component {
   render() {
     const { error, loading, tvShows, heading, filters } = this.props;
     const totalPages = tvShows.total_pages;
+    const items = tvShows.results;
 
     if (error) {
       return <div>Error!</div>;
     }
 
-    if (loading) {
-      return (
-        <div>
-          <div className="row__head">
-            <h3 className="row__title">{heading}</h3>
-          </div>
-          <Loader />
-        </div>
-      );
-    }
+    // if (tvShows.results) {
+    // items = tvShows.results.map((tv) => {
+    //   return (
+    //     <Item
+    //       key={tv.id}
+    //       id={tv.id}
+    //       poster={tv.poster_path}
+    //       title={tv.name}
+    //       vote_average={tv.vote_average}
+    //       media="tv"
+    //       year={tv.first_air_date}
+    //     />
+    //   );
+    // });
+    // }
 
-    let items;
-
-    if (tvShows.results) {
-      items = tvShows.results.map((tv) => {
-        return (
-          <Item
-            key={tv.id}
-            id={tv.id}
-            poster={tv.poster_path}
-            title={tv.name}
-            vote_average={tv.vote_average}
-            media="tv"
-            year={tv.first_air_date}
-          />
-        );
-      });
-    }
     return (
       <div ref={this.myRef}>
         <div className="row__head">
@@ -100,7 +89,8 @@ class TvShows extends Component {
             />
           ) : null}
         </div>
-        <div className="grid">{items}</div>
+        {/* <div className="grid">{items}</div> */}
+        {loading ? <Loader /> : <Grid items={items} media="tv" />}
         <div className="pagination">
           <Pagination
             onChange={this.handlePageClick}

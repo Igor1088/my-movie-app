@@ -8,10 +8,10 @@ import {
   getPeople,
   getPeopleLoading,
 } from "../reducers/people";
-import Item from "../components/Item";
 import Loader from "../components/Loader";
 import Pagination from "rc-pagination";
 import Filter from "../components/Filter";
+import Grid from "../components/Grid";
 
 class People extends Component {
   constructor(props) {
@@ -55,39 +55,10 @@ class People extends Component {
   render() {
     const { error, loading, people, heading, filters } = this.props;
     const totalPages = people.total_pages;
+    const items = people.results;
 
     if (error) {
       return <div>Error!</div>;
-    }
-
-    if (loading) {
-      return (
-        <div>
-          <div className="row__head">
-            <h3 className="row__title">
-              {heading ? heading : "Popular People"}
-            </h3>
-          </div>
-          <Loader />
-        </div>
-      );
-    }
-
-    let items;
-
-    if (people.results) {
-      items = people.results.map((person) => {
-        return (
-          <Item
-            key={person.id}
-            id={person.id}
-            name={person.name}
-            poster={person.profile_path}
-            title={person.name}
-            media="person"
-          />
-        );
-      });
     }
 
     return (
@@ -101,7 +72,7 @@ class People extends Component {
             />
           ) : null}
         </div>
-        <div className="grid">{items}</div>
+        {loading ? <Loader /> : <Grid items={items} media="person" />}
         <div className="pagination">
           <Pagination
             onChange={this.handlePageClick}

@@ -8,10 +8,10 @@ import {
   getMovies,
   getMoviesLoading,
 } from "../reducers/movies";
-import Item from "../components/Item";
 import Loader from "../components/Loader";
 import Pagination from "rc-pagination";
 import Filter from "../components/Filter";
+import Grid from "../components/Grid";
 
 class Movies extends Component {
   constructor(props) {
@@ -55,38 +55,12 @@ class Movies extends Component {
   render() {
     const { error, loading, movies, heading, filters } = this.props;
     const totalPages = movies.total_pages;
-    let items;
+    const items = movies.results;
 
     if (error) {
       return <div>Error!</div>;
     }
 
-    if (loading) {
-      return (
-        <div>
-          <div className="row__head">
-            <h3 className="row__title">{heading}</h3>
-          </div>
-          <Loader />
-        </div>
-      );
-    }
-
-    if (movies.results) {
-      items = movies.results.map((movie) => {
-        return (
-          <Item
-            key={movie.id}
-            id={movie.id}
-            poster={movie.poster_path}
-            title={movie.title}
-            vote_average={movie.vote_average}
-            media={"movie"}
-            year={movie.release_date}
-          />
-        );
-      });
-    }
     return (
       <div ref={this.myRef}>
         <div className="row__head">
@@ -98,7 +72,7 @@ class Movies extends Component {
             />
           ) : null}
         </div>
-        <div className="grid">{items}</div>
+        {loading ? <Loader /> : <Grid items={items} media="movie" />}
         <div className="pagination">
           <Pagination
             onChange={this.handlePageClick}
