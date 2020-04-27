@@ -29,7 +29,7 @@
     justify-content: flex-end;
 
     @media (max-width: 767px) {
-      padding: 75px 10px 10px 10px;
+      padding: 75px 10px 10px 81px;
     }
 
     @media (min-width: 768px) {
@@ -42,7 +42,7 @@
     margin-bottom: 15px;
 
     @media (max-width: 767px) {
-      font-size: 1.7em;
+      font-size: 1.5em;
       margin-bottom: 10px;
     }
   }
@@ -69,10 +69,15 @@
       &:last-child {
         border-right-color: transparent;
       }
+
+      @media (max-width: 767px) {
+        padding: 0 4px;
+      }
     }
 
     @media (max-width: 767px) {
       margin-top: 2px;
+      font-size: 0.9em;
     }
   }
 
@@ -105,6 +110,10 @@
       &.watchlist {
         color: $green;
       }
+
+      @media (max-width: 767px) {
+        font-size: 1.2em;
+      }
     }
 
     .icon {
@@ -115,12 +124,20 @@
       &-imdb {
         font-size: 2em;
         line-height: 0em;
+
+        @media (max-width: 767px) {
+          font-size: 1.7em;
+        }
       }
     }
   }
 
   &__info {
     margin-top: 7px;
+
+    @media (max-width: 767px) {
+      margin-top: 4px;
+    }
 
     > div {
       margin-right: 10px;
@@ -181,6 +198,11 @@
     font-style: italic;
     margin-top: 10px;
     color: rgba(255, 255, 255, 0.6);
+
+    @media (max-width: 767px) {
+      font-size: 1em;
+      margin-top: 5px;
+    }
   }
 
   &__poster {
@@ -191,8 +213,9 @@
     width: 250px;
 
     @media (max-width: 767px) {
-      top: 106%;
-      left: 4px;
+      top: auto;
+      bottom: 10px;
+      left: 6px;
       width: 70px;
     }
 
@@ -217,7 +240,6 @@
 
   &__overview {
     @media (max-width: 767px) {
-      padding-left: 80px;
       min-height: 110px;
       text-align: justify;
     }

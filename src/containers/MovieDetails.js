@@ -22,6 +22,7 @@ import ReviewList from "../components/ReviewList";
 import Section from "../components/Section";
 import Sidebar from "../components/Sidebar";
 import ImageGallery from "../components/ImageGallery";
+import withToggle from "../components/WithToggle";
 
 class MovieDetails extends Component {
   componentDidMount() {
@@ -73,6 +74,9 @@ class MovieDetails extends Component {
       accountStates,
       userLogged,
     } = this.props;
+
+    const ReviewsWithToggle = withToggle(ReviewList);
+    const ImageGalleryWithToggle = withToggle(ImageGallery);
 
     if (error) {
       return <div>Error!</div>;
@@ -187,7 +191,6 @@ class MovieDetails extends Component {
         />
         <div className="main">
           <Sidebar
-            // heading="Facts"
             media="movie"
             status={movieDetails.status}
             release_date={movieDetails.release_date}
@@ -232,11 +235,12 @@ class MovieDetails extends Component {
             </div> */}
 
             <Section heading="Photos">
-              <ImageGallery
-                images={images}
+              <ImageGalleryWithToggle
+                items={images}
                 previewNumber={6}
                 previewWidth="300"
                 fullWidth="780"
+                maxItemsToShow={6}
               />
             </Section>
 
@@ -256,11 +260,20 @@ class MovieDetails extends Component {
               </Section>
             ) : null}
 
-            <Section heading="Reviews">
+            {/* <Section heading="Reviews">
               <ReviewList
                 reviews={reviews}
                 maxTextLength={500}
                 maxNumOfReviews={2}
+              />
+            </Section> */}
+
+            <Section heading="Reviews">
+              <ReviewsWithToggle
+                items={reviews}
+                maxTextLength={500}
+                maxNumOfReviews={2}
+                maxItemsToShow={2}
               />
             </Section>
           </div>

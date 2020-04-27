@@ -7,24 +7,6 @@
     grid-template-columns: repeat(2, 1fr);
   }
 
-  &--toggle {
-    margin-bottom: 7px;
-    text-align: right;
-
-    button {
-      background: transparent;
-      outline: none;
-      border: none;
-      cursor: pointer;
-      color: $secondaryColor;
-      padding: 0;
-
-      &:hover {
-        color: darken($secondaryColor, 20%);
-      }
-    }
-  }
-
   &__item {
     overflow: hidden;
   }

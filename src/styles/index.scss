@@ -67,6 +67,24 @@ a {
   }
 }
 
+.toggle-holder {
+  text-align: right;
+  margin-bottom: 7px;
+}
+
+.btn-toggle {
+  background: transparent;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  color: $secondaryColor;
+  padding: 0;
+
+  &:hover {
+    color: darken($secondaryColor, 20%);
+  }
+}
+
 .row {
   display: flex;
   flex-wrap: wrap;

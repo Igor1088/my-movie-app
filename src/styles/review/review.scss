@@ -9,24 +9,6 @@
     }
   }
 
-  &--toggle {
-    text-align: right;
-    margin-bottom: 7px;
-
-    button {
-      background: transparent;
-      outline: none;
-      border: none;
-      cursor: pointer;
-      color: $secondaryColor;
-      padding: 0;
-
-      &:hover {
-        color: darken($secondaryColor, 20%);
-      }
-    }
-  }
-
   &__author {
     font-size: 1em;
     margin-bottom: 10px;

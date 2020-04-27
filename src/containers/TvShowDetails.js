@@ -22,6 +22,7 @@ import Section from "../components/Section";
 import Sidebar from "../components/Sidebar";
 import ReviewList from "../components/ReviewList";
 import ImageGallery from "../components/ImageGallery";
+import withToggle from "../components/WithToggle";
 
 class TvShowDetails extends Component {
   componentDidMount() {
@@ -74,6 +75,8 @@ class TvShowDetails extends Component {
       userLogged,
     } = this.props;
     const videos = tvShowDetails.videos ? tvShowDetails.videos.results : [];
+    const ReviewsWithToggle = withToggle(ReviewList);
+    const ImageGalleryWithToggle = withToggle(ImageGallery);
     const inWatchlist = accountStates.watchlist;
     const isFavorite = accountStates.favorite;
     let cast = [];
@@ -204,11 +207,12 @@ class TvShowDetails extends Component {
             </Section>
 
             <Section heading="Photos">
-              <ImageGallery
-                images={images}
+              <ImageGalleryWithToggle
+                items={images}
                 previewNumber={6}
                 previewWidth="300"
                 fullWidth="780"
+                maxItemsToShow={6}
               />
             </Section>
 
@@ -227,10 +231,11 @@ class TvShowDetails extends Component {
             </Section>
 
             <Section heading="Reviews">
-              <ReviewList
-                reviews={reviews}
+              <ReviewsWithToggle
+                items={reviews}
                 maxTextLength={500}
                 maxNumOfReviews={2}
+                maxItemsToShow={2}
               />
             </Section>
           </div>
