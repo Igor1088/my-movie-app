@@ -1,0 +1,10 @@
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 150px);
+  grid-gap: 10px;
+
+  @media (max-width: 767px) {
+    grid-template-columns: repeat(auto-fit, 32%) !important;
+    grid-gap: 5px;
+  }
+}

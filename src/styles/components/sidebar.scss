@@ -1,0 +1,56 @@
+.sidebar {
+  background-color: #edf1f5;
+  background: linear-gradient(180deg, #edf1f5 0%, #f5f7fa 100%);
+  padding: 20px 10px 10px 10px;
+
+  &__heading {
+    margin-bottom: 30px;
+  }
+
+  &__row {
+    & + & {
+      margin-top: 20px;
+    }
+
+    &-heading {
+      // color: lighten($primaryColor, 30%);
+      font-weight: 500;
+    }
+
+    &-info {
+      a {
+        color: inherit;
+      }
+
+      p {
+        & + p {
+          margin-top: 5px;
+        }
+      }
+
+      @media (max-width: 767px) {
+        text-align: right;
+      }
+
+      @media (min-width: 768px) {
+        margin-top: 4px;
+      }
+    }
+
+    @media (max-width: 767px) {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+    }
+  }
+
+  &__companie {
+    &-info {
+      margin-top: 5px;
+    }
+  }
+
+  .companie-logo {
+    max-width: 60%;
+  }
+}

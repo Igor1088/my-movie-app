@@ -1,0 +1,32 @@
+.main {
+  margin-top: 10px;
+
+  @media (min-width: 768px) {
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: 20% 80%;
+  }
+  &__content {
+    padding: 0 10px;
+
+    .grid {
+      grid-template-columns: repeat(auto-fit, 115px);
+
+      &.people {
+        grid-template-columns: repeat(auto-fit, 99px);
+      }
+
+      .item {
+        &__vote-average {
+          height: 173px;
+        }
+
+        img {
+          @media (min-width: 768px) {
+            height: 173px;
+          }
+        }
+      }
+    }
+  }
+}
