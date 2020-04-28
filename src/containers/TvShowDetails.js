@@ -35,7 +35,9 @@ class TvShowDetails extends Component {
     let newId = this.props.match.params.id;
     if (newId !== oldId) {
       this.props.fetchTvShowDetails(this.props.match.params.id);
-      this.props.fetchAccountStates(this.props.match.params.id, "tv");
+      if (localStorage.getItem("session_id")) {
+        this.props.fetchAccountStates(this.props.match.params.id, "tv");
+      }
     }
   }
 

@@ -27,6 +27,12 @@
       background-position: center;
       background-repeat: no-repeat;
       border-radius: 50%;
+      border-radius: 50%;
+      overflow: hidden;
+
+      img {
+        width: 100%;
+      }
 
       svg {
         width: 100%;

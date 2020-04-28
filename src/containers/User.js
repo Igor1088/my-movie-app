@@ -23,7 +23,7 @@ class User extends Component {
 
   render() {
     const { error, loading, user, userAuthorized } = this.props;
-    const gravatarHash = userAuthorized ? user.avatar.gravatar.hash : "HASH";
+    const gravatarHash = userAuthorized ? user.avatar.gravatar.hash : null;
     const background = `https://secure.gravatar.com/avatar/${gravatarHash}`;
 
     if (error) {
@@ -45,7 +45,11 @@ class User extends Component {
       >
         <div className="header__user">
           <div className="header__user-img">
-            <FaUserCircle />
+            {gravatarHash ? (
+              <img src={`${background}`} alt="" />
+            ) : (
+              <FaUserCircle />
+            )}
           </div>
           <div className="header__user-name">{user.username}</div>
         </div>
