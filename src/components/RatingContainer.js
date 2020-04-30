@@ -14,11 +14,18 @@ const RatingContainer = ({
 }) => {
   if (!userLogged) {
     return (
-      <i className="icon-star" title="Login to rate">
-        <FaStar />
-      </i>
+      <Fragment>
+        <i className="icon-star" title="Login to rate">
+          <FaStar />
+        </i>
+        <div>
+          <div>{voteAverage} / 10</div>
+          <small>({voteCount})</small>
+        </div>
+      </Fragment>
     );
   }
+
   return (
     <Fragment>
       <i className="icon-star">

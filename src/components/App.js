@@ -21,8 +21,8 @@ function App({ children }) {
         <div className="container">
           <header className="header">
             <Auth />
-            <NavBar />
           </header>
+          <NavBar />
 
           <Route exact path="/" component={Home} />
           <Route
