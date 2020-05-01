@@ -74,7 +74,7 @@ class Movies extends Component {
     }
 
     return (
-      <section ref={this.myRef}>
+      <section ref={this.myRef} className={preview ? "section-preview" : null}>
         <div className="row__head">
           <h3 className="row__title">{heading}</h3>
           {filters ? (

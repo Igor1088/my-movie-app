@@ -1,6 +1,6 @@
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, 150px);
+  grid-template-columns: repeat(auto-fit, minmax(125px, 1fr));
   grid-gap: 10px;
 
   @media (max-width: 767px) {
@@ -33,5 +33,9 @@
         height: 100%;
       }
     }
+  }
+
+  &.people {
+    grid-template-columns: repeat(auto-fit, minmax(89px, 1fr));
   }
 }
