@@ -3,34 +3,34 @@ import * as types from "../constants/actionTypes";
 const initialState = {
   laoding: false,
   people: [],
-  error: null
+  error: null,
 };
 
-export default function(state = initialState, action) {
+export default function (state = initialState, action) {
   switch (action.type) {
     case types.FETCH_PEOPLE_BEGIN:
       return {
         ...state,
         loading: true,
-        error: null
+        error: null,
       };
     case types.FETCH_PEOPLE_SUCCESS:
       return {
         ...state,
         loading: false,
-        people: action.payload
+        people: action.payload,
       };
     case types.FETCH_PEOPLE_ERROR:
       return {
         ...state,
         laoding: false,
-        error: action.payload.error
+        error: action.payload.error,
       };
     default:
       return state;
   }
 }
 
-export const getPeople = state => state.people.people;
-export const getPeopleLoading = state => state.people.loading;
-export const getPeopleError = state => state.people.error;
+export const getPeople = (state) => state.people.people;
+export const getPeopleLoading = (state) => state.people.loading;
+export const getPeopleError = (state) => state.people.error;

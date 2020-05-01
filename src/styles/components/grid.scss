@@ -4,7 +4,34 @@
   grid-gap: 10px;
 
   @media (max-width: 767px) {
-    grid-template-columns: repeat(auto-fit, 32%) !important;
+    grid-template-columns: repeat(auto-fit, 32%);
     grid-gap: 5px;
+  }
+
+  &.preview {
+    grid-template-columns: repeat(5, 1fr);
+    grid-gap: 0;
+
+    @media (max-width: 767px) {
+      & + & {
+        margin-top: 10px;
+      }
+    }
+
+    .item {
+      &:first-child {
+        grid-column: 1 / span 2;
+        grid-row: 1 / span 2;
+      }
+
+      &__image {
+        height: 100%;
+        border-radius: 0;
+      }
+
+      &__vote-average {
+        height: 100%;
+      }
+    }
   }
 }

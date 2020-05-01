@@ -2,35 +2,40 @@ import * as types from "../constants/actionTypes";
 
 const initialState = {
   loading: false,
-  movies: [],
-  error: null
+  movies: {},
+  error: null,
 };
 
-export default function(state = initialState, action) {
+export default function (state = initialState, action) {
   switch (action.type) {
     case types.FETCH_MOVIES_BEGIN:
       return {
         ...state,
         loading: true,
-        error: null
+        error: null,
       };
     case types.FETCH_MOVIES_SUCCESS:
       return {
         ...state,
         loading: false,
-        movies: action.payload
+        movies: {
+          ...state["movies"],
+          [action.category]: {
+            ...action.payload,
+          },
+        },
       };
     case types.FETCH_MOVIES_ERROR:
       return {
         ...state,
         loading: false,
-        error: action.payload.error
+        error: action.payload.error,
       };
     default:
       return state;
   }
 }
 
-export const getMovies = state => state.movies.movies;
-export const getMoviesLoading = state => state.movies.loading;
-export const getMoviesError = state => state.movies.error;
+export const getMovies = (state) => state.movies.movies;
+export const getMoviesLoading = (state) => state.movies.loading;
+export const getMoviesError = (state) => state.movies.error;

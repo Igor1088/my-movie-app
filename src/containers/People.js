@@ -39,8 +39,8 @@ class People extends Component {
     window.scrollTo(0, this.myRef.current.offsetTop);
   };
 
-  handleFilterClick = (e) => {
-    const filterValue = e.target.textContent.toLowerCase();
+  handleFilterClick = (filterValue) => {
+    // const filterValue = e.target.textContent.toLowerCase();
     this.setState({ filter: filterValue });
 
     if (this.state.filter !== filterValue) {
@@ -53,18 +53,30 @@ class People extends Component {
   };
 
   render() {
-    const { error, loading, people, heading, filters } = this.props;
+    const {
+      error,
+      loading,
+      people,
+      heading,
+      filters,
+      preview,
+      previewItemsCount = 7,
+    } = this.props;
     const totalPages = people.total_pages;
-    const items = people.results;
+    let items = people.results ? people.results : [];
+
+    if (preview) {
+      items = items.slice(0, previewItemsCount);
+    }
 
     if (error) {
       return <div>Error!</div>;
     }
 
     return (
-      <div ref={this.myRef}>
+      <section ref={this.myRef}>
         <div className="row__head">
-          <h3 className="row__title">{heading ? heading : "Popular People"}</h3>
+          <h3 className="row__title">{heading}</h3>
           {filters ? (
             <Filter
               filter={this.state.filter}
@@ -73,14 +85,16 @@ class People extends Component {
           ) : null}
         </div>
         {loading ? <Loader /> : <Grid items={items} media="person" />}
-        <div className="pagination">
-          <Pagination
-            onChange={this.handlePageClick}
-            current={this.state.current}
-            total={totalPages}
-          />
-        </div>
-      </div>
+        {!preview && (
+          <div className="pagination">
+            <Pagination
+              onChange={this.handlePageClick}
+              current={this.state.current}
+              total={totalPages}
+            />
+          </div>
+        )}
+      </section>
     );
   }
 }

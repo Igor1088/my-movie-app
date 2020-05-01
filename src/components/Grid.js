@@ -2,8 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import Item from "./Item";
 
-const Grid = ({ items = [], media }) => (
-  <div className="grid">
+const Grid = ({ items = [], media, preview }) => (
+  <div className={`grid ${preview ? "preview" : ""}`}>
     {items.map((i) => {
       return (
         <Item
@@ -14,6 +14,7 @@ const Grid = ({ items = [], media }) => (
           vote_average={i.vote_average}
           media={media}
           year={i.release_date || i.first_air_date}
+          preview={preview}
         />
       );
     })}

@@ -12,7 +12,7 @@ export function fetchMovies(category, page, filter) {
         .then(handleErrors)
         .then((response) => response.json())
         .then((data) => {
-          dispatch(fetchMoviesSuccess(data));
+          dispatch(fetchMoviesSuccess(data, category));
           return data;
         })
         .catch((error) => {
@@ -25,7 +25,7 @@ export function fetchMovies(category, page, filter) {
         .then(handleErrors)
         .then((response) => response.json())
         .then((data) => {
-          dispatch(fetchMoviesSuccess(data));
+          dispatch(fetchMoviesSuccess(data, category));
           return data;
         })
         .catch((error) => {
@@ -37,9 +37,10 @@ export function fetchMovies(category, page, filter) {
 
 const fetchMoviesBegin = () => ({ type: types.FETCH_MOVIES_BEGIN });
 
-const fetchMoviesSuccess = (movies) => ({
+const fetchMoviesSuccess = (movies, category) => ({
   type: types.FETCH_MOVIES_SUCCESS,
   payload: movies,
+  category: category,
 });
 
 const fetchMoviesError = (error) => ({

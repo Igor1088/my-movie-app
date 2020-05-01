@@ -40,8 +40,8 @@ class TvShows extends Component {
     // this.myRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
   };
 
-  handleFilterClick = (e) => {
-    const filterValue = e.target.textContent.toLowerCase();
+  handleFilterClick = (filterValue) => {
+    // const filterValue = e.target.textContent.toLowerCase();
     this.setState({ filter: filterValue });
 
     if (this.state.filter !== filterValue) {
@@ -54,9 +54,22 @@ class TvShows extends Component {
   };
 
   render() {
-    const { error, loading, tvShows, heading, filters } = this.props;
-    const totalPages = tvShows.total_pages;
-    const items = tvShows.results;
+    const {
+      error,
+      loading,
+      tvShows,
+      heading,
+      filters,
+      category,
+      preview,
+      previewItemsCount = 7,
+    } = this.props;
+    const totalPages = tvShows[category] ? tvShows[category].total_pages : 0;
+    let items = tvShows[category] ? tvShows[category].results : [];
+
+    if (preview) {
+      items = items.slice(0, previewItemsCount);
+    }
 
     if (error) {
       return <div>Error!</div>;
@@ -79,7 +92,7 @@ class TvShows extends Component {
     // }
 
     return (
-      <div ref={this.myRef}>
+      <section ref={this.myRef}>
         <div className="row__head">
           <h3 className="row__title">{heading}</h3>
           {filters ? (
@@ -91,14 +104,16 @@ class TvShows extends Component {
         </div>
         {/* <div className="grid">{items}</div> */}
         {loading ? <Loader /> : <Grid items={items} media="tv" />}
-        <div className="pagination">
-          <Pagination
-            onChange={this.handlePageClick}
-            current={this.state.current}
-            total={totalPages}
-          />
-        </div>
-      </div>
+        {!preview && (
+          <div className="pagination">
+            <Pagination
+              onChange={this.handlePageClick}
+              current={this.state.current}
+              total={totalPages}
+            />
+          </div>
+        )}
+      </section>
     );
   }
 }

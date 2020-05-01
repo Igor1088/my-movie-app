@@ -2,10 +2,10 @@ import * as types from "../constants/actionTypes";
 import { API_KEY } from "../constants/config";
 import { handleErrors } from "../utils/helpers";
 
-export function fetchPeople(page, trending, filter) {
+export function fetchPeople(page, category, filter) {
   return (dispatch) => {
     dispatch(fetchPeopleBegin());
-    if (trending) {
+    if (category === "trending") {
       fetch(
         `https://api.themoviedb.org/3/trending/person/${filter}?api_key=${API_KEY}&language=en&page=${page}`
       )

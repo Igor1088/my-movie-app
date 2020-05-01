@@ -62,6 +62,16 @@ function App({ children }) {
             )}
           />
           <Route
+            path="/movies/trending"
+            render={(props) => (
+              <Movies
+                {...props}
+                category="trending"
+                heading="Trending Movies"
+              />
+            )}
+          />
+          <Route
             path="/tv-show/popular"
             render={(props) => (
               <TvShows
@@ -101,9 +111,35 @@ function App({ children }) {
               />
             )}
           />
+          <Route
+            path="/tv-show/trending"
+            render={(props) => (
+              <TvShows
+                {...props}
+                category="trending"
+                heading="Trending TV Shows"
+              />
+            )}
+          />
+          <Route
+            path="/people/trending"
+            render={(props) => (
+              <People
+                {...props}
+                category="trending"
+                heading="Trending People"
+              />
+            )}
+          />
+          <Route
+            path="/people/popular"
+            render={(props) => (
+              <People {...props} category="popular" heading="Popular People" />
+            )}
+          />
+          {/* <Route path="/people" exact component={People} /> */}
           <Route path="/movie/:id" component={MovieDetails} />
           <Route exact path="/tv/:id" component={TvShowDetails} />
-          <Route path="/people" component={People} />
           <Route path="/person/:id" component={PersonDetails} />
           <Route
             exact

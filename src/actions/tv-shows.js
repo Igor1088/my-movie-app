@@ -12,7 +12,7 @@ export function fetchTvShows(category, page, filter) {
         .then(handleErrors)
         .then((response) => response.json())
         .then((data) => {
-          dispatch(fetchTvShowsSuccess(data));
+          dispatch(fetchTvShowsSuccess(data, category));
           return data;
         })
         .catch((error) => {
@@ -25,7 +25,7 @@ export function fetchTvShows(category, page, filter) {
         .then(handleErrors)
         .then((response) => response.json())
         .then((data) => {
-          dispatch(fetchTvShowsSuccess(data));
+          dispatch(fetchTvShowsSuccess(data, category));
           return data;
         })
         .catch((error) => {
@@ -37,9 +37,10 @@ export function fetchTvShows(category, page, filter) {
 
 const fetchTvShowsBegin = () => ({ type: types.FETCH_SHOWS_BEGIN });
 
-const fetchTvShowsSuccess = (tvShows) => ({
+const fetchTvShowsSuccess = (tvShows, category) => ({
   type: types.FETCH_SHOWS_SUCCESS,
   payload: tvShows,
+  category: category,
 });
 
 const fetchTvShowsError = (error) => ({

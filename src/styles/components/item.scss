@@ -39,13 +39,14 @@
   }
 
   &__image {
+    display: block;
     width: 100%;
     border-radius: 3px;
     overflow: hidden;
 
-    @media (min-width: 768px) {
-      height: 225px;
-    }
+    // @media (min-width: 768px) {
+    //   height: 225px;
+    // }
 
     &-holder {
       position: relative;
@@ -57,6 +58,7 @@
     top: 0;
     right: 0;
     left: 0;
+    height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -69,9 +71,9 @@
     opacity: 0;
     transition: all 0.4s ease-in-out;
 
-    @media (min-width: 768px) {
-      height: 225px;
-    }
+    // @media (min-width: 768px) {
+    //   height: 225px;
+    // }
 
     span {
       margin-left: 3px;

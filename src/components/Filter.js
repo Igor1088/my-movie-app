@@ -4,15 +4,15 @@ const Filter = ({ filter, handleFilterClick }) => (
   <div className="row__filter">
     <div
       className={`row__filter-item ${filter === "day" ? "active" : ""}`}
-      onClick={handleFilterClick}
+      onClick={() => handleFilterClick("day")}
     >
-      Day
+      Today
     </div>
     <div
       className={`row__filter-item ${filter === "week" ? "active" : ""}`}
-      onClick={handleFilterClick}
+      onClick={() => handleFilterClick("week")}
     >
-      Week
+      This Week
     </div>
   </div>
 );
