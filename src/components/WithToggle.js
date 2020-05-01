@@ -3,6 +3,7 @@ import React from "react";
 const withToggle = (Component) => {
   return class WithToggle extends React.Component {
     state = { all: false };
+
     toggleAll = () => {
       this.setState({ all: !this.state.all });
     };

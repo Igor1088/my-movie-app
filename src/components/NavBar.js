@@ -6,6 +6,7 @@ const navLinks = [
   {
     id: 2,
     link: "People",
+    route: "/people/popular",
     subnav: true,
     subnavLinks: [
       { id: 21, link: "Popular", route: "/people/popular" },
@@ -16,6 +17,7 @@ const navLinks = [
     id: 3,
     link: "Movies",
     subnav: true,
+    route: "/movies/popular",
     subnavLinks: [
       { id: 31, link: "Popular", route: "/movies/popular" },
       { id: 32, link: "Top Rated", route: "/movies/top-rated" },
@@ -28,6 +30,7 @@ const navLinks = [
     id: 4,
     link: "Tv Shows",
     subnav: true,
+    route: "/tv-show/popular",
     subnavLinks: [
       { id: 41, link: "Popular", route: "/tv-show/popular" },
       { id: 42, link: "Top Rated", route: "/tv-show/top-rated" },
