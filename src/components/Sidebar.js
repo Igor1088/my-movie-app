@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import languages from "../constants/languages";
 import { dateFormat } from "../utils/helpers";
+import { FaLink } from "react-icons/fa";
 
 const Sidebar = (props) => {
   const {
@@ -96,7 +97,7 @@ const Sidebar = (props) => {
               <div className="sidebar__row-heading">Homepage</div>
               <div className="sidebar__row-info">
                 <a href={homepage} target="_blank" rel="noopener noreferrer">
-                  {homepage ? "Go to" : "-"}
+                  {homepage ? <FaLink /> : null}
                 </a>
               </div>
             </div>
@@ -137,9 +138,9 @@ const Sidebar = (props) => {
                     href={`${homepage}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    title="Homepage"
+                    title="Official Site"
                   >
-                    Go to
+                    <FaLink />
                   </a>
                 ) : (
                   "-"
