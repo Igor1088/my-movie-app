@@ -14,7 +14,20 @@
   &__user {
     display: flex;
     align-items: center;
-    margin-right: 20px;
+    cursor: pointer;
+
+    &-holder {
+      padding-bottom: 5px;
+      position: relative;
+
+      &:hover {
+        color: $secondaryColor;
+
+        .header__menu {
+          display: block;
+        }
+      }
+    }
 
     &-link {
       font-size: 0.9em;
@@ -41,7 +54,29 @@
     }
 
     &-name {
-      margin-left: 3px;
+      margin-left: 5px;
+    }
+  }
+
+  &__menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 10;
+    white-space: nowrap;
+    transition: all 0.1s ease;
+    border: 1px solid #d4d6d6;
+    background-color: #f5f7fa;
+    box-shadow: 3px 2px 4px 0px rgba(0, 0, 0, 0.5);
+    padding: 7px 0;
+
+    &-item {
+      a {
+        display: block;
+        padding: 5px 10px;
+      }
     }
   }
 }

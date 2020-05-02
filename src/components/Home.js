@@ -13,21 +13,21 @@ const Home = () => {
         heading="Trending Movies"
         filters={true}
         preview={true}
-        previewItemsCount={7}
+        previewItemsCount={8}
       />
       <TvShows
         category="trending"
         heading="Trending TV Shows"
         filters={true}
         preview={true}
-        previewItemsCount={7}
+        previewItemsCount={8}
       />
       <People
         category="trending"
         heading="Trending People"
         filters={true}
         preview={true}
-        previewItemsCount={7}
+        previewItemsCount={8}
       />
     </main>
   );

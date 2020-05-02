@@ -11,7 +11,8 @@ import {
   getUserAuthorization,
 } from "../reducers/user";
 import { getSession } from "../reducers/auth";
-import { FaUserCircle } from "react-icons/fa";
+import { FaUserCircle, FaCaretDown } from "react-icons/fa";
+import Logout from "../components/Logout";
 
 class User extends Component {
   componentDidMount() {
@@ -22,7 +23,7 @@ class User extends Component {
   }
 
   render() {
-    const { error, loading, user, userAuthorized } = this.props;
+    const { error, loading, user, userAuthorized, logout } = this.props;
     const gravatarHash = userAuthorized ? user.avatar.gravatar.hash : null;
     const background = `https://secure.gravatar.com/avatar/${gravatarHash}`;
 
@@ -35,14 +36,7 @@ class User extends Component {
     }
 
     return (
-      <Link
-        to={{
-          pathname: "/u/favorites/movies",
-          state: { category: "favorite", media: "movies" },
-        }}
-        className="header__user-link"
-        title="Go to users lists"
-      >
+      <div className="header__user-holder">
         <div className="header__user">
           <div className="header__user-img">
             {gravatarHash ? (
@@ -52,8 +46,46 @@ class User extends Component {
             )}
           </div>
           <div className="header__user-name">{user.username}</div>
+          <FaCaretDown />
         </div>
-      </Link>
+        <ul className="header__menu">
+          <li className="header__menu-item">
+            <Link
+              to={{
+                pathname: "/u/favorites/movies",
+                state: { category: "favorite", media: "movies" },
+              }}
+            >
+              Favorites
+            </Link>
+          </li>
+          <li className="header__menu-item">
+            <Link
+              to={{
+                pathname: "/u/watchlist/movies",
+                state: { category: "watchlist", media: "movies" },
+              }}
+              className="header__user-link"
+            >
+              Watchlist
+            </Link>
+          </li>
+          <li className="header__menu-item">
+            <Link
+              to={{
+                pathname: "/u/rated/movies",
+                state: { category: "rated", media: "movies" },
+              }}
+              className="header__user-link"
+            >
+              Ratings
+            </Link>
+          </li>
+          <li className="header__menu-item">
+            <Logout onLogout={logout} />
+          </li>
+        </ul>
+      </div>
     );
   }
 }

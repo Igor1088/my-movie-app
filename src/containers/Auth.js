@@ -6,7 +6,6 @@ import { getUser } from "../reducers/user";
 import { getSessionError } from "../reducers/auth";
 import User from "./User";
 import Login from "../components/Login";
-import Logout from "../components/Logout";
 import SearchBox from "../containers/Search";
 
 const Auth = ({ user, login, logout, errorLogin }) => {
@@ -15,8 +14,7 @@ const Auth = ({ user, login, logout, errorLogin }) => {
       <SearchBox />
       {localStorage.getItem("session_id") ? (
         <div className="header__top-info">
-          <User />
-          <Logout onLogout={logout} />
+          <User logout={logout} />
         </div>
       ) : (
         <div>
