@@ -33,6 +33,7 @@ class MovieDetails extends Component {
   componentDidUpdate(prevProps) {
     let oldId = prevProps.match.params.id;
     let newId = this.props.match.params.id;
+
     if (newId !== oldId) {
       this.props.fetchMovieDetails(this.props.match.params.id);
       if (localStorage.getItem("session_id")) {

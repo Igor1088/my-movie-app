@@ -34,9 +34,7 @@ export function authenticateToken(username, password, token) {
     )
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
         if (data.status_code) {
-          console.log(data.status_message);
           dispatch(createSessionError(data.status_message));
         } else {
           dispatch(createSession(data.request_token));
