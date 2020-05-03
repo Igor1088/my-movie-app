@@ -136,7 +136,7 @@ class MovieDetails extends Component {
       //   };
       // });
 
-      similar = movieDetails.similar.results.slice(0, 14).map((movie) => {
+      similar = movieDetails.similar.results.slice(0, 12).map((movie) => {
         return (
           <Item
             key={`${movie.id}-${movie.title}`}

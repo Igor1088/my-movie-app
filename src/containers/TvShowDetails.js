@@ -120,7 +120,7 @@ class TvShowDetails extends Component {
         };
       });
 
-      items = tvShowDetails.similar.results.slice(0, 14).map((tv) => {
+      items = tvShowDetails.similar.results.slice(0, 12).map((tv) => {
         return (
           <Item
             key={tv.id}
