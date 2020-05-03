@@ -58,20 +58,13 @@
     flex-wrap: wrap;
 
     &-item {
-      padding: 0 10px;
+      padding: 3px 10px;
       margin: 1px;
-      border-right: 1px solid #868686;
-
-      &:first-child {
-        padding-left: 0;
-      }
-
-      &:last-child {
-        border-right-color: transparent;
-      }
+      border: 1px solid #f1c40f;
+      color: #f1c40f;
 
       @media (max-width: 767px) {
-        padding: 0 4px;
+        padding: 2px 4px;
       }
     }
 
@@ -221,6 +214,7 @@
 
     img {
       width: 100%;
+      display: block;
     }
   }
 

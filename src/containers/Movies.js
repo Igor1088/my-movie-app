@@ -85,7 +85,7 @@ class Movies extends Component {
           ) : null}
         </div>
         {loading ? <Loader /> : <Grid items={items} media="movie" />}
-        {!preview && (
+        {preview ? null : (
           <div className="pagination">
             <Pagination
               onChange={this.handlePageClick}

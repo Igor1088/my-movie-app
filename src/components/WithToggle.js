@@ -9,7 +9,7 @@ const withToggle = (Component) => {
     };
 
     render() {
-      const itemsLength = this.props.items && this.props.items.length;
+      const itemsLength = this.props.items ? this.props.items.length : 0;
 
       const props = {
         all: this.state.all,

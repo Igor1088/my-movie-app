@@ -85,7 +85,7 @@ class People extends Component {
           ) : null}
         </div>
         {loading ? <Loader /> : <Grid items={items} media="person" />}
-        {!preview && (
+        {preview ? null : (
           <div className="pagination">
             <Pagination
               onChange={this.handlePageClick}

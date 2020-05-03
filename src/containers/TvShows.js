@@ -104,7 +104,7 @@ class TvShows extends Component {
         </div>
         {/* <div className="grid">{items}</div> */}
         {loading ? <Loader /> : <Grid items={items} media="tv" />}
-        {!preview && (
+        {preview ? null : (
           <div className="pagination">
             <Pagination
               onChange={this.handlePageClick}

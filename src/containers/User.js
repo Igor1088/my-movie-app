@@ -16,7 +16,7 @@ import Logout from "../components/Logout";
 
 class User extends Component {
   componentDidMount() {
-    if (localStorage.getItem("session_id") && !this.props.sessionID) {
+    if (localStorage.getItem("session_id")) {
       this.props.fetchLoggedUser();
       return;
     }
