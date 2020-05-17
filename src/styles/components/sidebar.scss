@@ -46,11 +46,22 @@
 
   &__companie {
     &-info {
-      margin-top: 5px;
+      margin-bottom: 5px;
+
+      @media (min-width: 768px) {
+        display: inline-block;
+        vertical-align: middle;
+        margin-right: 10px;
+        max-width: 44%;
+      }
     }
   }
 
   .companie-logo {
-    max-width: 60%;
+    width: 100%;
+
+    @media (max-width: 767px) {
+      width: 56%;
+    }
   }
 }

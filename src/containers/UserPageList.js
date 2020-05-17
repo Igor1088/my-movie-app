@@ -62,11 +62,14 @@ class UserPageList extends Component {
 
     return (
       <div>
-        <div className="list__options">
-          <button className="list__sort-btn" onClick={this.handleSort}>
-            <span>Date Added</span>
-            {this.state.sortDesc ? <FaSortAmountDown /> : <FaSortAmountUp />}
-          </button>
+        <div className="list__head">
+          <h3 className="list__heading">{`${media} ${category}`}</h3>
+          <div className="list__options">
+            <button className="list__sort-btn" onClick={this.handleSort}>
+              <span>Date Added</span>
+              {this.state.sortDesc ? <FaSortAmountDown /> : <FaSortAmountUp />}
+            </button>
+          </div>
         </div>
         <div className="list">
           {list[category][media].results.map((i) => {

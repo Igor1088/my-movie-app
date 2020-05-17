@@ -1,8 +1,14 @@
 .list {
   margin-top: 5px;
 
-  &__options {
-    text-align: right;
+  &__head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__heading {
+    text-transform: capitalize;
   }
 
   &__sort-btn {

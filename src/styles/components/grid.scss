@@ -36,6 +36,10 @@
   }
 
   &.people {
-    grid-template-columns: repeat(auto-fill, minmax(89px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+
+    @media (max-width: 767px) {
+      grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+    }
   }
 }
