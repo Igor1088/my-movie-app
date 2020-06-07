@@ -1,0 +1,115 @@
+.discover {
+  @media (max-width: 767px) {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+
+  @media (min-width: 768px) {
+    display: grid;
+    grid-template-columns: 80% 20%;
+  }
+
+  &-toggle {
+    text-align: center;
+    padding: 15px;
+    text-decoration: underline;
+
+    @media (min-width: 768px) {
+      display: none;
+    }
+  }
+
+  &-filter {
+    padding: 10px 20px;
+
+    @media (max-width: 767px) {
+      display: none;
+    }
+
+    &.show {
+      display: block;
+    }
+
+    &__heading {
+      margin-bottom: 20px;
+    }
+
+    &__row {
+      &-label {
+        font-weight: 500;
+        margin-bottom: 5px;
+      }
+
+      & + & {
+        margin-top: 15px;
+      }
+
+      .input-range {
+        margin-top: 20px;
+
+        &__slider {
+          background: $secondaryColor;
+          border-color: $secondaryColor;
+        }
+
+        &__track--active {
+          background: $secondaryColor;
+        }
+
+        &__label--min {
+          .input-range__label-container {
+            display: none;
+          }
+        }
+
+        &__label--max {
+          .input-range__label-container {
+            display: none;
+          }
+        }
+      }
+    }
+
+    &__list {
+      li {
+        display: inline-flex;
+        padding: 2px 5px;
+        margin: 1px;
+        border: 1px solid $secondaryColor;
+        color: $secondaryColor;
+        margin: 5px 5px 0 0;
+        transition: all 0.3s ease;
+        cursor: pointer;
+        font-size: 0.9rem;
+        border-radius: 12px;
+
+        &:hover {
+          background-color: $secondaryColor;
+          color: #fff;
+        }
+
+        &.selected {
+          background-color: $secondaryColor;
+          color: #fff;
+        }
+      }
+    }
+  }
+
+  &-btn {
+    background-color: $secondaryColor;
+    color: #fff;
+    padding: 10px;
+    width: 100%;
+    border-radius: 20px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    outline: none;
+
+    &:hover {
+      background-color: darken($secondaryColor, 10%);
+    }
+  }
+}

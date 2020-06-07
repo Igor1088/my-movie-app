@@ -1,7 +1,7 @@
 import React from "react";
 import Movies from "../containers/Movies";
 import NavBar from "./NavBar";
-import Home from "../components/Home";
+import Home from "./Home";
 import TvShows from "../containers/TvShows";
 import MovieDetails from "../containers/MovieDetails";
 import PersonDetails from "../containers/PersonDetails";
@@ -12,7 +12,8 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import "rc-pagination/assets/index.css";
 import SearchResults from "../containers/SearchResults";
 import Auth from "../containers/Auth";
-import UserPage from "../components/UserPage";
+import UserPage from "./UserPage";
+import Discover from "../containers/Discover";
 
 function App({ children }) {
   return (
@@ -31,6 +32,7 @@ function App({ children }) {
               <Movies {...props} category="popular" heading="Popular Movies" />
             )}
           />
+          <Route path="/discover/:id" component={Discover} />
           <Route
             path="/movies/upcoming"
             render={(props) => (

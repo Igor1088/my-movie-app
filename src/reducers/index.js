@@ -11,6 +11,7 @@ import user from "./user";
 import userData from "./userData";
 import search from "./search";
 import accountStates from "./account-states";
+import discover from "./discover";
 
 const rootReducer = combineReducers({
   movies,
@@ -25,6 +26,7 @@ const rootReducer = combineReducers({
   userData,
   search,
   accountStates,
+  discover,
 });
 
 export default rootReducer;

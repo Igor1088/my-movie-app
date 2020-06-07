@@ -6,6 +6,7 @@ import { fetchPersonDetails } from "./person-details";
 import { fetchTvShowDetails } from "./tvshow-details";
 import { fetchSeasonDetails } from "./tv-season";
 import { fetchSearchResults } from "./search";
+import { fetchDiscover } from "./discover";
 import { createSession, requestLogin, logout } from "./auth";
 import {
   fetchUser,
@@ -36,4 +37,5 @@ export {
   userRateAction,
   fetchAccountStates,
   deleteRating,
+  fetchDiscover,
 };

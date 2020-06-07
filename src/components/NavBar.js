@@ -39,6 +39,16 @@ const navLinks = [
       { id: 45, link: "Trending", route: "/tv-show/trending" },
     ],
   },
+  {
+    id: 5,
+    link: "Discover",
+    subnav: true,
+    route: "/discover/movie",
+    subnavLinks: [
+      { id: 51, link: "Movie", route: "/discover/movie" },
+      { id: 52, link: "Tv Show", route: "/discover/tv" },
+    ],
+  },
 ];
 
 const NavBar = () => (
