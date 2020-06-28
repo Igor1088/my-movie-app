@@ -37,7 +37,7 @@ class GridPreview extends Component {
     return (
       <Fragment>
         <div className="home-preview__heading">
-          <h3 class="row__title">{heading}</h3>
+          <h3 className="row__title">{heading}</h3>
         </div>
         {loading ? (
           <Loader />
