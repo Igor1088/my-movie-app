@@ -17,7 +17,7 @@ import MediaInfo from "../components/MediaInfo";
 import Person from "../components/Person";
 import Item from "../components/Item";
 import Season from "../components/Season";
-import Video from "../components/Video";
+import VideoList from "../components/VideoList";
 import Section from "../components/Section";
 import Sidebar from "../components/Sidebar";
 import ReviewList from "../components/ReviewList";
@@ -79,6 +79,7 @@ class TvShowDetails extends Component {
     const videos = tvShowDetails.videos ? tvShowDetails.videos.results : [];
     const ReviewsWithToggle = withToggle(ReviewList);
     const ImageGalleryWithToggle = withToggle(ImageGallery);
+    const VideosWithToggle = withToggle(VideoList);
     const inWatchlist = accountStates.watchlist;
     const isFavorite = accountStates.favorite;
     let cast = [];
@@ -219,13 +220,7 @@ class TvShowDetails extends Component {
             </Section>
 
             <Section heading="Trailers">
-              <div>
-                {videos.length > 0 ? (
-                  <Video videos={videos} />
-                ) : (
-                  <p>No Trailers</p>
-                )}
-              </div>
+              <VideosWithToggle items={videos} maxItemsToShow={2} />
             </Section>
 
             <Section heading="More Like This">

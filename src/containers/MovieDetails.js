@@ -17,7 +17,7 @@ import Loader from "../components/Loader";
 import MediaInfo from "../components/MediaInfo";
 import Person from "../components/Person";
 import Item from "../components/Item";
-import Video from "../components/Video";
+import VideoList from "../components/VideoList";
 import ReviewList from "../components/ReviewList";
 import Section from "../components/Section";
 import Sidebar from "../components/Sidebar";
@@ -80,6 +80,7 @@ class MovieDetails extends Component {
 
     const ReviewsWithToggle = withToggle(ReviewList);
     const ImageGalleryWithToggle = withToggle(ImageGallery);
+    const VideosWithToggle = withToggle(VideoList);
 
     if (error) {
       return <div>Error!</div>;
@@ -248,13 +249,7 @@ class MovieDetails extends Component {
             </Section>
 
             <Section heading="Trailers">
-              <div>
-                {videos.length > 0 ? (
-                  <Video videos={videos} />
-                ) : (
-                  <p>No Trailers</p>
-                )}
-              </div>
+              <VideosWithToggle items={videos} maxItemsToShow={2} />
             </Section>
 
             {similar.length ? (
@@ -262,14 +257,6 @@ class MovieDetails extends Component {
                 <div className="grid">{similar}</div>
               </Section>
             ) : null}
-
-            {/* <Section heading="Reviews">
-              <ReviewList
-                reviews={reviews}
-                maxTextLength={500}
-                maxNumOfReviews={2}
-              />
-            </Section> */}
 
             <Section heading="Reviews">
               <ReviewsWithToggle

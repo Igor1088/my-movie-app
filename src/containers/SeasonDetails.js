@@ -14,7 +14,7 @@ import Episode from "../components/Episode";
 import { Link } from "react-router-dom";
 import Section from "../components/Section";
 import CastList from "../components/CastList";
-// import Video from "../components/Video";
+// import VideoList from "../components/VideoList";
 
 class SeasonDetails extends Component {
   componentDidMount() {

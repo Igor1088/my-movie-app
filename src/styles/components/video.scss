@@ -1,7 +1,12 @@
 .video {
-  &__container {
-    display: flex;
-    overflow-x: auto;
+  &__grid {
+    display: grid;
+    gap: 10px;
+    grid-template-columns: repeat(2, 1fr);
+
+    @media (max-width: 767px) {
+      grid-template-columns: 1fr;
+    }
   }
 
   &__item {
@@ -11,23 +16,6 @@
     padding: 0;
     overflow: hidden;
     padding-bottom: 56%;
-
-    &-holder {
-      width: 48.6%;
-      flex-shrink: 0;
-
-      @media (max-width: 767px) {
-        width: 80%;
-      }
-
-      & + & {
-        margin-left: 20px;
-
-        @media (max-width: 767px) {
-          margin-left: 10px;
-        }
-      }
-    }
 
     .embed-responsive-item {
       position: absolute;
