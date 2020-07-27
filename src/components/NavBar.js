@@ -1,5 +1,8 @@
 import React from "react";
 import Nav from "./Nav";
+import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { getUserAuthorization } from "../reducers/user";
 
 const navLinks = [
   { id: 1, link: "Home", route: "/", exact: true },
@@ -51,10 +54,23 @@ const navLinks = [
   },
 ];
 
-const NavBar = () => (
-  <nav className="nav-bar">
-    <Nav items={navLinks} />
-  </nav>
-);
+const NavBar = () => {
+  const userAuthorized = useSelector(getUserAuthorization);
+  return (
+    <nav className="nav-bar">
+      <Nav items={navLinks} />
+      {userAuthorized && (
+        <Link
+          to={{
+            pathname: "/u/favorites/movies",
+            state: { category: "favorite", media: "movies" },
+          }}
+        >
+          My Lists
+        </Link>
+      )}
+    </nav>
+  );
+};
 
 export default NavBar;
