@@ -78,10 +78,12 @@ export function fetchAllUserData(mediaType) {
 }
 
 export function userListAction(id, list, mediaType, like) {
+  const media =
+    mediaType === "movies" || mediaType === "movie" ? "movie" : "tv";
+
   return (dispatch) => {
     const sessionID = localStorage.getItem("session_id");
     const userID = localStorage.getItem("user_id");
-    // const media = mediaType === "movie" ? "movies" : "tv";
 
     fetch(
       `https://api.themoviedb.org/3/account/${userID}/${list}?api_key=${API_KEY}&session_id=${sessionID}`,
@@ -91,7 +93,7 @@ export function userListAction(id, list, mediaType, like) {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          media_type: mediaType,
+          media_type: media,
           media_id: id,
           [list]: like,
         }),
@@ -100,8 +102,8 @@ export function userListAction(id, list, mediaType, like) {
       .then(handleErrors)
       .then((response) => response.json())
       .then((data) => {
-        dispatch(fetchAccountStates(id, mediaType));
-        if (mediaType === "movie") {
+        dispatch(fetchAccountStates(id, media));
+        if (mediaType === "movie" || mediaType === "movies") {
           dispatch(fetchAllUserData("movies"));
         } else if (mediaType === "tv") {
           dispatch(fetchAllUserData("tv"));
