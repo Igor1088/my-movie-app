@@ -1,7 +1,7 @@
 import React from "react";
 import { FaHeart } from "react-icons/fa";
 
-const ButtonFav = ({ userLogged, isFavorite, handleFavoriteClick }) => {
+const ButtonFav = ({ userLogged, isFavorite, handleFavoriteClick, itemid }) => {
   if (!userLogged) {
     return (
       <div
@@ -16,7 +16,7 @@ const ButtonFav = ({ userLogged, isFavorite, handleFavoriteClick }) => {
   return isFavorite ? (
     <div
       className="media__options-btn favorite"
-      onClick={() => handleFavoriteClick(!isFavorite)}
+      onClick={() => handleFavoriteClick(!isFavorite, itemid)}
       title="Remove from your favorite list"
     >
       <FaHeart />
@@ -24,7 +24,7 @@ const ButtonFav = ({ userLogged, isFavorite, handleFavoriteClick }) => {
   ) : (
     <div
       className="media__options-btn"
-      onClick={() => handleFavoriteClick(!isFavorite)}
+      onClick={() => handleFavoriteClick(!isFavorite, itemid)}
       title="Mark as favorite"
     >
       <FaHeart />

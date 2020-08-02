@@ -2,6 +2,7 @@ import * as types from "../constants/actionTypes";
 
 const initialState = {
   loading: false,
+  sortDesc: true,
   favorite: {
     movies: {},
     tv: {},
@@ -59,6 +60,11 @@ export default function (state = initialState, action) {
         loading: false,
         error: action.payload,
       };
+    case types.SORT_USERS_LIST:
+      return {
+        ...state,
+        sortDesc: action.payload,
+      };
     default:
       return state;
   }
@@ -68,3 +74,4 @@ export const getUserData = (state) => state.userData.data;
 export const getUserLists = (state) => state.userData;
 export const getUserDataLoading = (state) => state.userData.loading;
 export const getUserDataError = (state) => state.userData.error;
+export const getUserListSort = (state) => state.userData.sortDesc;

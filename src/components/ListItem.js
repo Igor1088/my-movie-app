@@ -1,7 +1,23 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import ButtonFav from "./ButtonFav";
+import ButtonWatch from "./ButtonWatch";
+import RatingContainer from "./RatingContainer";
 
-const ListItem = ({ item, media }) => {
+const ListItem = ({
+  item,
+  media,
+  favorites = [],
+  watchlist = [],
+  ratedList = [],
+  handleFavoriteClick,
+  handleWatchlistClick,
+}) => {
+  const isFavorite = favorites.some((i) => i.id === item.id);
+  const inWatchlist = watchlist.some((i) => i.id === item.id);
+  const rated = ratedList.find((i) => i.id === item.id);
+  const rating = item.rating || (rated && rated.rating);
+
   return (
     <div className="list__item">
       <div className="list__item-img">
@@ -19,9 +35,34 @@ const ListItem = ({ item, media }) => {
           </Link>
         </div>
         <div className="list__item-overview">{item.overview}</div>
-        {item.rating ? (
-          <div className="list__item-rating">Your Rating: {item.rating}</div>
-        ) : null}
+        <div className="list__item-options">
+          <div className="list__item-options-item">
+            <ButtonFav
+              userLogged={true}
+              isFavorite={isFavorite}
+              handleFavoriteClick={handleFavoriteClick}
+              itemid={item.id}
+            />
+            <span className="list__item-options-label">Favorite</span>
+          </div>
+          <div className="list__item-options-item">
+            <ButtonWatch
+              userrLogged={true}
+              inWatchlist={inWatchlist}
+              handleWatchlistClick={handleWatchlistClick}
+              itemid={item.id}
+            />
+            <span className="list__item-options-label">Watchlist</span>
+          </div>
+          <div className="list__item-options-item">
+            {rating ? (
+              <React.Fragment>
+                <div className="list__item-rating">{rating}</div>
+                <span className="list__item-options-label">Your Rating</span>
+              </React.Fragment>
+            ) : null}
+          </div>
+        </div>
       </div>
     </div>
   );

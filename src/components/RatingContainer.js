@@ -12,6 +12,7 @@ const RatingContainer = ({
   handleUserRating,
   deleteRating,
 }) => {
+  const rating = !isEmpty(accountStates) ? accountStates.rated.value : 0;
   if (!userLogged) {
     return (
       <Fragment>
@@ -19,8 +20,8 @@ const RatingContainer = ({
           <FaStar />
         </i>
         <div>
-          <div>{voteAverage} / 10</div>
-          <small>({voteCount})</small>
+          <div>{voteAverage && `${voteAverage} / 10`}</div>
+          <small>{voteCount && `(${voteCount})`}</small>
         </div>
       </Fragment>
     );
@@ -32,8 +33,8 @@ const RatingContainer = ({
         <FaStar />
       </i>
       <div>
-        <div>{voteAverage} / 10</div>
-        <small>({voteCount})</small>
+        <div>{voteAverage && `${voteAverage} / 10`}</div>
+        <small>{voteCount && `(${voteCount})`}</small>
       </div>
       <div className="rating__container">
         <i className="icon-remove" title="Delete Rating" onClick={deleteRating}>
@@ -41,9 +42,7 @@ const RatingContainer = ({
         </i>
         <Rating
           totalStars={10}
-          currentRating={
-            !isEmpty(accountStates) ? accountStates.rated.value : 0
-          }
+          currentRating={rating}
           handleUserRating={handleUserRating}
         />
       </div>

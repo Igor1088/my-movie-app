@@ -43,15 +43,15 @@ export function fetchLoggedUser() {
   };
 }
 
-export function fetchUserData(category, media, sort) {
-  sort = sort ? sort : "desc";
-  return (dispatch) => {
+export function fetchUserData(category, media) {
+  return (dispatch, getState) => {
+    const listSort = getState().userData.sortDesc ? "desc" : "asc";
     const sessionID = localStorage.getItem("session_id");
     const accountID = localStorage.getItem("user_id");
 
-    dispatch(fetchUserDataBegin());
+    // dispatch(fetchUserDataBegin());
     fetch(
-      `https://api.themoviedb.org/3/account/${accountID}/${category}/${media}?api_key=${API_KEY}&session_id=${sessionID}&sort_by=created_at.${sort}&page=1`
+      `https://api.themoviedb.org/3/account/${accountID}/${category}/${media}?api_key=${API_KEY}&session_id=${sessionID}&sort_by=created_at.${listSort}&page=1`
     )
       .then((response) => response.json())
       .then((data) => {
@@ -60,6 +60,20 @@ export function fetchUserData(category, media, sort) {
       .catch((error) => {
         dispatch(fetchUserDataError(error));
       });
+  };
+}
+
+export function fetchAllUserData(mediaType) {
+  return (dispatch, getState) => {
+    if (mediaType === "movies") {
+      dispatch(fetchUserData("favorite", "movies"));
+      dispatch(fetchUserData("watchlist", "movies"));
+      dispatch(fetchUserData("rated", "movies"));
+    } else if (mediaType === "tv") {
+      dispatch(fetchUserData("favorite", "tv"));
+      dispatch(fetchUserData("watchlist", "tv"));
+      dispatch(fetchUserData("rated", "tv"));
+    }
   };
 }
 
@@ -86,8 +100,12 @@ export function userListAction(id, list, mediaType, like) {
       .then(handleErrors)
       .then((response) => response.json())
       .then((data) => {
-        // dispatch(fetchUserData(list, media));
         dispatch(fetchAccountStates(id, mediaType));
+        if (mediaType === "movie") {
+          dispatch(fetchAllUserData("movies"));
+        } else if (mediaType === "tv") {
+          dispatch(fetchAllUserData("tv"));
+        }
       })
       .catch((error) => {
         dispatch(fetchAccountStatesError(error));
@@ -201,6 +219,11 @@ const fetchAccountStatesSuccess = (data) => ({
 const fetchAccountStatesError = (error) => ({
   type: types.FETCH_ACC_STATES_ERROR,
   payload: error,
+});
+
+export const sortUsersList = (sortOrder) => ({
+  type: types.SORT_USERS_LIST,
+  payload: sortOrder,
 });
 
 // const fetchFavMoviesBegin = () => ({
