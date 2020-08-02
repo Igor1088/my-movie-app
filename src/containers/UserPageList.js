@@ -42,11 +42,13 @@ class UserPageList extends Component {
   };
 
   handleFavoriteClick = (like, id) => {
-    this.props.userListAction(id, "favorite", "movie", like);
+    const media = this.props.location.state.media;
+    this.props.userListAction(id, "favorite", media, like);
   };
 
   handleWatchlistClick = (like, id) => {
-    this.props.userListAction(id, "watchlist", "movie", like);
+    const media = this.props.location.state.media;
+    this.props.userListAction(id, "watchlist", media, like);
   };
 
   render() {
