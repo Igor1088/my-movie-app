@@ -56,29 +56,7 @@ class User extends Component {
                 state: { category: "favorite", media: "movies" },
               }}
             >
-              Favorites
-            </Link>
-          </li>
-          <li className="header__menu-item">
-            <Link
-              to={{
-                pathname: "/u/watchlist/movies",
-                state: { category: "watchlist", media: "movies" },
-              }}
-              className="header__user-link"
-            >
-              Watchlist
-            </Link>
-          </li>
-          <li className="header__menu-item">
-            <Link
-              to={{
-                pathname: "/u/rated/movies",
-                state: { category: "rated", media: "movies" },
-              }}
-              className="header__user-link"
-            >
-              Ratings
+              Profile
             </Link>
           </li>
           <li className="header__menu-item">

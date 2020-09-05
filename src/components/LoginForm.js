@@ -82,7 +82,7 @@ class LoginForm extends Component {
           Sign in
         </button>
         <a
-          href="https://www.themoviedb.org/account/reset-password"
+          href="https://www.themoviedb.org/reset-password"
           target="_blank"
           rel="noopener noreferrer"
           className="login__reset-link"
@@ -93,7 +93,7 @@ class LoginForm extends Component {
         <span className="login__register">
           Don't have an account?&nbsp;
           <a
-            href="https://www.themoviedb.org/account/signup"
+            href="https://www.themoviedb.org/signup"
             target="_blank"
             rel="noopener noreferrer"
             className="login__register-link"
